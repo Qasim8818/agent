@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # IOTA Hornet Node - The DAG ledger
+  hornet:
+    image: iotaledger/hornet:latest
+    container_name: gven-hornet
+    ports:
+      - "14265:14265"  # REST API
+      - "14266:14266"  # Dashboard
+    environment:
+      NAMESPACE: "gven:*"
+    volumes:
+      - hornet_data:/app/data
+    networks:
+      - gven-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+  # Redis - Cache and queue
+  redis:
+    image: redis:7-alpine
+    container_name: gven-redis
+    command: redis-server --appendonly yes --maxmemory 512mb
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - gven-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  # PostgreSQL - Optional for enterprise (commented out for MVP)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: gven-postgres
+  #   environment:
+  #     POSTGRES_PASSWORD: gven
+  #     POSTGRES_DB: attestation
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - gven-network
+
+  # Prometheus - Metrics collection (optional)
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: gven-prometheus
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #     - prometheus_data:/prometheus
+  #   command:
+  #     - '--config.file=/etc/prometheus/prometheus.yml'
+  #   networks:
+  #     - gven-network
+
+volumes:
+  hornet_data:
+    driver: local
+  redis_data:
+    driver: local
+  # postgres_data:
+  #   driver: local
+  # prometheus_data:
+  #   driver: local
+
+networks:
+  gven-network:
+    driver: bridge

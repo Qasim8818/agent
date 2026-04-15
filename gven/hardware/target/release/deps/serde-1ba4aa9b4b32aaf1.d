@@ -1,0 +1,14 @@
+/home/killer123/Desktop/agent/gven/hardware/target/release/deps/serde-1ba4aa9b4b32aaf1.d: /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/killer123/Desktop/agent/gven/hardware/target/release/build/serde-882ad471add7f2e9/out/private.rs
+
+/home/killer123/Desktop/agent/gven/hardware/target/release/deps/libserde-1ba4aa9b4b32aaf1.rlib: /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/killer123/Desktop/agent/gven/hardware/target/release/build/serde-882ad471add7f2e9/out/private.rs
+
+/home/killer123/Desktop/agent/gven/hardware/target/release/deps/libserde-1ba4aa9b4b32aaf1.rmeta: /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /home/killer123/Desktop/agent/gven/hardware/target/release/build/serde-882ad471add7f2e9/out/private.rs
+
+/home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/home/killer123/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/home/killer123/Desktop/agent/gven/hardware/target/release/build/serde-882ad471add7f2e9/out/private.rs:
+
+# env-dep:OUT_DIR=/home/killer123/Desktop/agent/gven/hardware/target/release/build/serde-882ad471add7f2e9/out

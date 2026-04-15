@@ -1,0 +1,74 @@
+# Build artifacts
+/target
+/dist
+*.o
+*.a
+*.so
+*.dylib
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+/build
+/bin
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.Python
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.venv
+env/
+venv/
+*.egg-info
+
+# Go
+/zk/keys/
+*.test
+.mod
+go.sum
+
+# Rust
+Cargo.lock
+*.rlib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.local
+
+# Generated files
+*.bin
+*.pub
+signature.*
+sensor_data.json
+registration_*.json
+debug.log
+
+# Docker
+.docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+
+# Testing
+.coverage
+coverage/

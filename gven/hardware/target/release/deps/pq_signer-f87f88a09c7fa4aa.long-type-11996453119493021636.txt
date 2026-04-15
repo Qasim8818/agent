@@ -1,0 +1,2 @@
+FlatMap<std::slice::Iter<'_, u32>, [u8; 4], {closure@src/lib.rs:32:63: 32:66}>
+FlatMap<std::slice::Iter<'_, u32>, [u8; 4], {closure@src/lib.rs:32:63: 32:66}>: AsRef<[u8]>
