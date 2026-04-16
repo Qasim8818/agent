@@ -1,0 +1,37 @@
+# Code Ownership & Review Policy
+# 
+# This file defines code ownership and automatic reviewer assignment.
+# GitHub will request reviews from these teams/individuals on PRs.
+
+# Root/Config Files
+/.github/                 @Qasim8818
+/Dockerfile*              @Qasim8818
+/docker-compose.yml       @Qasim8818
+/.env*                    @Qasim8818
+/SECURITY.md              @Qasim8818
+
+# API Layer
+/truth-layer/api/src/     @Qasim8818
+/truth-layer/api/test/    @Qasim8818
+/truth-layer/api/prisma/  @Qasim8818
+
+# ZK/Cryptography Engine
+/gven/hardware/src/       @Qasim8818
+/gven/zk/                 @Qasim8818
+/gven/zk-engine/          @Qasim8818
+
+# Python Agent
+/gven/agent/              @Qasim8818
+
+# Database
+/truth-layer/db/          @Qasim8818
+
+# Monitoring
+/truth-layer/monitoring/  @Qasim8818
+
+# Documentation
+*.md                      @Qasim8818
+/docs/                    @Qasim8818
+
+# Default - assign to repo owner
+*                         @Qasim8818
