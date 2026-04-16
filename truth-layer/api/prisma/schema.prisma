@@ -1,6 +1,7 @@
 // ==================== TRUTH LAYER - PRISMA SCHEMA ====================
 // Database models for PostgreSQL backend
-// Generation: npx prisma migrate dev
+// ⚠️ NOTE: This schema MUST match db/schema.sql for consistency
+// Do NOT modify without also updating db/schema.sql
 
 datasource db {
   provider = "postgresql"
@@ -12,292 +13,193 @@ generator client {
   output   = "@prisma/client"
 }
 
-// ==================== ENUMS ====================
-
-enum DeviceStatus {
-  ACTIVE
-  SUSPENDED
-  REVOKED
-  TESTING
-  PAUSED
-}
-
-enum DeviceType {
-  ANDROID
-  IOS
-  WEB
-  EMBEDDED
-  HARDWARE_SIGNER
-}
-
-enum VerificationStatus {
-  PENDING
-  IN_PROGRESS
-  VERIFIED
-  UNVERIFIED
-  FAILED
-  FLAGGED
-  EXPIRED
-}
-
-enum BlockchainStatus {
-  PENDING
-  CONFIRMED
-  FAILED
-  DISPUTED
-}
-
-enum RevokeReason {
-  COMPROMISED
-  LOST_DEVICE
-  USER_REQUEST
-  SECURITY_INCIDENT
-  UNAUTHORIZED_ACCESS
-  MALWARE_DETECTED
-  SUSPICIOUS_ACTIVITY
-}
-
 // ==================== DEVICE REGISTRY ====================
-
+// Stores all registered devices (phones, cameras, etc.)
 model Device {
-  // Identifiers
-  device_id            String @id @default(uuid()) @db.Uuid
-  tpm_serial           String @unique @db.Varchar(256)
-  tpm_public_key       String @db.Text // EdDSA public key
-  attestation_key      String @db.Text
+  id                BigInt    @id @default(autoincrement())
+  device_id         String    @unique @db.VarChar(64)  // SHA-256 hash of public key
+  public_key        Bytes     // EdDSA public key (32 bytes)
 
-  // Device Info
-  device_name          String @db.Varchar(100)
-  device_type          DeviceType
-  os_version           String? @db.Varchar(50)
-  app_version          String? @db.Varchar(50)
-  kernel_version       String? @db.Varchar(50)
-  manufacturer         String? @db.Varchar(50)
-  model                String? @db.Varchar(50)
+  device_type       String    @db.VarChar(32)    // 'android', 'ios', 'camera'
+  manufacturer      String    @db.VarChar(128)
+  model             String    @db.VarChar(128)
+  os_version        String?   @db.VarChar(32)
 
-  // Security
-  api_key_hash         String @unique @db.VarChar(64) // SHA-256 hash
-  status               DeviceStatus @default(ACTIVE)
-  verified_at          DateTime
-  last_activity_at     DateTime @default(now()) @updatedAt
-  
-  // Registration tracking
-  registration_ip      String @db.Varchar(45) // IPv4 or IPv6
-  user_agent           String? @db.Text
-  
-  // Metadata
-  metadata             Json? // Custom fields: { "secureBoot": true, "hwPufPresent": true }
+  hardware_backed   Boolean   @default(true)    // Has TPM 2.0 / Secure Enclave
+  attestation_token String?   @db.Text
 
-  // Timestamps
-  created_at           DateTime @default(now())
-  updated_at           DateTime @updatedAt
-  revoked_at           DateTime?
-  revoke_reason        RevokeReason?
+  registered_at     DateTime  @default(now()) @db.Timestamptz()
+  last_activity     DateTime  @default(now()) @db.Timestamptz()
+  status            String    @default("ACTIVE") @db.VarChar(32)  // ACTIVE, REVOKED, SUSPENDED
+  revoked_reason    String?   @db.Text
+  revoked_at        DateTime? @db.Timestamptz()
+
+  metadata          Json?
 
   // Relations
-  verifications        Verification[]
-  media_uploads        MediaFile[]
-  revocations          Revocation[]
-  audit_logs           ApiAuditLog[]
-  usage_records        UsageMeter[]
+  media             MediaFile[]
+  verifications     Verification[]
+  revocations       Revocation[]
 
-  @@index([tpm_serial])
   @@index([status])
-  @@index([created_at])
-  @@index([registration_ip])
+  @@index([device_id])
+  @@map("devices")
 }
 
 // ==================== REVOCATION TABLE ====================
 
 model Revocation {
-  revocation_id        String @id @default(uuid()) @db.Uuid
-  device_id            String @db.Uuid
-  device               Device @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
-  
-  reason               RevokeReason
-  description          String? @db.Text
-  initiated_by         String? // User ID or system
-  
-  created_at           DateTime @default(now())
-  updated_at           DateTime @updatedAt
-  
+  id                BigInt    @id @default(autoincrement())
+  device_id         String    @db.VarChar(64)
+  device            Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+
+  reason            String    @db.VarChar(256)
+  revoked_by        String?   @db.VarChar(128)
+  revoked_at        DateTime  @default(now()) @db.Timestamptz()
+  evidence          String?   @db.Text
+
   @@index([device_id])
-  @@index([created_at])
+  @@index([revoked_at])
+  @@map("revocations")
 }
 
 // ==================== MEDIA FILE UPLOADS ====================
 
 model MediaFile {
-  media_id             String @id @default(uuid()) @db.Uuid
-  device_id            String @db.Uuid
-  device               Device @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+  id                BigInt    @id @default(autoincrement())
+  media_hash        String    @unique @db.VarChar(64)
+  media_type        String    @db.VarChar(32)          // 'image/jpeg', 'video/mp4', etc.
+  size_bytes        BigInt
 
-  // File identifiers
-  media_hash           String @unique @db.VarChar(64) // SHA-256
-  file_name            String @db.Varchar(255)
-  file_size            Int // In bytes
-  file_type            String @db.Varchar(50) // image/jpeg, image/png, video/mp4
-  
-  // Storage
-  storage_path         String @db.Text // S3 or local path
-  ipfs_hash            String? @db.VarChar(68) // Qm...
-  ipfs_status          VerificationStatus @default(PENDING)
-  
-  // Metadata
-  captured_at          DateTime // When media was captured on device
-  upload_location      String? // GPS: "37.7749,-122.4194"
-  metadata             Json? // Camera settings, EXIF, etc.
-  
-  // Verification
-  device_signature     String? @db.Text // EdDSA signature from device TPM
-  signature_verified   Boolean @default(false)
-  
-  // Timeline
-  created_at           DateTime @default(now())
-  updated_at           DateTime @updatedAt
-  expired_at           DateTime?
-  
-  // Relations
-  verifications        Verification[]
-  blockchain_anchors   BlockchainAnchor[]
-  
-  @@index([device_id])
+  device_id         String    @db.VarChar(64)
+  device            Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+
+  created_at        BigInt                             // Unix timestamp from device
+  location          Json?                              // {latitude, longitude, accuracy}
+  nonce             String    @db.VarChar(64)          // Prevent replay attacks
+
+  signature         Bytes
+  signature_valid   Boolean   @default(false)
+
+  ipfs_hash         String?   @db.VarChar(64)
+  arweave_tx        String?   @db.VarChar(64)
+
+  uploaded_at       DateTime  @default(now()) @db.Timestamptz()
+  verification_status String  @default("PENDING") @db.VarChar(32)  // PENDING, VERIFIED, FAILED
+
+  metadata          Json?
+
+  verifications     Verification[]
+
   @@index([media_hash])
+  @@index([verification_status])
+  @@index([device_id])
   @@index([created_at])
-  @@index([file_type])
+  @@map("media")
 }
 
 // ==================== VERIFICATION RECORDS ====================
 
 model Verification {
-  verification_id      String @id @default(uuid()) @db.Uuid
-  device_id            String @db.Uuid
-  device               Device @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
-  
-  media_id             String @db.Uuid
-  media                MediaFile @relation(fields: [media_id], references: [media_id], onDelete: Cascade)
+  id                BigInt    @id @default(autoincrement())
+  media_hash        String    @db.VarChar(64)
+  device_id         String    @db.VarChar(64)
 
-  // Proof generation
-  status               VerificationStatus @default(PENDING)
-  zk_proof             String? @db.Text // Groth16 proof
-  proof_hash           String? @db.VarChar(64)
-  proof_generation_time Int? // Milliseconds
-  
-  // Result
-  authenticity_score   Float? // 0.0 to 1.0
-  confidence_level     String? @db.Varchar(20) // HIGH, MEDIUM, LOW
-  found_anomalies      String[]? // Array of detected issues
-  
-  // Blockchain
-  blockchain_status    BlockchainStatus @default(PENDING)
-  arweave_tx_id        String? @db.Varchar(43)
-  solana_tx_signature  String? @db.Varchar(88)
-  
-  // Timeline
-  created_at           DateTime @default(now())
-  updated_at           DateTime @updatedAt
-  verification_at      DateTime?
-  blockchain_confirmed_at DateTime?
-  
-  // Metadata
-  ip_address           String? @db.Varchar(45)
-  user_agent           String? @db.Text
-  
-  @@index([device_id])
-  @@index([media_id])
-  @@index([status])
-  @@index([created_at])
-  @@unique([verification_id, device_id, media_id])
+  media             MediaFile @relation(fields: [media_hash], references: [media_hash], onDelete: Cascade)
+  device            Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+
+  // Signature verification
+  signature_verified Boolean   @default(false)
+  signature_verified_at DateTime? @db.Timestamptz()
+  signature_error   String?   @db.Text
+
+  // ZK proof generation
+  zk_proof_job_id   String?   @db.Uuid
+  zk_proof          Bytes?
+  zk_proof_generated_at DateTime? @db.Timestamptz()
+  zk_proof_error    String?   @db.Text
+
+  // Blockchain anchor
+  blockchain_tx     String?   @db.VarChar(128)
+  blockchain_verified Boolean @default(false)
+  blockchain_verified_at DateTime? @db.Timestamptz()
+
+  // Final result
+  overall_status    String    @default("PENDING") @db.VarChar(32)
+  trust_score       Float     @default(0.0)
+  expires_at        DateTime? @db.Timestamptz()
+
+  verified_at       DateTime  @default(now()) @db.Timestamptz()
+  verifying_node    String?   @db.VarChar(128)
+
+  @@index([media_hash])
+  @@index([overall_status])
+  @@index([verified_at])
+  @@index([zk_proof_job_id])
+  @@map("verifications")
 }
 
 // ==================== ZK PROOF JOBS ====================
 
 model ZkProofJob {
-  job_id               String @id @default(uuid()) @db.Uuid
-  verification_id      String @db.Uuid
-  
-  // Job state
-  status               VerificationStatus @default(PENDING)
-  queue_position       Int? // Position in processing queue
-  retry_count          Int @default(0)
-  max_retries          Int @default(3)
-  
-  // Processing
-  started_at           DateTime?
-  completed_at         DateTime?
-  duration_ms          Int?
-  
-  // Result
-  proof_output         Json? // Raw proof circuit output
-  error_message        String? @db.Text
-  
-  // Timestamps
-  created_at           DateTime @default(now())
-  updated_at           DateTime @updatedAt
-  
+  id                String    @id @db.Uuid
+  media_hash        String    @db.VarChar(64)
+  device_id         String    @db.VarChar(64)
+
+  status            String    @default("QUEUED") @db.VarChar(32)  // QUEUED, PROCESSING, COMPLETED, FAILED
+  priority          Int       @default(5)
+
+  created_at        DateTime  @default(now()) @db.Timestamptz()
+  started_at        DateTime? @db.Timestamptz()
+  completed_at      DateTime? @db.Timestamptz()
+
+  proof_result      Bytes?
+  error_message     String?   @db.Text
+
+  processing_time_ms BigInt?
+  gpu_used          Boolean   @default(false)
+
   @@index([status])
   @@index([created_at])
+  @@index([priority])
+  @@map("zk_proof_jobs")
 }
 
-// ==================== BLOCKCHAIN ANCHORING ====================
+// ==================== BLOCKCHAIN ANCHORS ====================
 
 model BlockchainAnchor {
-  anchor_id            String @id @default(uuid()) @db.Uuid
-  verification_id      String? @db.Uuid
-  media_id             String @db.Uuid
-  media                MediaFile @relation(fields: [media_id], references: [media_id], onDelete: Cascade)
-  
-  // Arweave
-  arweave_tx_id        String? @db.VarChar(43) @unique
-  arweave_status       BlockchainStatus @default(PENDING)
-  arweave_confirmed_at DateTime?
-  
-  // Solana
-  solana_tx_sig        String? @db.VarChar(88) @unique
-  solana_status        BlockchainStatus @default(PENDING)
-  solana_slot          Int?
-  solana_confirmed_at  DateTime?
-  
-  // Ethereum L2
-  ethereum_tx_hash     String? @db.VarChar(66)
-  ethereum_status      BlockchainStatus @default(PENDING)
-  ethereum_confirmed_at DateTime?
-  
-  // Data anchored
-  anchored_data        Json // { "media_hash": "...", "proof_hash": "...", "timestamp": "..." }
-  
-  // Timeline
-  created_at           DateTime @default(now())
-  updated_at           DateTime @updatedAt
-  
-  @@index([media_id])
-  @@index([arweave_tx_id])
-  @@index([solana_tx_sig])
-  @@index([created_at])
+  id                BigInt    @id @default(autoincrement())
+  media_hash        String    @db.VarChar(64)
+  blockchain        String    @db.VarChar(32)   // 'arweave', 'solana', 'ethereum'
+  transaction_hash  String    @db.VarChar(256)
+
+  anchor_data       Json                           // Full anchor payload
+  anchored_at       DateTime  @default(now()) @db.Timestamptz()
+  confirmation_height Int?
+  finalized         Boolean   @default(false)
+
+  @@index([blockchain])
+  @@index([anchored_at])
+  @@map("blockchain_anchors")
 }
 
-// ==================== API AUDIT LOG ====================
+// ==================== API AUDIT LOGS ====================
 
 model ApiAuditLog {
-  log_id               String @id @default(uuid()) @db.Uuid
-  device_id            String? @db.Uuid
-  device               Device? @relation(fields: [device_id], references: [device_id], onDelete: SetNull)
-  
-  // Request
-  endpoint             String @db.Varchar(255)
-  method               String @db.Varchar(10)
-  status_code          Int
-  
-  // Authentication
-  api_key_used         String? @db.Varchar(64) // Last 64 chars hashed
-  
-  // Tracking
-  ip_address           String @db.Varchar(45)
-  user_agent           String? @db.Text
-  request_id           String @db.Varchar(36)
-  
-  // Performance
-  response_time_ms     Int
+  id                BigInt    @id @default(autoincrement())
+  device_id         String    @db.VarChar(64)
+  endpoint          String    @db.VarChar(256)
+  method            String    @db.VarChar(8)
+  status_code       Int
+  response_time_ms  Int
+  error             String?   @db.Text
+
+  created_at        DateTime  @default(now()) @db.Timestamptz()
+
+  @@index([device_id])
+  @@index([created_at])
+  @@map("api_audit_logs")
+}
   
   // Error tracking
   error_message        String? @db.Text

@@ -1,25 +1,6 @@
 version: '3.8'
 
 services:
-  # IOTA Hornet Node - The DAG ledger
-  hornet:
-    image: iotaledger/hornet:latest
-    container_name: gven-hornet
-    ports:
-      - "14265:14265"  # REST API
-      - "14266:14266"  # Dashboard
-    environment:
-      NAMESPACE: "gven:*"
-    volumes:
-      - hornet_data:/app/data
-    networks:
-      - gven-network
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "100m"
-        max-file: "3"
-
   # Redis - Cache and queue
   redis:
     image: redis:7-alpine
@@ -70,8 +51,6 @@ services:
   #     - gven-network
 
 volumes:
-  hornet_data:
-    driver: local
   redis_data:
     driver: local
   # postgres_data:

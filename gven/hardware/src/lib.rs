@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use hex::encode;
 use sha2::{Sha256, Digest};
 use hmac::{Hmac, Mac};
+use rand::RngCore;
 
 type HmacSha256 = Hmac<Sha256>;
 
@@ -20,21 +21,14 @@ impl KeyPair {
     /// Generate a new keypair (MVP version with HMAC-SHA256)
     /// Production: Use Dilithium3 from liboqs crate
     pub fn generate() -> Result<Self> {
-        use std::time::{SystemTime, UNIX_EPOCH};
-        let nanos = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .unwrap_or_default()
-            .subsec_nanos();
+        // Generate cryptographically secure random bytes
+        let mut secret_key = vec![0u8; 32];
+        rand::thread_rng().fill_bytes(&mut secret_key);
         
-        // Generate 32-byte key from timestamp
+        // Derive public_key from secret_key using SHA256
         let mut hasher = Sha256::new();
-        hasher.update(nanos.to_le_bytes());
+        hasher.update(&secret_key);
         let public_key = hasher.finalize().to_vec();
-        
-        let seed2 = nanos.wrapping_add(1);
-        let mut hasher = Sha256::new();
-        hasher.update(seed2.to_le_bytes());
-        let secret_key = hasher.finalize().to_vec();
         
         Ok(KeyPair {
             public_key,
@@ -63,9 +57,22 @@ impl KeyPair {
     }
 
     /// Verify a signature with only public_key (for external verification)
+    /// 
+    /// ⚠️ LIMITATION: This function demonstrates a fundamental incompatibility
+    /// with HMAC. HMAC is symmetric - both signing and verification require
+    /// the same secret key. You CANNOT verify an HMAC signature with only
+    /// the public key.
+    /// 
+    /// This MVP implementation uses a weaker scheme:
+    /// - Derives a verification key from public_key using SHA256
+    /// - Attempts to verify against that derived key
+    /// 
+    /// **THIS DOES NOT MATCH SIGNATURES CREATED BY sign()!**
+    /// 
+    /// For production, use asymmetric cryptography (Dilithium, ECDSA, etc.)
+    /// where public_key can actually verify signatures from secret_key.
     pub fn verify_with_public_key(public_key: &[u8], data: &[u8], signature: &[u8]) -> Result<()> {
-        // For MVP, derive verification key from public_key
-        // In production with Dilithium, public_key would directly verify
+        // Derive a verification key from public_key
         let mut hasher = Sha256::new();
         hasher.update(public_key);
         hasher.update(b"verify");
@@ -75,7 +82,7 @@ impl KeyPair {
             .map_err(|_| anyhow::anyhow!("Invalid key length"))?;
         mac.update(data);
         mac.verify_slice(signature)
-            .map_err(|_| anyhow::anyhow!("Signature verification failed"))
+            .map_err(|_| anyhow::anyhow!("Signature verification failed with public key (expected for HMAC MVP)"))
     }
 
     /// Get public key as hex string

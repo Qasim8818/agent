@@ -1,0 +1,166 @@
+# ==================== ENVIRONMENT ====================
+.env
+.env.local
+.env.*.local
+.env.backup
+
+# ==================== PYTHON ====================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Poetry
+poetry.lock
+.poetry/
+
+# Pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Pytest
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# ==================== NODE ====================
+node_modules/
+npm-debug.log
+npm-shrinkwrap.json
+yarn-error.log
+lerna-debug.log
+dist/
+build/
+
+# ==================== TYPESCRIPT ====================
+*.tsbuildinfo
+
+# ==================== RUST ====================
+/target/
+Cargo.lock
+**/*.rs.bk
+
+# ==================== IDE & EDITORS ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# ==================== SECRETS & SENSITIVE DATA ====================
+# Never commit secrets, keys, or credentials
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.key.json
+*.pub.json
+*.secret
+*.private
+signature.key.json
+signature.pub
+signature.fingerprint
+signature.bin
+
+# Wallet files
+arweave-wallet.json
+solana-wallet.json
+ethereum-wallet.json
+
+# Configuration with secrets
+.env
+.env.production
+.env.staging
+
+# ==================== DATA FILES ====================
+sensor_data.json
+test.txt
+*.db
+*.sqlite
+*.sqlite3
+*.csv
+*.log
+logs/
+
+# ==================== DOCKER ====================
+.dockerignore
+docker-compose.override.yml
+
+# ==================== TEMPORARY FILES ====================
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# ==================== PROJECT SPECIFIC ====================
+# truth-layer specifics
+truth-layer/api/dist/
+truth-layer/api/node_modules/
+truth-layer/zk-engine/target/
+gven/agent/venv/
+gven/hardware/target/
+
+# Database
+postgres_data/
+redis_data/
+clickhouse_data/
+elasticsearch_data/
+grafana_data/
+
+# Keys and certificates
+keys/
+certs/
+*.key
+*.crt
+*.pem
+
+# ==================== GENERATED FILES ====================
+.generated/
+*.generated.ts
+*.generated.go
+
+# ==================== OS ====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db

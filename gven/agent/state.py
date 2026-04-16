@@ -8,7 +8,7 @@ import hashlib
 import time
 from typing import Dict, Any, Optional, Tuple
 from datetime import datetime
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 import logging
 
 logger = logging.getLogger(__name__)
@@ -29,17 +29,18 @@ class StateSchema(BaseModel):
     timestamp: int = Field(..., description="Unix timestamp", ge=0)
     prev_hash: str = Field(..., description="SHA-256 hash of previous state", min_length=64, max_length=64)
     
-    class Config:
-        extra = "allow"  # Allow additional fields
+    model_config = {"extra": "allow"}  # Allow additional fields (Pydantic v2 syntax)
     
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def validate_status(cls, v):
         allowed = {'active', 'inactive', 'compromised', 'retired'}
         if v not in allowed:
             raise ValueError(f"Status must be one of {allowed}")
         return v
     
-    @validator('prev_hash')
+    @field_validator('prev_hash')
+    @classmethod
     def validate_hash(cls, v):
         if len(v) != 64:
             raise ValueError("prev_hash must be 64-character hex string (SHA-256)")
@@ -49,7 +50,8 @@ class StateSchema(BaseModel):
             raise ValueError("prev_hash must be valid hex")
         return v
     
-    @validator('owner', 'location')
+    @field_validator('owner', 'location')
+    @classmethod
     def validate_no_nulls(cls, v):
         if not v or '\x00' in v:
             raise ValueError("Field cannot contain null characters")

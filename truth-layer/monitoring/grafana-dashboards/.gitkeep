@@ -1,0 +1,3 @@
+# Grafana dashboards provisioning directory
+# JSON dashboard files should be placed here
+# They will be automatically loaded by Grafana on startup
