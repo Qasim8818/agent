@@ -155,14 +155,6 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api/v1');
 
-  // Health endpoint (no auth required)
-  app.get('/health', () => ({
-    status: 'ok',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    environment: nodeEnv,
-  }));
-
   // ==================== STARTUP ====================
 
   await app.listen(port, '0.0.0.0', () => {

@@ -1,0 +1,18 @@
+// Stub proto for ZK proof service
+syntax = \"proto3\";
+
+package zkengine;
+
+service ProofService {
+  rpc VerifyProof(VerifyProofRequest) returns (VerifyProofResponse) {}
+}
+
+message VerifyProofRequest {
+  bytes proof = 1;
+  bytes public_inputs = 2;
+}
+
+message VerifyProofResponse {
+  bool valid = 1;
+  string error = 2;
+}
