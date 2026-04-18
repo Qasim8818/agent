@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { VerificationService } from './verification.service';
 
-@Controller('api/v1/verification')
+@Controller('verification')
 export class VerificationController {
   private readonly logger = new Logger(VerificationController.name);
 
@@ -145,8 +145,9 @@ export class VerificationController {
         });
         verifications.push(verification);
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
         this.logger.warn(
-          `Failed to generate proof in batch: ${error.message}`,
+          `Failed to generate proof in batch: ${errorMessage}`,
         );
       }
     }

@@ -94,7 +94,8 @@ export class BlockchainService {
 
       return this.mapAnchorToDto(anchor);
     } catch (error) {
-      this.logger.error(`Proof anchoring failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Proof anchoring failed: ${errorMessage}`);
       throw error;
     }
   }
@@ -150,14 +151,14 @@ export class BlockchainService {
     switch (chain) {
       case 'arweave':
         return await this.verifyArweaveAnchor(
-          anchor.arweaveTransactionId,
-          anchor.proofHash,
+          anchor.arweaveTransactionId || '',
+          anchor.proofHash || '',
         );
 
       case 'solana':
         return await this.verifySolanaAnchor(
-          anchor.solanaTransactionSignature,
-          anchor.proofHash,
+          anchor.solanaTransactionSignature || '',
+          anchor.proofHash || '',
         );
 
       default:
@@ -200,7 +201,8 @@ export class BlockchainService {
         `Arweave anchor confirmed: ${transactionId}`,
       );
     } catch (error) {
-      this.logger.error(`Arweave anchoring error: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Arweave anchoring error: ${errorMessage}`);
 
       // Mark as failed
       await this.prisma.blockchainAnchor.update({
@@ -246,7 +248,8 @@ export class BlockchainService {
         `Solana anchor confirmed: ${signature.substring(0, 20)}...`,
       );
     } catch (error) {
-      this.logger.error(`Solana anchoring error: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Solana anchoring error: ${errorMessage}`);
 
       // Mark as failed
       await this.prisma.blockchainAnchor.update({

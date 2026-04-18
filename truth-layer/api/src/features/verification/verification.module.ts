@@ -16,10 +16,6 @@ import { DatabaseModule } from '../../database/database.module';
     DatabaseModule,
     BullModule.registerQueue({
       name: 'zk-proofs',
-      connection: {
-        host: 'redis',
-        port: 6379,
-      },
     }),
   ],
   controllers: [VerificationController],

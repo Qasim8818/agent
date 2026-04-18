@@ -124,8 +124,59 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.DeviceScalarFieldEnum = {
   device_id: 'device_id',
+  tpm_serial: 'tpm_serial',
   name: 'name',
+  device_name: 'device_name',
+  device_type: 'device_type',
+  os_version: 'os_version',
+  app_version: 'app_version',
   tpm_public_key: 'tpm_public_key',
+  api_key_hash: 'api_key_hash',
+  registration_ip: 'registration_ip',
+  user_agent: 'user_agent',
+  attestation_key: 'attestation_key',
+  verified_at: 'verified_at',
+  status: 'status',
+  metadata: 'metadata',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  last_activity_at: 'last_activity_at'
+};
+
+exports.Prisma.MediaFileScalarFieldEnum = {
+  media_id: 'media_id',
+  device_id: 'device_id',
+  media_type: 'media_type',
+  file_name: 'file_name',
+  file_hash: 'file_hash',
+  ipfs_hash: 'ipfs_hash',
+  file_size: 'file_size',
+  storage_path: 'storage_path',
+  signature_verified: 'signature_verified',
+  uploaded_at: 'uploaded_at'
+};
+
+exports.Prisma.VerificationScalarFieldEnum = {
+  verification_id: 'verification_id',
+  device_id: 'device_id',
+  media_id: 'media_id',
+  status: 'status',
+  proof_data: 'proof_data',
+  created_at: 'created_at',
+  completed_at: 'completed_at'
+};
+
+exports.Prisma.ZKProofJobScalarFieldEnum = {
+  proof_id: 'proof_id',
+  device_id: 'device_id',
+  media_hash: 'media_hash',
+  proof_type: 'proof_type',
+  attestation_data: 'attestation_data',
+  status: 'status',
+  proof_data: 'proof_data',
+  proof_hash: 'proof_hash',
+  completed_at: 'completed_at',
+  error_message: 'error_message',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -137,16 +188,6 @@ exports.Prisma.UsageMeterScalarFieldEnum = {
   value: 'value',
   period_start: 'period_start',
   period_end: 'period_end'
-};
-
-exports.Prisma.ZKProofJobScalarFieldEnum = {
-  proof_id: 'proof_id',
-  device_id: 'device_id',
-  media_hash: 'media_hash',
-  status: 'status',
-  proof_data: 'proof_data',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
 };
 
 exports.Prisma.BlockchainAnchorScalarFieldEnum = {
@@ -162,15 +203,6 @@ exports.Prisma.BlockchainAnchorScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.MediaVerificationScalarFieldEnum = {
-  id: 'id',
-  device_id: 'device_id',
-  media_hash: 'media_hash',
-  signature: 'signature',
-  verified_at: 'verified_at',
-  metadata: 'metadata'
-};
-
 exports.Prisma.DeviceMediaScalarFieldEnum = {
   id: 'id',
   device_id: 'device_id',
@@ -179,6 +211,15 @@ exports.Prisma.DeviceMediaScalarFieldEnum = {
   size: 'size',
   mime_type: 'mime_type',
   uploaded_at: 'uploaded_at'
+};
+
+exports.Prisma.MediaVerificationScalarFieldEnum = {
+  id: 'id',
+  device_id: 'device_id',
+  media_hash: 'media_hash',
+  signature: 'signature',
+  verified_at: 'verified_at',
+  metadata: 'metadata'
 };
 
 exports.Prisma.SortOrder = {
@@ -196,25 +237,27 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   Device: 'Device',
-  UsageMeter: 'UsageMeter',
+  MediaFile: 'MediaFile',
+  Verification: 'Verification',
   ZKProofJob: 'ZKProofJob',
+  UsageMeter: 'UsageMeter',
   BlockchainAnchor: 'BlockchainAnchor',
-  MediaVerification: 'MediaVerification',
-  DeviceMedia: 'DeviceMedia'
+  DeviceMedia: 'DeviceMedia',
+  MediaVerification: 'MediaVerification'
 };
 
 /**

@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { BlockchainService } from '../../shared/services/blockchain.service';
 
-@Controller('api/v1/blockchain')
+@Controller('blockchain')
 export class BlockchainController {
   private readonly logger = new Logger(BlockchainController.name);
 

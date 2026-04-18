@@ -2,13 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = \"prisma-client-js\"
-  output   = \"../src/generated\"
+  provider = "prisma-client-js"
+  output   = "../src/generated"
 }
 
 datasource db {
-  provider  = \"postgresql\"
-  url       = env(\"DATABASE_URL\")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   // Removed directUrl dependency
 }
 
@@ -26,7 +26,7 @@ model Device {
   user_agent       String?     @db.VarChar(512)
   attestation_key  String?     @db.VarChar(256)
   verified_at      DateTime?
-  status           String?     @default(\"ACTIVE\") @db.VarChar(32)
+  status           String?     @default("ACTIVE") @db.VarChar(32)
   metadata         Json?
   created_at       DateTime    @default(now())
   updated_at       DateTime    @updatedAt
@@ -38,7 +38,7 @@ model Device {
   @@index([tpm_public_key])
   @@index([status])
   @@index([last_activity_at])
-  @@map(\"devices\")
+  @@map("devices")
 }
 
 model MediaFile {
@@ -57,7 +57,7 @@ model MediaFile {
   @@index([file_hash])
   @@index([media_type])
   @@index([signature_verified])
-  @@map(\"media_files\")
+  @@map("media_files")
 }
 
 model Verification {
@@ -72,16 +72,16 @@ model Verification {
   @@index([device_id])
   @@index([media_id])
   @@index([status])
-  @@map(\"verifications\")
+  @@map("verifications")
 }
 
 model ZKProofJob {
   proof_id        String   @id @db.VarChar(64)
   device_id       String   @db.VarChar(64)
-  media_hash      String   @db.VarChar(128)
+  media_hash      String?  @db.VarChar(128)
   proof_type      String   @db.VarChar(64)
   attestation_data String?
-  status          String   @default(\"pending\") @db.VarChar(32)
+  status          String   @default("pending") @db.VarChar(32)
   proof_data      Bytes?
   proof_hash      String?  @db.VarChar(128)
   completed_at    DateTime?
@@ -93,7 +93,7 @@ model ZKProofJob {
   @@index([media_hash])
   @@index([status])
   @@index([proof_type])
-  @@map(\"zk_proof_jobs\")
+  @@map("zk_proof_jobs")
 }
 
 model UsageMeter {
@@ -108,7 +108,7 @@ model UsageMeter {
   @@unique([device_id, metric, period_start])
   @@index([device_id])
   @@index([metric])
-  @@map(\"usage_meters\")
+  @@map("usage_meters")
 }
 
 model BlockchainAnchor {
@@ -117,9 +117,9 @@ model BlockchainAnchor {
   proof_id        String   @db.VarChar(64)
   proof_hash      String   @db.VarChar(128)
   arweave_tx_id   String?  @db.VarChar(64)
-  arweave_status  String?  @default(\"pending\")
+  arweave_status  String?  @default("pending")
   solana_tx_sig   String?  @db.VarChar(88)
-  solana_status   String?  @default(\"pending\")
+  solana_status   String?  @default("pending")
   anchored_at     DateTime @default(now())
   updated_at      DateTime @updatedAt
 
@@ -128,7 +128,7 @@ model BlockchainAnchor {
   @@index([proof_hash])
   @@index([arweave_status])
   @@index([solana_status])
-  @@map(\"blockchain_anchors\")
+  @@map("blockchain_anchors")
 }
 
 model DeviceMedia {
@@ -142,7 +142,7 @@ model DeviceMedia {
 
   @@index([device_id])
   @@index([hash])
-  @@map(\"device_media\")
+  @@map("device_media")
 }
 
 model MediaVerification {
@@ -155,7 +155,7 @@ model MediaVerification {
 
   @@index([device_id])
   @@index([media_hash])
-  @@map(\"media_verifications\")
+  @@map("media_verifications")
 }
 
 // Scalable indexes for 10M+ records

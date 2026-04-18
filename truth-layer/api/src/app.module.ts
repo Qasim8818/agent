@@ -14,6 +14,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
+import { BullModule } from '@nestjs/bullmq';
 
 // Modules
 import { DatabaseModule } from './database/database.module';
@@ -129,6 +130,18 @@ CORS_ORIGINS: Joi.string().default('http://localhost:3000,http://localhost:3001'
     // ==================== REDIS ====================
 
     RedisModule,
+
+    // ==================== BULL QUEUE CONFIGURATION ====================
+
+    BullModule.forRoot({
+      connection: {
+        host: process.env.REDIS_HOST || 'redis',
+        port: parseInt(process.env.REDIS_PORT || '6379'),
+      },
+    }),
+    BullModule.registerQueue(
+      { name: 'zk-proofs' },
+    ),
 
     // ==================== AUTHENTICATION ====================
 

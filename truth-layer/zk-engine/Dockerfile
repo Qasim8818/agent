@@ -29,4 +29,5 @@ EXPOSE 50051 8001
 
 VOLUME ["/app/src", "/app/keys"]
 
-CMD ["/app/zk-engine"]
+ENV BIND_ADDRESS=0.0.0.0:50051
+CMD ["/bin/sh", "-c", "exec /app/zk-engine --listen $BIND_ADDRESS"]

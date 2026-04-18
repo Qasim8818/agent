@@ -40,7 +40,8 @@ export class MediaService {
         await fs.mkdir(this.uploadDir, { recursive: true });
         this.logger.log(`Storage initialized at ${this.uploadDir}`);
       } catch (error) {
-        this.logger.error(`Failed to initialize storage: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        this.logger.error(`Failed to initialize storage: ${errorMessage}`);
       }
     }
   }
@@ -137,7 +138,8 @@ export class MediaService {
 
       return this.mapMediaToDto(mediaFile);
     } catch (error) {
-      this.logger.error(`Media upload failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Media upload failed: ${errorMessage}`);
       throw error;
     }
   }
@@ -199,7 +201,8 @@ export class MediaService {
       try {
         return await fs.readFile(media.storage_path);
       } catch (error) {
-        this.logger.error(`Failed to read media file: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        this.logger.error(`Failed to read media file: ${errorMessage}`);
         throw new NotFoundException('Media file not found on disk');
       }
     } else if (media.ipfs_hash) {
@@ -232,7 +235,8 @@ export class MediaService {
       try {
         await fs.unlink(media.storage_path);
       } catch (error) {
-        this.logger.warn(`Failed to delete storage file: ${error.message}`);
+        const errorMessage = error instanceof Error ? error.message : String(error);
+        this.logger.warn(`Failed to delete storage file: ${errorMessage}`);
       }
     }
 

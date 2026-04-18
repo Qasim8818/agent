@@ -9,7 +9,7 @@ import * as redis from 'redis';
 
 @Injectable()
 export class RedisService {
-  private client: redis.RedisClient;
+  private client: ReturnType<typeof redis.createClient>;
   private readonly logger = new Logger('RedisService');
 
   constructor(private configService: ConfigService) {

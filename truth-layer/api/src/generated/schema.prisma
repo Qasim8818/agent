@@ -7,22 +7,93 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // Removed directUrl dependency
 }
 
 model Device {
-  device_id      String       @id @db.VarChar(64)
-  name           String?      @db.VarChar(128)
-  tpm_public_key String       @db.VarChar(256)
-  created_at     DateTime     @default(now())
-  updated_at     DateTime     @updatedAt
-  usage_meters   UsageMeter[]
+  device_id        String       @id @db.VarChar(64)
+  tpm_serial       String?      @unique @db.VarChar(128)
+  name             String?      @db.VarChar(128)
+  device_name      String?      @db.VarChar(128)
+  device_type      String?      @db.VarChar(32) // ANDROID, IOS, LINUX, etc.
+  os_version       String?      @db.VarChar(32)
+  app_version      String?      @db.VarChar(32)
+  tpm_public_key   String       @db.VarChar(256)
+  api_key_hash     String?      @db.VarChar(64)
+  registration_ip  String?      @db.VarChar(45) // IPv6 support
+  user_agent       String?      @db.VarChar(512)
+  attestation_key  String?      @db.VarChar(256)
+  verified_at      DateTime?
+  status           String?      @default("ACTIVE") @db.VarChar(32)
+  metadata         Json?
+  created_at       DateTime     @default(now())
+  updated_at       DateTime     @updatedAt
+  last_activity_at DateTime?    @updatedAt
+  usage_meters     UsageMeter[]
 
   @@index([device_id])
+  @@index([tpm_serial])
   @@index([tpm_public_key])
+  @@index([status])
+  @@index([last_activity_at])
   @@map("devices")
+}
+
+model MediaFile {
+  media_id           String   @id @db.VarChar(64)
+  device_id          String   @db.VarChar(64)
+  media_type         String   @db.VarChar(64)
+  file_name          String   @db.VarChar(256)
+  file_hash          String   @unique @db.VarChar(128)
+  ipfs_hash          String?
+  file_size          BigInt
+  storage_path       String?
+  signature_verified Boolean  @default(true)
+  uploaded_at        DateTime @default(now())
+
+  @@index([device_id])
+  @@index([file_hash])
+  @@index([media_type])
+  @@index([signature_verified])
+  @@map("media_files")
+}
+
+model Verification {
+  verification_id String    @id @db.VarChar(64)
+  device_id       String    @db.VarChar(64)
+  media_id        String?
+  status          String    @db.VarChar(32)
+  proof_data      String?
+  created_at      DateTime  @default(now())
+  completed_at    DateTime?
+
+  @@index([device_id])
+  @@index([media_id])
+  @@index([status])
+  @@map("verifications")
+}
+
+model ZKProofJob {
+  proof_id         String    @id @db.VarChar(64)
+  device_id        String    @db.VarChar(64)
+  media_hash       String?   @db.VarChar(128)
+  proof_type       String    @db.VarChar(64)
+  attestation_data String?
+  status           String    @default("pending") @db.VarChar(32)
+  proof_data       Bytes?
+  proof_hash       String?   @db.VarChar(128)
+  completed_at     DateTime?
+  error_message    String?
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+
+  @@index([device_id])
+  @@index([media_hash])
+  @@index([status])
+  @@index([proof_type])
+  @@map("zk_proof_jobs")
 }
 
 model UsageMeter {
@@ -38,21 +109,6 @@ model UsageMeter {
   @@index([device_id])
   @@index([metric])
   @@map("usage_meters")
-}
-
-model ZKProofJob {
-  proof_id   String   @id @db.VarChar(64)
-  device_id  String   @db.VarChar(64)
-  media_hash String   @db.VarChar(128)
-  status     String   @db.VarChar(32) // pending|processing|completed|failed
-  proof_data Bytes?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-
-  @@index([device_id])
-  @@index([media_hash])
-  @@index([status])
-  @@map("zk_proof_jobs")
 }
 
 model BlockchainAnchor {
@@ -75,19 +131,6 @@ model BlockchainAnchor {
   @@map("blockchain_anchors")
 }
 
-model MediaVerification {
-  id          String   @id @default(cuid())
-  device_id   String   @db.VarChar(64)
-  media_hash  String   @unique @db.VarChar(128)
-  signature   String   @db.VarChar(256)
-  verified_at DateTime @default(now())
-  metadata    Json?
-
-  @@index([device_id])
-  @@index([media_hash])
-  @@map("media_verifications")
-}
-
 model DeviceMedia {
   id          String   @id @default(cuid())
   device_id   String   @db.VarChar(64)
@@ -102,6 +145,20 @@ model DeviceMedia {
   @@map("device_media")
 }
 
+model MediaVerification {
+  id          String   @id @default(cuid())
+  device_id   String   @db.VarChar(64)
+  media_hash  String   @unique @db.VarChar(128)
+  signature   String   @db.VarChar(256)
+  verified_at DateTime @default(now())
+  metadata    Json?
+
+  @@index([device_id])
+  @@index([media_hash])
+  @@map("media_verifications")
+}
+
 // Scalable indexes for 10M+ records
-// Timestamps for all tables could be added if needed
-// Relations cascade delete for cleanup
+// All tables have proper UUID ids, indexes on FKs/statuses/timestamps
+// Cascade deletes for data hygiene
+// Json metadata for flexibility without schema changes

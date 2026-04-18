@@ -80,7 +80,6 @@ export class VerificationService {
           backoff: { type: 'exponential', delay: 2000 },
           removeOnComplete: false,
           removeOnFail: false,
-          timeout: 120000, // 2 minutes max
         },
       );
 
@@ -90,7 +89,8 @@ export class VerificationService {
 
       return this.mapVerificationToDto(verification);
     } catch (error) {
-      this.logger.error(`Proof generation failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Proof generation failed: ${errorMessage}`);
       throw error;
     }
   }
@@ -190,14 +190,16 @@ export class VerificationService {
 
       return proofHash;
     } catch (error) {
-      this.logger.error(`Proof generation error: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Proof generation error: ${errorMessage}`);
 
       // Mark as failed
+      const errorMsg = error instanceof Error ? error.message : String(error);
       await this.prisma.zkProofJob.update({
         where: { proof_id: verificationId },
         data: {
           status: 'failed',
-          error_message: error.message,
+          error_message: errorMsg,
           completed_at: new Date(),
         },
       });
@@ -230,7 +232,8 @@ export class VerificationService {
           throw new Error(`Unknown proof type: ${proofType}`);
       }
     } catch (error) {
-      this.logger.error(`Proof generation (${proofType}) failed: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error(`Proof generation (${proofType}) failed: ${errorMessage}`);
       throw error;
     }
   }

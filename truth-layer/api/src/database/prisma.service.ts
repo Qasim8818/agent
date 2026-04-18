@@ -42,10 +42,11 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       try {
         return await next(params);
       } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : String(error);
         winstonLogger.error('[PRISMA] Database error', {
           model: params.model,
           action: params.action,
-          error: error.message,
+          error: errorMessage,
         });
         throw error;
       }

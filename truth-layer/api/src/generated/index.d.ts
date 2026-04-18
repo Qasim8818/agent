@@ -19,30 +19,40 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Device = $Result.DefaultSelection<Prisma.$DevicePayload>
 /**
- * Model UsageMeter
+ * Model MediaFile
  * 
  */
-export type UsageMeter = $Result.DefaultSelection<Prisma.$UsageMeterPayload>
+export type MediaFile = $Result.DefaultSelection<Prisma.$MediaFilePayload>
+/**
+ * Model Verification
+ * 
+ */
+export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
 /**
  * Model ZKProofJob
  * 
  */
 export type ZKProofJob = $Result.DefaultSelection<Prisma.$ZKProofJobPayload>
 /**
+ * Model UsageMeter
+ * 
+ */
+export type UsageMeter = $Result.DefaultSelection<Prisma.$UsageMeterPayload>
+/**
  * Model BlockchainAnchor
  * 
  */
 export type BlockchainAnchor = $Result.DefaultSelection<Prisma.$BlockchainAnchorPayload>
 /**
- * Model MediaVerification
- * 
- */
-export type MediaVerification = $Result.DefaultSelection<Prisma.$MediaVerificationPayload>
-/**
  * Model DeviceMedia
  * 
  */
 export type DeviceMedia = $Result.DefaultSelection<Prisma.$DeviceMediaPayload>
+/**
+ * Model MediaVerification
+ * 
+ */
+export type MediaVerification = $Result.DefaultSelection<Prisma.$MediaVerificationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -178,14 +188,24 @@ export class PrismaClient<
   get device(): Prisma.DeviceDelegate<ExtArgs>;
 
   /**
-   * `prisma.usageMeter`: Exposes CRUD operations for the **UsageMeter** model.
+   * `prisma.mediaFile`: Exposes CRUD operations for the **MediaFile** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more UsageMeters
-    * const usageMeters = await prisma.usageMeter.findMany()
+    * // Fetch zero or more MediaFiles
+    * const mediaFiles = await prisma.mediaFile.findMany()
     * ```
     */
-  get usageMeter(): Prisma.UsageMeterDelegate<ExtArgs>;
+  get mediaFile(): Prisma.MediaFileDelegate<ExtArgs>;
+
+  /**
+   * `prisma.verification`: Exposes CRUD operations for the **Verification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Verifications
+    * const verifications = await prisma.verification.findMany()
+    * ```
+    */
+  get verification(): Prisma.VerificationDelegate<ExtArgs>;
 
   /**
    * `prisma.zKProofJob`: Exposes CRUD operations for the **ZKProofJob** model.
@@ -198,6 +218,16 @@ export class PrismaClient<
   get zKProofJob(): Prisma.ZKProofJobDelegate<ExtArgs>;
 
   /**
+   * `prisma.usageMeter`: Exposes CRUD operations for the **UsageMeter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UsageMeters
+    * const usageMeters = await prisma.usageMeter.findMany()
+    * ```
+    */
+  get usageMeter(): Prisma.UsageMeterDelegate<ExtArgs>;
+
+  /**
    * `prisma.blockchainAnchor`: Exposes CRUD operations for the **BlockchainAnchor** model.
     * Example usage:
     * ```ts
@@ -208,16 +238,6 @@ export class PrismaClient<
   get blockchainAnchor(): Prisma.BlockchainAnchorDelegate<ExtArgs>;
 
   /**
-   * `prisma.mediaVerification`: Exposes CRUD operations for the **MediaVerification** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more MediaVerifications
-    * const mediaVerifications = await prisma.mediaVerification.findMany()
-    * ```
-    */
-  get mediaVerification(): Prisma.MediaVerificationDelegate<ExtArgs>;
-
-  /**
    * `prisma.deviceMedia`: Exposes CRUD operations for the **DeviceMedia** model.
     * Example usage:
     * ```ts
@@ -226,6 +246,16 @@ export class PrismaClient<
     * ```
     */
   get deviceMedia(): Prisma.DeviceMediaDelegate<ExtArgs>;
+
+  /**
+   * `prisma.mediaVerification`: Exposes CRUD operations for the **MediaVerification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MediaVerifications
+    * const mediaVerifications = await prisma.mediaVerification.findMany()
+    * ```
+    */
+  get mediaVerification(): Prisma.MediaVerificationDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -668,11 +698,13 @@ export namespace Prisma {
 
   export const ModelName: {
     Device: 'Device',
-    UsageMeter: 'UsageMeter',
+    MediaFile: 'MediaFile',
+    Verification: 'Verification',
     ZKProofJob: 'ZKProofJob',
+    UsageMeter: 'UsageMeter',
     BlockchainAnchor: 'BlockchainAnchor',
-    MediaVerification: 'MediaVerification',
-    DeviceMedia: 'DeviceMedia'
+    DeviceMedia: 'DeviceMedia',
+    MediaVerification: 'MediaVerification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -688,7 +720,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "device" | "usageMeter" | "zKProofJob" | "blockchainAnchor" | "mediaVerification" | "deviceMedia"
+      modelProps: "device" | "mediaFile" | "verification" | "zKProofJob" | "usageMeter" | "blockchainAnchor" | "deviceMedia" | "mediaVerification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -762,73 +794,143 @@ export namespace Prisma {
           }
         }
       }
-      UsageMeter: {
-        payload: Prisma.$UsageMeterPayload<ExtArgs>
-        fields: Prisma.UsageMeterFieldRefs
+      MediaFile: {
+        payload: Prisma.$MediaFilePayload<ExtArgs>
+        fields: Prisma.MediaFileFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.UsageMeterFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload> | null
+            args: Prisma.MediaFileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.UsageMeterFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+            args: Prisma.MediaFileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
           }
           findFirst: {
-            args: Prisma.UsageMeterFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload> | null
+            args: Prisma.MediaFileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.UsageMeterFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+            args: Prisma.MediaFileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
           }
           findMany: {
-            args: Prisma.UsageMeterFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>[]
+            args: Prisma.MediaFileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>[]
           }
           create: {
-            args: Prisma.UsageMeterCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+            args: Prisma.MediaFileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
           }
           createMany: {
-            args: Prisma.UsageMeterCreateManyArgs<ExtArgs>
+            args: Prisma.MediaFileCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.UsageMeterCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>[]
+            args: Prisma.MediaFileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>[]
           }
           delete: {
-            args: Prisma.UsageMeterDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+            args: Prisma.MediaFileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
           }
           update: {
-            args: Prisma.UsageMeterUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+            args: Prisma.MediaFileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
           }
           deleteMany: {
-            args: Prisma.UsageMeterDeleteManyArgs<ExtArgs>
+            args: Prisma.MediaFileDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.UsageMeterUpdateManyArgs<ExtArgs>
+            args: Prisma.MediaFileUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.UsageMeterUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+            args: Prisma.MediaFileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaFilePayload>
           }
           aggregate: {
-            args: Prisma.UsageMeterAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUsageMeter>
+            args: Prisma.MediaFileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMediaFile>
           }
           groupBy: {
-            args: Prisma.UsageMeterGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UsageMeterGroupByOutputType>[]
+            args: Prisma.MediaFileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MediaFileGroupByOutputType>[]
           }
           count: {
-            args: Prisma.UsageMeterCountArgs<ExtArgs>
-            result: $Utils.Optional<UsageMeterCountAggregateOutputType> | number
+            args: Prisma.MediaFileCountArgs<ExtArgs>
+            result: $Utils.Optional<MediaFileCountAggregateOutputType> | number
+          }
+        }
+      }
+      Verification: {
+        payload: Prisma.$VerificationPayload<ExtArgs>
+        fields: Prisma.VerificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VerificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VerificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
+          }
+          findFirst: {
+            args: Prisma.VerificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VerificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
+          }
+          findMany: {
+            args: Prisma.VerificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>[]
+          }
+          create: {
+            args: Prisma.VerificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
+          }
+          createMany: {
+            args: Prisma.VerificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VerificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>[]
+          }
+          delete: {
+            args: Prisma.VerificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
+          }
+          update: {
+            args: Prisma.VerificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.VerificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VerificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.VerificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationPayload>
+          }
+          aggregate: {
+            args: Prisma.VerificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVerification>
+          }
+          groupBy: {
+            args: Prisma.VerificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VerificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VerificationCountArgs<ExtArgs>
+            result: $Utils.Optional<VerificationCountAggregateOutputType> | number
           }
         }
       }
@@ -902,6 +1004,76 @@ export namespace Prisma {
           }
         }
       }
+      UsageMeter: {
+        payload: Prisma.$UsageMeterPayload<ExtArgs>
+        fields: Prisma.UsageMeterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UsageMeterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UsageMeterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+          }
+          findFirst: {
+            args: Prisma.UsageMeterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UsageMeterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+          }
+          findMany: {
+            args: Prisma.UsageMeterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>[]
+          }
+          create: {
+            args: Prisma.UsageMeterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+          }
+          createMany: {
+            args: Prisma.UsageMeterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UsageMeterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>[]
+          }
+          delete: {
+            args: Prisma.UsageMeterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+          }
+          update: {
+            args: Prisma.UsageMeterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+          }
+          deleteMany: {
+            args: Prisma.UsageMeterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UsageMeterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UsageMeterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UsageMeterPayload>
+          }
+          aggregate: {
+            args: Prisma.UsageMeterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsageMeter>
+          }
+          groupBy: {
+            args: Prisma.UsageMeterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UsageMeterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UsageMeterCountArgs<ExtArgs>
+            result: $Utils.Optional<UsageMeterCountAggregateOutputType> | number
+          }
+        }
+      }
       BlockchainAnchor: {
         payload: Prisma.$BlockchainAnchorPayload<ExtArgs>
         fields: Prisma.BlockchainAnchorFieldRefs
@@ -972,76 +1144,6 @@ export namespace Prisma {
           }
         }
       }
-      MediaVerification: {
-        payload: Prisma.$MediaVerificationPayload<ExtArgs>
-        fields: Prisma.MediaVerificationFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.MediaVerificationFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.MediaVerificationFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
-          }
-          findFirst: {
-            args: Prisma.MediaVerificationFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.MediaVerificationFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
-          }
-          findMany: {
-            args: Prisma.MediaVerificationFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>[]
-          }
-          create: {
-            args: Prisma.MediaVerificationCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
-          }
-          createMany: {
-            args: Prisma.MediaVerificationCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.MediaVerificationCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>[]
-          }
-          delete: {
-            args: Prisma.MediaVerificationDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
-          }
-          update: {
-            args: Prisma.MediaVerificationUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
-          }
-          deleteMany: {
-            args: Prisma.MediaVerificationDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.MediaVerificationUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.MediaVerificationUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
-          }
-          aggregate: {
-            args: Prisma.MediaVerificationAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateMediaVerification>
-          }
-          groupBy: {
-            args: Prisma.MediaVerificationGroupByArgs<ExtArgs>
-            result: $Utils.Optional<MediaVerificationGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.MediaVerificationCountArgs<ExtArgs>
-            result: $Utils.Optional<MediaVerificationCountAggregateOutputType> | number
-          }
-        }
-      }
       DeviceMedia: {
         payload: Prisma.$DeviceMediaPayload<ExtArgs>
         fields: Prisma.DeviceMediaFieldRefs
@@ -1109,6 +1211,76 @@ export namespace Prisma {
           count: {
             args: Prisma.DeviceMediaCountArgs<ExtArgs>
             result: $Utils.Optional<DeviceMediaCountAggregateOutputType> | number
+          }
+        }
+      }
+      MediaVerification: {
+        payload: Prisma.$MediaVerificationPayload<ExtArgs>
+        fields: Prisma.MediaVerificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MediaVerificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MediaVerificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
+          }
+          findFirst: {
+            args: Prisma.MediaVerificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MediaVerificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
+          }
+          findMany: {
+            args: Prisma.MediaVerificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>[]
+          }
+          create: {
+            args: Prisma.MediaVerificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
+          }
+          createMany: {
+            args: Prisma.MediaVerificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MediaVerificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>[]
+          }
+          delete: {
+            args: Prisma.MediaVerificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
+          }
+          update: {
+            args: Prisma.MediaVerificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.MediaVerificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MediaVerificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.MediaVerificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MediaVerificationPayload>
+          }
+          aggregate: {
+            args: Prisma.MediaVerificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMediaVerification>
+          }
+          groupBy: {
+            args: Prisma.MediaVerificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MediaVerificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MediaVerificationCountArgs<ExtArgs>
+            result: $Utils.Optional<MediaVerificationCountAggregateOutputType> | number
           }
         }
       }
@@ -1315,52 +1487,126 @@ export namespace Prisma {
 
   export type DeviceMinAggregateOutputType = {
     device_id: string | null
+    tpm_serial: string | null
     name: string | null
+    device_name: string | null
+    device_type: string | null
+    os_version: string | null
+    app_version: string | null
     tpm_public_key: string | null
+    api_key_hash: string | null
+    registration_ip: string | null
+    user_agent: string | null
+    attestation_key: string | null
+    verified_at: Date | null
+    status: string | null
     created_at: Date | null
     updated_at: Date | null
+    last_activity_at: Date | null
   }
 
   export type DeviceMaxAggregateOutputType = {
     device_id: string | null
+    tpm_serial: string | null
     name: string | null
+    device_name: string | null
+    device_type: string | null
+    os_version: string | null
+    app_version: string | null
     tpm_public_key: string | null
+    api_key_hash: string | null
+    registration_ip: string | null
+    user_agent: string | null
+    attestation_key: string | null
+    verified_at: Date | null
+    status: string | null
     created_at: Date | null
     updated_at: Date | null
+    last_activity_at: Date | null
   }
 
   export type DeviceCountAggregateOutputType = {
     device_id: number
+    tpm_serial: number
     name: number
+    device_name: number
+    device_type: number
+    os_version: number
+    app_version: number
     tpm_public_key: number
+    api_key_hash: number
+    registration_ip: number
+    user_agent: number
+    attestation_key: number
+    verified_at: number
+    status: number
+    metadata: number
     created_at: number
     updated_at: number
+    last_activity_at: number
     _all: number
   }
 
 
   export type DeviceMinAggregateInputType = {
     device_id?: true
+    tpm_serial?: true
     name?: true
+    device_name?: true
+    device_type?: true
+    os_version?: true
+    app_version?: true
     tpm_public_key?: true
+    api_key_hash?: true
+    registration_ip?: true
+    user_agent?: true
+    attestation_key?: true
+    verified_at?: true
+    status?: true
     created_at?: true
     updated_at?: true
+    last_activity_at?: true
   }
 
   export type DeviceMaxAggregateInputType = {
     device_id?: true
+    tpm_serial?: true
     name?: true
+    device_name?: true
+    device_type?: true
+    os_version?: true
+    app_version?: true
     tpm_public_key?: true
+    api_key_hash?: true
+    registration_ip?: true
+    user_agent?: true
+    attestation_key?: true
+    verified_at?: true
+    status?: true
     created_at?: true
     updated_at?: true
+    last_activity_at?: true
   }
 
   export type DeviceCountAggregateInputType = {
     device_id?: true
+    tpm_serial?: true
     name?: true
+    device_name?: true
+    device_type?: true
+    os_version?: true
+    app_version?: true
     tpm_public_key?: true
+    api_key_hash?: true
+    registration_ip?: true
+    user_agent?: true
+    attestation_key?: true
+    verified_at?: true
+    status?: true
+    metadata?: true
     created_at?: true
     updated_at?: true
+    last_activity_at?: true
     _all?: true
   }
 
@@ -1438,10 +1684,23 @@ export namespace Prisma {
 
   export type DeviceGroupByOutputType = {
     device_id: string
+    tpm_serial: string | null
     name: string | null
+    device_name: string | null
+    device_type: string | null
+    os_version: string | null
+    app_version: string | null
     tpm_public_key: string
+    api_key_hash: string | null
+    registration_ip: string | null
+    user_agent: string | null
+    attestation_key: string | null
+    verified_at: Date | null
+    status: string | null
+    metadata: JsonValue | null
     created_at: Date
     updated_at: Date
+    last_activity_at: Date | null
     _count: DeviceCountAggregateOutputType | null
     _min: DeviceMinAggregateOutputType | null
     _max: DeviceMaxAggregateOutputType | null
@@ -1463,28 +1722,67 @@ export namespace Prisma {
 
   export type DeviceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     device_id?: boolean
+    tpm_serial?: boolean
     name?: boolean
+    device_name?: boolean
+    device_type?: boolean
+    os_version?: boolean
+    app_version?: boolean
     tpm_public_key?: boolean
+    api_key_hash?: boolean
+    registration_ip?: boolean
+    user_agent?: boolean
+    attestation_key?: boolean
+    verified_at?: boolean
+    status?: boolean
+    metadata?: boolean
     created_at?: boolean
     updated_at?: boolean
+    last_activity_at?: boolean
     usage_meters?: boolean | Device$usage_metersArgs<ExtArgs>
     _count?: boolean | DeviceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["device"]>
 
   export type DeviceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     device_id?: boolean
+    tpm_serial?: boolean
     name?: boolean
+    device_name?: boolean
+    device_type?: boolean
+    os_version?: boolean
+    app_version?: boolean
     tpm_public_key?: boolean
+    api_key_hash?: boolean
+    registration_ip?: boolean
+    user_agent?: boolean
+    attestation_key?: boolean
+    verified_at?: boolean
+    status?: boolean
+    metadata?: boolean
     created_at?: boolean
     updated_at?: boolean
+    last_activity_at?: boolean
   }, ExtArgs["result"]["device"]>
 
   export type DeviceSelectScalar = {
     device_id?: boolean
+    tpm_serial?: boolean
     name?: boolean
+    device_name?: boolean
+    device_type?: boolean
+    os_version?: boolean
+    app_version?: boolean
     tpm_public_key?: boolean
+    api_key_hash?: boolean
+    registration_ip?: boolean
+    user_agent?: boolean
+    attestation_key?: boolean
+    verified_at?: boolean
+    status?: boolean
+    metadata?: boolean
     created_at?: boolean
     updated_at?: boolean
+    last_activity_at?: boolean
   }
 
   export type DeviceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1500,10 +1798,23 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       device_id: string
+      tpm_serial: string | null
       name: string | null
+      device_name: string | null
+      device_type: string | null
+      os_version: string | null
+      app_version: string | null
       tpm_public_key: string
+      api_key_hash: string | null
+      registration_ip: string | null
+      user_agent: string | null
+      attestation_key: string | null
+      verified_at: Date | null
+      status: string | null
+      metadata: Prisma.JsonValue | null
       created_at: Date
       updated_at: Date
+      last_activity_at: Date | null
     }, ExtArgs["result"]["device"]>
     composites: {}
   }
@@ -1899,10 +2210,23 @@ export namespace Prisma {
    */ 
   interface DeviceFieldRefs {
     readonly device_id: FieldRef<"Device", 'String'>
+    readonly tpm_serial: FieldRef<"Device", 'String'>
     readonly name: FieldRef<"Device", 'String'>
+    readonly device_name: FieldRef<"Device", 'String'>
+    readonly device_type: FieldRef<"Device", 'String'>
+    readonly os_version: FieldRef<"Device", 'String'>
+    readonly app_version: FieldRef<"Device", 'String'>
     readonly tpm_public_key: FieldRef<"Device", 'String'>
+    readonly api_key_hash: FieldRef<"Device", 'String'>
+    readonly registration_ip: FieldRef<"Device", 'String'>
+    readonly user_agent: FieldRef<"Device", 'String'>
+    readonly attestation_key: FieldRef<"Device", 'String'>
+    readonly verified_at: FieldRef<"Device", 'DateTime'>
+    readonly status: FieldRef<"Device", 'String'>
+    readonly metadata: FieldRef<"Device", 'Json'>
     readonly created_at: FieldRef<"Device", 'DateTime'>
     readonly updated_at: FieldRef<"Device", 'DateTime'>
+    readonly last_activity_at: FieldRef<"Device", 'DateTime'>
   }
     
 
@@ -2248,6 +2572,2842 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: DeviceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MediaFile
+   */
+
+  export type AggregateMediaFile = {
+    _count: MediaFileCountAggregateOutputType | null
+    _avg: MediaFileAvgAggregateOutputType | null
+    _sum: MediaFileSumAggregateOutputType | null
+    _min: MediaFileMinAggregateOutputType | null
+    _max: MediaFileMaxAggregateOutputType | null
+  }
+
+  export type MediaFileAvgAggregateOutputType = {
+    file_size: number | null
+  }
+
+  export type MediaFileSumAggregateOutputType = {
+    file_size: bigint | null
+  }
+
+  export type MediaFileMinAggregateOutputType = {
+    media_id: string | null
+    device_id: string | null
+    media_type: string | null
+    file_name: string | null
+    file_hash: string | null
+    ipfs_hash: string | null
+    file_size: bigint | null
+    storage_path: string | null
+    signature_verified: boolean | null
+    uploaded_at: Date | null
+  }
+
+  export type MediaFileMaxAggregateOutputType = {
+    media_id: string | null
+    device_id: string | null
+    media_type: string | null
+    file_name: string | null
+    file_hash: string | null
+    ipfs_hash: string | null
+    file_size: bigint | null
+    storage_path: string | null
+    signature_verified: boolean | null
+    uploaded_at: Date | null
+  }
+
+  export type MediaFileCountAggregateOutputType = {
+    media_id: number
+    device_id: number
+    media_type: number
+    file_name: number
+    file_hash: number
+    ipfs_hash: number
+    file_size: number
+    storage_path: number
+    signature_verified: number
+    uploaded_at: number
+    _all: number
+  }
+
+
+  export type MediaFileAvgAggregateInputType = {
+    file_size?: true
+  }
+
+  export type MediaFileSumAggregateInputType = {
+    file_size?: true
+  }
+
+  export type MediaFileMinAggregateInputType = {
+    media_id?: true
+    device_id?: true
+    media_type?: true
+    file_name?: true
+    file_hash?: true
+    ipfs_hash?: true
+    file_size?: true
+    storage_path?: true
+    signature_verified?: true
+    uploaded_at?: true
+  }
+
+  export type MediaFileMaxAggregateInputType = {
+    media_id?: true
+    device_id?: true
+    media_type?: true
+    file_name?: true
+    file_hash?: true
+    ipfs_hash?: true
+    file_size?: true
+    storage_path?: true
+    signature_verified?: true
+    uploaded_at?: true
+  }
+
+  export type MediaFileCountAggregateInputType = {
+    media_id?: true
+    device_id?: true
+    media_type?: true
+    file_name?: true
+    file_hash?: true
+    ipfs_hash?: true
+    file_size?: true
+    storage_path?: true
+    signature_verified?: true
+    uploaded_at?: true
+    _all?: true
+  }
+
+  export type MediaFileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaFile to aggregate.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MediaFiles
+    **/
+    _count?: true | MediaFileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MediaFileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MediaFileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MediaFileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MediaFileMaxAggregateInputType
+  }
+
+  export type GetMediaFileAggregateType<T extends MediaFileAggregateArgs> = {
+        [P in keyof T & keyof AggregateMediaFile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMediaFile[P]>
+      : GetScalarType<T[P], AggregateMediaFile[P]>
+  }
+
+
+
+
+  export type MediaFileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaFileWhereInput
+    orderBy?: MediaFileOrderByWithAggregationInput | MediaFileOrderByWithAggregationInput[]
+    by: MediaFileScalarFieldEnum[] | MediaFileScalarFieldEnum
+    having?: MediaFileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MediaFileCountAggregateInputType | true
+    _avg?: MediaFileAvgAggregateInputType
+    _sum?: MediaFileSumAggregateInputType
+    _min?: MediaFileMinAggregateInputType
+    _max?: MediaFileMaxAggregateInputType
+  }
+
+  export type MediaFileGroupByOutputType = {
+    media_id: string
+    device_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash: string | null
+    file_size: bigint
+    storage_path: string | null
+    signature_verified: boolean
+    uploaded_at: Date
+    _count: MediaFileCountAggregateOutputType | null
+    _avg: MediaFileAvgAggregateOutputType | null
+    _sum: MediaFileSumAggregateOutputType | null
+    _min: MediaFileMinAggregateOutputType | null
+    _max: MediaFileMaxAggregateOutputType | null
+  }
+
+  type GetMediaFileGroupByPayload<T extends MediaFileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MediaFileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MediaFileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MediaFileGroupByOutputType[P]>
+            : GetScalarType<T[P], MediaFileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MediaFileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    media_id?: boolean
+    device_id?: boolean
+    media_type?: boolean
+    file_name?: boolean
+    file_hash?: boolean
+    ipfs_hash?: boolean
+    file_size?: boolean
+    storage_path?: boolean
+    signature_verified?: boolean
+    uploaded_at?: boolean
+  }, ExtArgs["result"]["mediaFile"]>
+
+  export type MediaFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    media_id?: boolean
+    device_id?: boolean
+    media_type?: boolean
+    file_name?: boolean
+    file_hash?: boolean
+    ipfs_hash?: boolean
+    file_size?: boolean
+    storage_path?: boolean
+    signature_verified?: boolean
+    uploaded_at?: boolean
+  }, ExtArgs["result"]["mediaFile"]>
+
+  export type MediaFileSelectScalar = {
+    media_id?: boolean
+    device_id?: boolean
+    media_type?: boolean
+    file_name?: boolean
+    file_hash?: boolean
+    ipfs_hash?: boolean
+    file_size?: boolean
+    storage_path?: boolean
+    signature_verified?: boolean
+    uploaded_at?: boolean
+  }
+
+
+  export type $MediaFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MediaFile"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      media_id: string
+      device_id: string
+      media_type: string
+      file_name: string
+      file_hash: string
+      ipfs_hash: string | null
+      file_size: bigint
+      storage_path: string | null
+      signature_verified: boolean
+      uploaded_at: Date
+    }, ExtArgs["result"]["mediaFile"]>
+    composites: {}
+  }
+
+  type MediaFileGetPayload<S extends boolean | null | undefined | MediaFileDefaultArgs> = $Result.GetResult<Prisma.$MediaFilePayload, S>
+
+  type MediaFileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MediaFileFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MediaFileCountAggregateInputType | true
+    }
+
+  export interface MediaFileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaFile'], meta: { name: 'MediaFile' } }
+    /**
+     * Find zero or one MediaFile that matches the filter.
+     * @param {MediaFileFindUniqueArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MediaFileFindUniqueArgs>(args: SelectSubset<T, MediaFileFindUniqueArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one MediaFile that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MediaFileFindUniqueOrThrowArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MediaFileFindUniqueOrThrowArgs>(args: SelectSubset<T, MediaFileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first MediaFile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileFindFirstArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MediaFileFindFirstArgs>(args?: SelectSubset<T, MediaFileFindFirstArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first MediaFile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileFindFirstOrThrowArgs} args - Arguments to find a MediaFile
+     * @example
+     * // Get one MediaFile
+     * const mediaFile = await prisma.mediaFile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MediaFileFindFirstOrThrowArgs>(args?: SelectSubset<T, MediaFileFindFirstOrThrowArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more MediaFiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MediaFiles
+     * const mediaFiles = await prisma.mediaFile.findMany()
+     * 
+     * // Get first 10 MediaFiles
+     * const mediaFiles = await prisma.mediaFile.findMany({ take: 10 })
+     * 
+     * // Only select the `media_id`
+     * const mediaFileWithMedia_idOnly = await prisma.mediaFile.findMany({ select: { media_id: true } })
+     * 
+     */
+    findMany<T extends MediaFileFindManyArgs>(args?: SelectSubset<T, MediaFileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a MediaFile.
+     * @param {MediaFileCreateArgs} args - Arguments to create a MediaFile.
+     * @example
+     * // Create one MediaFile
+     * const MediaFile = await prisma.mediaFile.create({
+     *   data: {
+     *     // ... data to create a MediaFile
+     *   }
+     * })
+     * 
+     */
+    create<T extends MediaFileCreateArgs>(args: SelectSubset<T, MediaFileCreateArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many MediaFiles.
+     * @param {MediaFileCreateManyArgs} args - Arguments to create many MediaFiles.
+     * @example
+     * // Create many MediaFiles
+     * const mediaFile = await prisma.mediaFile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MediaFileCreateManyArgs>(args?: SelectSubset<T, MediaFileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MediaFiles and returns the data saved in the database.
+     * @param {MediaFileCreateManyAndReturnArgs} args - Arguments to create many MediaFiles.
+     * @example
+     * // Create many MediaFiles
+     * const mediaFile = await prisma.mediaFile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MediaFiles and only return the `media_id`
+     * const mediaFileWithMedia_idOnly = await prisma.mediaFile.createManyAndReturn({ 
+     *   select: { media_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MediaFileCreateManyAndReturnArgs>(args?: SelectSubset<T, MediaFileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a MediaFile.
+     * @param {MediaFileDeleteArgs} args - Arguments to delete one MediaFile.
+     * @example
+     * // Delete one MediaFile
+     * const MediaFile = await prisma.mediaFile.delete({
+     *   where: {
+     *     // ... filter to delete one MediaFile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MediaFileDeleteArgs>(args: SelectSubset<T, MediaFileDeleteArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one MediaFile.
+     * @param {MediaFileUpdateArgs} args - Arguments to update one MediaFile.
+     * @example
+     * // Update one MediaFile
+     * const mediaFile = await prisma.mediaFile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MediaFileUpdateArgs>(args: SelectSubset<T, MediaFileUpdateArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more MediaFiles.
+     * @param {MediaFileDeleteManyArgs} args - Arguments to filter MediaFiles to delete.
+     * @example
+     * // Delete a few MediaFiles
+     * const { count } = await prisma.mediaFile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MediaFileDeleteManyArgs>(args?: SelectSubset<T, MediaFileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MediaFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MediaFiles
+     * const mediaFile = await prisma.mediaFile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MediaFileUpdateManyArgs>(args: SelectSubset<T, MediaFileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MediaFile.
+     * @param {MediaFileUpsertArgs} args - Arguments to update or create a MediaFile.
+     * @example
+     * // Update or create a MediaFile
+     * const mediaFile = await prisma.mediaFile.upsert({
+     *   create: {
+     *     // ... data to create a MediaFile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MediaFile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MediaFileUpsertArgs>(args: SelectSubset<T, MediaFileUpsertArgs<ExtArgs>>): Prisma__MediaFileClient<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of MediaFiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileCountArgs} args - Arguments to filter MediaFiles to count.
+     * @example
+     * // Count the number of MediaFiles
+     * const count = await prisma.mediaFile.count({
+     *   where: {
+     *     // ... the filter for the MediaFiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends MediaFileCountArgs>(
+      args?: Subset<T, MediaFileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MediaFileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MediaFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MediaFileAggregateArgs>(args: Subset<T, MediaFileAggregateArgs>): Prisma.PrismaPromise<GetMediaFileAggregateType<T>>
+
+    /**
+     * Group by MediaFile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaFileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MediaFileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MediaFileGroupByArgs['orderBy'] }
+        : { orderBy?: MediaFileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MediaFileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaFileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MediaFile model
+   */
+  readonly fields: MediaFileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MediaFile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MediaFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MediaFile model
+   */ 
+  interface MediaFileFieldRefs {
+    readonly media_id: FieldRef<"MediaFile", 'String'>
+    readonly device_id: FieldRef<"MediaFile", 'String'>
+    readonly media_type: FieldRef<"MediaFile", 'String'>
+    readonly file_name: FieldRef<"MediaFile", 'String'>
+    readonly file_hash: FieldRef<"MediaFile", 'String'>
+    readonly ipfs_hash: FieldRef<"MediaFile", 'String'>
+    readonly file_size: FieldRef<"MediaFile", 'BigInt'>
+    readonly storage_path: FieldRef<"MediaFile", 'String'>
+    readonly signature_verified: FieldRef<"MediaFile", 'Boolean'>
+    readonly uploaded_at: FieldRef<"MediaFile", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MediaFile findUnique
+   */
+  export type MediaFileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile findUniqueOrThrow
+   */
+  export type MediaFileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile findFirst
+   */
+  export type MediaFileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaFiles.
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaFiles.
+     */
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * MediaFile findFirstOrThrow
+   */
+  export type MediaFileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaFile to fetch.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaFiles.
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaFiles.
+     */
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * MediaFile findMany
+   */
+  export type MediaFileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaFiles to fetch.
+     */
+    where?: MediaFileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaFiles to fetch.
+     */
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MediaFiles.
+     */
+    cursor?: MediaFileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaFiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaFiles.
+     */
+    skip?: number
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * MediaFile create
+   */
+  export type MediaFileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * The data needed to create a MediaFile.
+     */
+    data: XOR<MediaFileCreateInput, MediaFileUncheckedCreateInput>
+  }
+
+  /**
+   * MediaFile createMany
+   */
+  export type MediaFileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MediaFiles.
+     */
+    data: MediaFileCreateManyInput | MediaFileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MediaFile createManyAndReturn
+   */
+  export type MediaFileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many MediaFiles.
+     */
+    data: MediaFileCreateManyInput | MediaFileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MediaFile update
+   */
+  export type MediaFileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * The data needed to update a MediaFile.
+     */
+    data: XOR<MediaFileUpdateInput, MediaFileUncheckedUpdateInput>
+    /**
+     * Choose, which MediaFile to update.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile updateMany
+   */
+  export type MediaFileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MediaFiles.
+     */
+    data: XOR<MediaFileUpdateManyMutationInput, MediaFileUncheckedUpdateManyInput>
+    /**
+     * Filter which MediaFiles to update
+     */
+    where?: MediaFileWhereInput
+  }
+
+  /**
+   * MediaFile upsert
+   */
+  export type MediaFileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * The filter to search for the MediaFile to update in case it exists.
+     */
+    where: MediaFileWhereUniqueInput
+    /**
+     * In case the MediaFile found by the `where` argument doesn't exist, create a new MediaFile with this data.
+     */
+    create: XOR<MediaFileCreateInput, MediaFileUncheckedCreateInput>
+    /**
+     * In case the MediaFile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MediaFileUpdateInput, MediaFileUncheckedUpdateInput>
+  }
+
+  /**
+   * MediaFile delete
+   */
+  export type MediaFileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Filter which MediaFile to delete.
+     */
+    where: MediaFileWhereUniqueInput
+  }
+
+  /**
+   * MediaFile deleteMany
+   */
+  export type MediaFileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaFiles to delete
+     */
+    where?: MediaFileWhereInput
+  }
+
+  /**
+   * MediaFile without action
+   */
+  export type MediaFileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Verification
+   */
+
+  export type AggregateVerification = {
+    _count: VerificationCountAggregateOutputType | null
+    _min: VerificationMinAggregateOutputType | null
+    _max: VerificationMaxAggregateOutputType | null
+  }
+
+  export type VerificationMinAggregateOutputType = {
+    verification_id: string | null
+    device_id: string | null
+    media_id: string | null
+    status: string | null
+    proof_data: string | null
+    created_at: Date | null
+    completed_at: Date | null
+  }
+
+  export type VerificationMaxAggregateOutputType = {
+    verification_id: string | null
+    device_id: string | null
+    media_id: string | null
+    status: string | null
+    proof_data: string | null
+    created_at: Date | null
+    completed_at: Date | null
+  }
+
+  export type VerificationCountAggregateOutputType = {
+    verification_id: number
+    device_id: number
+    media_id: number
+    status: number
+    proof_data: number
+    created_at: number
+    completed_at: number
+    _all: number
+  }
+
+
+  export type VerificationMinAggregateInputType = {
+    verification_id?: true
+    device_id?: true
+    media_id?: true
+    status?: true
+    proof_data?: true
+    created_at?: true
+    completed_at?: true
+  }
+
+  export type VerificationMaxAggregateInputType = {
+    verification_id?: true
+    device_id?: true
+    media_id?: true
+    status?: true
+    proof_data?: true
+    created_at?: true
+    completed_at?: true
+  }
+
+  export type VerificationCountAggregateInputType = {
+    verification_id?: true
+    device_id?: true
+    media_id?: true
+    status?: true
+    proof_data?: true
+    created_at?: true
+    completed_at?: true
+    _all?: true
+  }
+
+  export type VerificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Verification to aggregate.
+     */
+    where?: VerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Verifications to fetch.
+     */
+    orderBy?: VerificationOrderByWithRelationInput | VerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Verifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Verifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Verifications
+    **/
+    _count?: true | VerificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VerificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VerificationMaxAggregateInputType
+  }
+
+  export type GetVerificationAggregateType<T extends VerificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateVerification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVerification[P]>
+      : GetScalarType<T[P], AggregateVerification[P]>
+  }
+
+
+
+
+  export type VerificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VerificationWhereInput
+    orderBy?: VerificationOrderByWithAggregationInput | VerificationOrderByWithAggregationInput[]
+    by: VerificationScalarFieldEnum[] | VerificationScalarFieldEnum
+    having?: VerificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VerificationCountAggregateInputType | true
+    _min?: VerificationMinAggregateInputType
+    _max?: VerificationMaxAggregateInputType
+  }
+
+  export type VerificationGroupByOutputType = {
+    verification_id: string
+    device_id: string
+    media_id: string | null
+    status: string
+    proof_data: string | null
+    created_at: Date
+    completed_at: Date | null
+    _count: VerificationCountAggregateOutputType | null
+    _min: VerificationMinAggregateOutputType | null
+    _max: VerificationMaxAggregateOutputType | null
+  }
+
+  type GetVerificationGroupByPayload<T extends VerificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VerificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VerificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VerificationGroupByOutputType[P]>
+            : GetScalarType<T[P], VerificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VerificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    verification_id?: boolean
+    device_id?: boolean
+    media_id?: boolean
+    status?: boolean
+    proof_data?: boolean
+    created_at?: boolean
+    completed_at?: boolean
+  }, ExtArgs["result"]["verification"]>
+
+  export type VerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    verification_id?: boolean
+    device_id?: boolean
+    media_id?: boolean
+    status?: boolean
+    proof_data?: boolean
+    created_at?: boolean
+    completed_at?: boolean
+  }, ExtArgs["result"]["verification"]>
+
+  export type VerificationSelectScalar = {
+    verification_id?: boolean
+    device_id?: boolean
+    media_id?: boolean
+    status?: boolean
+    proof_data?: boolean
+    created_at?: boolean
+    completed_at?: boolean
+  }
+
+
+  export type $VerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Verification"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      verification_id: string
+      device_id: string
+      media_id: string | null
+      status: string
+      proof_data: string | null
+      created_at: Date
+      completed_at: Date | null
+    }, ExtArgs["result"]["verification"]>
+    composites: {}
+  }
+
+  type VerificationGetPayload<S extends boolean | null | undefined | VerificationDefaultArgs> = $Result.GetResult<Prisma.$VerificationPayload, S>
+
+  type VerificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<VerificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: VerificationCountAggregateInputType | true
+    }
+
+  export interface VerificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Verification'], meta: { name: 'Verification' } }
+    /**
+     * Find zero or one Verification that matches the filter.
+     * @param {VerificationFindUniqueArgs} args - Arguments to find a Verification
+     * @example
+     * // Get one Verification
+     * const verification = await prisma.verification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VerificationFindUniqueArgs>(args: SelectSubset<T, VerificationFindUniqueArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Verification that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {VerificationFindUniqueOrThrowArgs} args - Arguments to find a Verification
+     * @example
+     * // Get one Verification
+     * const verification = await prisma.verification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VerificationFindUniqueOrThrowArgs>(args: SelectSubset<T, VerificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Verification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationFindFirstArgs} args - Arguments to find a Verification
+     * @example
+     * // Get one Verification
+     * const verification = await prisma.verification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VerificationFindFirstArgs>(args?: SelectSubset<T, VerificationFindFirstArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Verification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationFindFirstOrThrowArgs} args - Arguments to find a Verification
+     * @example
+     * // Get one Verification
+     * const verification = await prisma.verification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VerificationFindFirstOrThrowArgs>(args?: SelectSubset<T, VerificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Verifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Verifications
+     * const verifications = await prisma.verification.findMany()
+     * 
+     * // Get first 10 Verifications
+     * const verifications = await prisma.verification.findMany({ take: 10 })
+     * 
+     * // Only select the `verification_id`
+     * const verificationWithVerification_idOnly = await prisma.verification.findMany({ select: { verification_id: true } })
+     * 
+     */
+    findMany<T extends VerificationFindManyArgs>(args?: SelectSubset<T, VerificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Verification.
+     * @param {VerificationCreateArgs} args - Arguments to create a Verification.
+     * @example
+     * // Create one Verification
+     * const Verification = await prisma.verification.create({
+     *   data: {
+     *     // ... data to create a Verification
+     *   }
+     * })
+     * 
+     */
+    create<T extends VerificationCreateArgs>(args: SelectSubset<T, VerificationCreateArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Verifications.
+     * @param {VerificationCreateManyArgs} args - Arguments to create many Verifications.
+     * @example
+     * // Create many Verifications
+     * const verification = await prisma.verification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VerificationCreateManyArgs>(args?: SelectSubset<T, VerificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Verifications and returns the data saved in the database.
+     * @param {VerificationCreateManyAndReturnArgs} args - Arguments to create many Verifications.
+     * @example
+     * // Create many Verifications
+     * const verification = await prisma.verification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Verifications and only return the `verification_id`
+     * const verificationWithVerification_idOnly = await prisma.verification.createManyAndReturn({ 
+     *   select: { verification_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VerificationCreateManyAndReturnArgs>(args?: SelectSubset<T, VerificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Verification.
+     * @param {VerificationDeleteArgs} args - Arguments to delete one Verification.
+     * @example
+     * // Delete one Verification
+     * const Verification = await prisma.verification.delete({
+     *   where: {
+     *     // ... filter to delete one Verification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VerificationDeleteArgs>(args: SelectSubset<T, VerificationDeleteArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Verification.
+     * @param {VerificationUpdateArgs} args - Arguments to update one Verification.
+     * @example
+     * // Update one Verification
+     * const verification = await prisma.verification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VerificationUpdateArgs>(args: SelectSubset<T, VerificationUpdateArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Verifications.
+     * @param {VerificationDeleteManyArgs} args - Arguments to filter Verifications to delete.
+     * @example
+     * // Delete a few Verifications
+     * const { count } = await prisma.verification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VerificationDeleteManyArgs>(args?: SelectSubset<T, VerificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Verifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Verifications
+     * const verification = await prisma.verification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VerificationUpdateManyArgs>(args: SelectSubset<T, VerificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Verification.
+     * @param {VerificationUpsertArgs} args - Arguments to update or create a Verification.
+     * @example
+     * // Update or create a Verification
+     * const verification = await prisma.verification.upsert({
+     *   create: {
+     *     // ... data to create a Verification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Verification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VerificationUpsertArgs>(args: SelectSubset<T, VerificationUpsertArgs<ExtArgs>>): Prisma__VerificationClient<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Verifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationCountArgs} args - Arguments to filter Verifications to count.
+     * @example
+     * // Count the number of Verifications
+     * const count = await prisma.verification.count({
+     *   where: {
+     *     // ... the filter for the Verifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends VerificationCountArgs>(
+      args?: Subset<T, VerificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VerificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Verification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VerificationAggregateArgs>(args: Subset<T, VerificationAggregateArgs>): Prisma.PrismaPromise<GetVerificationAggregateType<T>>
+
+    /**
+     * Group by Verification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VerificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VerificationGroupByArgs['orderBy'] }
+        : { orderBy?: VerificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VerificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVerificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Verification model
+   */
+  readonly fields: VerificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Verification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Verification model
+   */ 
+  interface VerificationFieldRefs {
+    readonly verification_id: FieldRef<"Verification", 'String'>
+    readonly device_id: FieldRef<"Verification", 'String'>
+    readonly media_id: FieldRef<"Verification", 'String'>
+    readonly status: FieldRef<"Verification", 'String'>
+    readonly proof_data: FieldRef<"Verification", 'String'>
+    readonly created_at: FieldRef<"Verification", 'DateTime'>
+    readonly completed_at: FieldRef<"Verification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Verification findUnique
+   */
+  export type VerificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which Verification to fetch.
+     */
+    where: VerificationWhereUniqueInput
+  }
+
+  /**
+   * Verification findUniqueOrThrow
+   */
+  export type VerificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which Verification to fetch.
+     */
+    where: VerificationWhereUniqueInput
+  }
+
+  /**
+   * Verification findFirst
+   */
+  export type VerificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which Verification to fetch.
+     */
+    where?: VerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Verifications to fetch.
+     */
+    orderBy?: VerificationOrderByWithRelationInput | VerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Verifications.
+     */
+    cursor?: VerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Verifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Verifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Verifications.
+     */
+    distinct?: VerificationScalarFieldEnum | VerificationScalarFieldEnum[]
+  }
+
+  /**
+   * Verification findFirstOrThrow
+   */
+  export type VerificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which Verification to fetch.
+     */
+    where?: VerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Verifications to fetch.
+     */
+    orderBy?: VerificationOrderByWithRelationInput | VerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Verifications.
+     */
+    cursor?: VerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Verifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Verifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Verifications.
+     */
+    distinct?: VerificationScalarFieldEnum | VerificationScalarFieldEnum[]
+  }
+
+  /**
+   * Verification findMany
+   */
+  export type VerificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which Verifications to fetch.
+     */
+    where?: VerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Verifications to fetch.
+     */
+    orderBy?: VerificationOrderByWithRelationInput | VerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Verifications.
+     */
+    cursor?: VerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Verifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Verifications.
+     */
+    skip?: number
+    distinct?: VerificationScalarFieldEnum | VerificationScalarFieldEnum[]
+  }
+
+  /**
+   * Verification create
+   */
+  export type VerificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Verification.
+     */
+    data: XOR<VerificationCreateInput, VerificationUncheckedCreateInput>
+  }
+
+  /**
+   * Verification createMany
+   */
+  export type VerificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Verifications.
+     */
+    data: VerificationCreateManyInput | VerificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Verification createManyAndReturn
+   */
+  export type VerificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Verifications.
+     */
+    data: VerificationCreateManyInput | VerificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Verification update
+   */
+  export type VerificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Verification.
+     */
+    data: XOR<VerificationUpdateInput, VerificationUncheckedUpdateInput>
+    /**
+     * Choose, which Verification to update.
+     */
+    where: VerificationWhereUniqueInput
+  }
+
+  /**
+   * Verification updateMany
+   */
+  export type VerificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Verifications.
+     */
+    data: XOR<VerificationUpdateManyMutationInput, VerificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Verifications to update
+     */
+    where?: VerificationWhereInput
+  }
+
+  /**
+   * Verification upsert
+   */
+  export type VerificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Verification to update in case it exists.
+     */
+    where: VerificationWhereUniqueInput
+    /**
+     * In case the Verification found by the `where` argument doesn't exist, create a new Verification with this data.
+     */
+    create: XOR<VerificationCreateInput, VerificationUncheckedCreateInput>
+    /**
+     * In case the Verification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VerificationUpdateInput, VerificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Verification delete
+   */
+  export type VerificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Filter which Verification to delete.
+     */
+    where: VerificationWhereUniqueInput
+  }
+
+  /**
+   * Verification deleteMany
+   */
+  export type VerificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Verifications to delete
+     */
+    where?: VerificationWhereInput
+  }
+
+  /**
+   * Verification without action
+   */
+  export type VerificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ZKProofJob
+   */
+
+  export type AggregateZKProofJob = {
+    _count: ZKProofJobCountAggregateOutputType | null
+    _min: ZKProofJobMinAggregateOutputType | null
+    _max: ZKProofJobMaxAggregateOutputType | null
+  }
+
+  export type ZKProofJobMinAggregateOutputType = {
+    proof_id: string | null
+    device_id: string | null
+    media_hash: string | null
+    proof_type: string | null
+    attestation_data: string | null
+    status: string | null
+    proof_data: Buffer | null
+    proof_hash: string | null
+    completed_at: Date | null
+    error_message: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ZKProofJobMaxAggregateOutputType = {
+    proof_id: string | null
+    device_id: string | null
+    media_hash: string | null
+    proof_type: string | null
+    attestation_data: string | null
+    status: string | null
+    proof_data: Buffer | null
+    proof_hash: string | null
+    completed_at: Date | null
+    error_message: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ZKProofJobCountAggregateOutputType = {
+    proof_id: number
+    device_id: number
+    media_hash: number
+    proof_type: number
+    attestation_data: number
+    status: number
+    proof_data: number
+    proof_hash: number
+    completed_at: number
+    error_message: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type ZKProofJobMinAggregateInputType = {
+    proof_id?: true
+    device_id?: true
+    media_hash?: true
+    proof_type?: true
+    attestation_data?: true
+    status?: true
+    proof_data?: true
+    proof_hash?: true
+    completed_at?: true
+    error_message?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ZKProofJobMaxAggregateInputType = {
+    proof_id?: true
+    device_id?: true
+    media_hash?: true
+    proof_type?: true
+    attestation_data?: true
+    status?: true
+    proof_data?: true
+    proof_hash?: true
+    completed_at?: true
+    error_message?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ZKProofJobCountAggregateInputType = {
+    proof_id?: true
+    device_id?: true
+    media_hash?: true
+    proof_type?: true
+    attestation_data?: true
+    status?: true
+    proof_data?: true
+    proof_hash?: true
+    completed_at?: true
+    error_message?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type ZKProofJobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ZKProofJob to aggregate.
+     */
+    where?: ZKProofJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZKProofJobs to fetch.
+     */
+    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ZKProofJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZKProofJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZKProofJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ZKProofJobs
+    **/
+    _count?: true | ZKProofJobCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ZKProofJobMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ZKProofJobMaxAggregateInputType
+  }
+
+  export type GetZKProofJobAggregateType<T extends ZKProofJobAggregateArgs> = {
+        [P in keyof T & keyof AggregateZKProofJob]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateZKProofJob[P]>
+      : GetScalarType<T[P], AggregateZKProofJob[P]>
+  }
+
+
+
+
+  export type ZKProofJobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ZKProofJobWhereInput
+    orderBy?: ZKProofJobOrderByWithAggregationInput | ZKProofJobOrderByWithAggregationInput[]
+    by: ZKProofJobScalarFieldEnum[] | ZKProofJobScalarFieldEnum
+    having?: ZKProofJobScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ZKProofJobCountAggregateInputType | true
+    _min?: ZKProofJobMinAggregateInputType
+    _max?: ZKProofJobMaxAggregateInputType
+  }
+
+  export type ZKProofJobGroupByOutputType = {
+    proof_id: string
+    device_id: string
+    media_hash: string | null
+    proof_type: string
+    attestation_data: string | null
+    status: string
+    proof_data: Buffer | null
+    proof_hash: string | null
+    completed_at: Date | null
+    error_message: string | null
+    created_at: Date
+    updated_at: Date
+    _count: ZKProofJobCountAggregateOutputType | null
+    _min: ZKProofJobMinAggregateOutputType | null
+    _max: ZKProofJobMaxAggregateOutputType | null
+  }
+
+  type GetZKProofJobGroupByPayload<T extends ZKProofJobGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ZKProofJobGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ZKProofJobGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ZKProofJobGroupByOutputType[P]>
+            : GetScalarType<T[P], ZKProofJobGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ZKProofJobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    proof_id?: boolean
+    device_id?: boolean
+    media_hash?: boolean
+    proof_type?: boolean
+    attestation_data?: boolean
+    status?: boolean
+    proof_data?: boolean
+    proof_hash?: boolean
+    completed_at?: boolean
+    error_message?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["zKProofJob"]>
+
+  export type ZKProofJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    proof_id?: boolean
+    device_id?: boolean
+    media_hash?: boolean
+    proof_type?: boolean
+    attestation_data?: boolean
+    status?: boolean
+    proof_data?: boolean
+    proof_hash?: boolean
+    completed_at?: boolean
+    error_message?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }, ExtArgs["result"]["zKProofJob"]>
+
+  export type ZKProofJobSelectScalar = {
+    proof_id?: boolean
+    device_id?: boolean
+    media_hash?: boolean
+    proof_type?: boolean
+    attestation_data?: boolean
+    status?: boolean
+    proof_data?: boolean
+    proof_hash?: boolean
+    completed_at?: boolean
+    error_message?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+
+  export type $ZKProofJobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ZKProofJob"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      proof_id: string
+      device_id: string
+      media_hash: string | null
+      proof_type: string
+      attestation_data: string | null
+      status: string
+      proof_data: Buffer | null
+      proof_hash: string | null
+      completed_at: Date | null
+      error_message: string | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["zKProofJob"]>
+    composites: {}
+  }
+
+  type ZKProofJobGetPayload<S extends boolean | null | undefined | ZKProofJobDefaultArgs> = $Result.GetResult<Prisma.$ZKProofJobPayload, S>
+
+  type ZKProofJobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ZKProofJobFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ZKProofJobCountAggregateInputType | true
+    }
+
+  export interface ZKProofJobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ZKProofJob'], meta: { name: 'ZKProofJob' } }
+    /**
+     * Find zero or one ZKProofJob that matches the filter.
+     * @param {ZKProofJobFindUniqueArgs} args - Arguments to find a ZKProofJob
+     * @example
+     * // Get one ZKProofJob
+     * const zKProofJob = await prisma.zKProofJob.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ZKProofJobFindUniqueArgs>(args: SelectSubset<T, ZKProofJobFindUniqueArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ZKProofJob that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ZKProofJobFindUniqueOrThrowArgs} args - Arguments to find a ZKProofJob
+     * @example
+     * // Get one ZKProofJob
+     * const zKProofJob = await prisma.zKProofJob.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ZKProofJobFindUniqueOrThrowArgs>(args: SelectSubset<T, ZKProofJobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ZKProofJob that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobFindFirstArgs} args - Arguments to find a ZKProofJob
+     * @example
+     * // Get one ZKProofJob
+     * const zKProofJob = await prisma.zKProofJob.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ZKProofJobFindFirstArgs>(args?: SelectSubset<T, ZKProofJobFindFirstArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ZKProofJob that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobFindFirstOrThrowArgs} args - Arguments to find a ZKProofJob
+     * @example
+     * // Get one ZKProofJob
+     * const zKProofJob = await prisma.zKProofJob.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ZKProofJobFindFirstOrThrowArgs>(args?: SelectSubset<T, ZKProofJobFindFirstOrThrowArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ZKProofJobs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ZKProofJobs
+     * const zKProofJobs = await prisma.zKProofJob.findMany()
+     * 
+     * // Get first 10 ZKProofJobs
+     * const zKProofJobs = await prisma.zKProofJob.findMany({ take: 10 })
+     * 
+     * // Only select the `proof_id`
+     * const zKProofJobWithProof_idOnly = await prisma.zKProofJob.findMany({ select: { proof_id: true } })
+     * 
+     */
+    findMany<T extends ZKProofJobFindManyArgs>(args?: SelectSubset<T, ZKProofJobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ZKProofJob.
+     * @param {ZKProofJobCreateArgs} args - Arguments to create a ZKProofJob.
+     * @example
+     * // Create one ZKProofJob
+     * const ZKProofJob = await prisma.zKProofJob.create({
+     *   data: {
+     *     // ... data to create a ZKProofJob
+     *   }
+     * })
+     * 
+     */
+    create<T extends ZKProofJobCreateArgs>(args: SelectSubset<T, ZKProofJobCreateArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ZKProofJobs.
+     * @param {ZKProofJobCreateManyArgs} args - Arguments to create many ZKProofJobs.
+     * @example
+     * // Create many ZKProofJobs
+     * const zKProofJob = await prisma.zKProofJob.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ZKProofJobCreateManyArgs>(args?: SelectSubset<T, ZKProofJobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ZKProofJobs and returns the data saved in the database.
+     * @param {ZKProofJobCreateManyAndReturnArgs} args - Arguments to create many ZKProofJobs.
+     * @example
+     * // Create many ZKProofJobs
+     * const zKProofJob = await prisma.zKProofJob.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ZKProofJobs and only return the `proof_id`
+     * const zKProofJobWithProof_idOnly = await prisma.zKProofJob.createManyAndReturn({ 
+     *   select: { proof_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ZKProofJobCreateManyAndReturnArgs>(args?: SelectSubset<T, ZKProofJobCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ZKProofJob.
+     * @param {ZKProofJobDeleteArgs} args - Arguments to delete one ZKProofJob.
+     * @example
+     * // Delete one ZKProofJob
+     * const ZKProofJob = await prisma.zKProofJob.delete({
+     *   where: {
+     *     // ... filter to delete one ZKProofJob
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ZKProofJobDeleteArgs>(args: SelectSubset<T, ZKProofJobDeleteArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ZKProofJob.
+     * @param {ZKProofJobUpdateArgs} args - Arguments to update one ZKProofJob.
+     * @example
+     * // Update one ZKProofJob
+     * const zKProofJob = await prisma.zKProofJob.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ZKProofJobUpdateArgs>(args: SelectSubset<T, ZKProofJobUpdateArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ZKProofJobs.
+     * @param {ZKProofJobDeleteManyArgs} args - Arguments to filter ZKProofJobs to delete.
+     * @example
+     * // Delete a few ZKProofJobs
+     * const { count } = await prisma.zKProofJob.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ZKProofJobDeleteManyArgs>(args?: SelectSubset<T, ZKProofJobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ZKProofJobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ZKProofJobs
+     * const zKProofJob = await prisma.zKProofJob.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ZKProofJobUpdateManyArgs>(args: SelectSubset<T, ZKProofJobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ZKProofJob.
+     * @param {ZKProofJobUpsertArgs} args - Arguments to update or create a ZKProofJob.
+     * @example
+     * // Update or create a ZKProofJob
+     * const zKProofJob = await prisma.zKProofJob.upsert({
+     *   create: {
+     *     // ... data to create a ZKProofJob
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ZKProofJob we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ZKProofJobUpsertArgs>(args: SelectSubset<T, ZKProofJobUpsertArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ZKProofJobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobCountArgs} args - Arguments to filter ZKProofJobs to count.
+     * @example
+     * // Count the number of ZKProofJobs
+     * const count = await prisma.zKProofJob.count({
+     *   where: {
+     *     // ... the filter for the ZKProofJobs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ZKProofJobCountArgs>(
+      args?: Subset<T, ZKProofJobCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ZKProofJobCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ZKProofJob.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ZKProofJobAggregateArgs>(args: Subset<T, ZKProofJobAggregateArgs>): Prisma.PrismaPromise<GetZKProofJobAggregateType<T>>
+
+    /**
+     * Group by ZKProofJob.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZKProofJobGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ZKProofJobGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ZKProofJobGroupByArgs['orderBy'] }
+        : { orderBy?: ZKProofJobGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ZKProofJobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetZKProofJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ZKProofJob model
+   */
+  readonly fields: ZKProofJobFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ZKProofJob.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ZKProofJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ZKProofJob model
+   */ 
+  interface ZKProofJobFieldRefs {
+    readonly proof_id: FieldRef<"ZKProofJob", 'String'>
+    readonly device_id: FieldRef<"ZKProofJob", 'String'>
+    readonly media_hash: FieldRef<"ZKProofJob", 'String'>
+    readonly proof_type: FieldRef<"ZKProofJob", 'String'>
+    readonly attestation_data: FieldRef<"ZKProofJob", 'String'>
+    readonly status: FieldRef<"ZKProofJob", 'String'>
+    readonly proof_data: FieldRef<"ZKProofJob", 'Bytes'>
+    readonly proof_hash: FieldRef<"ZKProofJob", 'String'>
+    readonly completed_at: FieldRef<"ZKProofJob", 'DateTime'>
+    readonly error_message: FieldRef<"ZKProofJob", 'String'>
+    readonly created_at: FieldRef<"ZKProofJob", 'DateTime'>
+    readonly updated_at: FieldRef<"ZKProofJob", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ZKProofJob findUnique
+   */
+  export type ZKProofJobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ZKProofJob to fetch.
+     */
+    where: ZKProofJobWhereUniqueInput
+  }
+
+  /**
+   * ZKProofJob findUniqueOrThrow
+   */
+  export type ZKProofJobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ZKProofJob to fetch.
+     */
+    where: ZKProofJobWhereUniqueInput
+  }
+
+  /**
+   * ZKProofJob findFirst
+   */
+  export type ZKProofJobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ZKProofJob to fetch.
+     */
+    where?: ZKProofJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZKProofJobs to fetch.
+     */
+    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ZKProofJobs.
+     */
+    cursor?: ZKProofJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZKProofJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZKProofJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ZKProofJobs.
+     */
+    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
+  }
+
+  /**
+   * ZKProofJob findFirstOrThrow
+   */
+  export type ZKProofJobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ZKProofJob to fetch.
+     */
+    where?: ZKProofJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZKProofJobs to fetch.
+     */
+    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ZKProofJobs.
+     */
+    cursor?: ZKProofJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZKProofJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZKProofJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ZKProofJobs.
+     */
+    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
+  }
+
+  /**
+   * ZKProofJob findMany
+   */
+  export type ZKProofJobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ZKProofJobs to fetch.
+     */
+    where?: ZKProofJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZKProofJobs to fetch.
+     */
+    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ZKProofJobs.
+     */
+    cursor?: ZKProofJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZKProofJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZKProofJobs.
+     */
+    skip?: number
+    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
+  }
+
+  /**
+   * ZKProofJob create
+   */
+  export type ZKProofJobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ZKProofJob.
+     */
+    data: XOR<ZKProofJobCreateInput, ZKProofJobUncheckedCreateInput>
+  }
+
+  /**
+   * ZKProofJob createMany
+   */
+  export type ZKProofJobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ZKProofJobs.
+     */
+    data: ZKProofJobCreateManyInput | ZKProofJobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ZKProofJob createManyAndReturn
+   */
+  export type ZKProofJobCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ZKProofJobs.
+     */
+    data: ZKProofJobCreateManyInput | ZKProofJobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ZKProofJob update
+   */
+  export type ZKProofJobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ZKProofJob.
+     */
+    data: XOR<ZKProofJobUpdateInput, ZKProofJobUncheckedUpdateInput>
+    /**
+     * Choose, which ZKProofJob to update.
+     */
+    where: ZKProofJobWhereUniqueInput
+  }
+
+  /**
+   * ZKProofJob updateMany
+   */
+  export type ZKProofJobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ZKProofJobs.
+     */
+    data: XOR<ZKProofJobUpdateManyMutationInput, ZKProofJobUncheckedUpdateManyInput>
+    /**
+     * Filter which ZKProofJobs to update
+     */
+    where?: ZKProofJobWhereInput
+  }
+
+  /**
+   * ZKProofJob upsert
+   */
+  export type ZKProofJobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ZKProofJob to update in case it exists.
+     */
+    where: ZKProofJobWhereUniqueInput
+    /**
+     * In case the ZKProofJob found by the `where` argument doesn't exist, create a new ZKProofJob with this data.
+     */
+    create: XOR<ZKProofJobCreateInput, ZKProofJobUncheckedCreateInput>
+    /**
+     * In case the ZKProofJob was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ZKProofJobUpdateInput, ZKProofJobUncheckedUpdateInput>
+  }
+
+  /**
+   * ZKProofJob delete
+   */
+  export type ZKProofJobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Filter which ZKProofJob to delete.
+     */
+    where: ZKProofJobWhereUniqueInput
+  }
+
+  /**
+   * ZKProofJob deleteMany
+   */
+  export type ZKProofJobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ZKProofJobs to delete
+     */
+    where?: ZKProofJobWhereInput
+  }
+
+  /**
+   * ZKProofJob without action
+   */
+  export type ZKProofJobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
   }
 
 
@@ -3231,908 +6391,6 @@ export namespace Prisma {
 
 
   /**
-   * Model ZKProofJob
-   */
-
-  export type AggregateZKProofJob = {
-    _count: ZKProofJobCountAggregateOutputType | null
-    _min: ZKProofJobMinAggregateOutputType | null
-    _max: ZKProofJobMaxAggregateOutputType | null
-  }
-
-  export type ZKProofJobMinAggregateOutputType = {
-    proof_id: string | null
-    device_id: string | null
-    media_hash: string | null
-    status: string | null
-    proof_data: Buffer | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type ZKProofJobMaxAggregateOutputType = {
-    proof_id: string | null
-    device_id: string | null
-    media_hash: string | null
-    status: string | null
-    proof_data: Buffer | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type ZKProofJobCountAggregateOutputType = {
-    proof_id: number
-    device_id: number
-    media_hash: number
-    status: number
-    proof_data: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type ZKProofJobMinAggregateInputType = {
-    proof_id?: true
-    device_id?: true
-    media_hash?: true
-    status?: true
-    proof_data?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type ZKProofJobMaxAggregateInputType = {
-    proof_id?: true
-    device_id?: true
-    media_hash?: true
-    status?: true
-    proof_data?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type ZKProofJobCountAggregateInputType = {
-    proof_id?: true
-    device_id?: true
-    media_hash?: true
-    status?: true
-    proof_data?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type ZKProofJobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ZKProofJob to aggregate.
-     */
-    where?: ZKProofJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ZKProofJobs to fetch.
-     */
-    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ZKProofJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ZKProofJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ZKProofJobs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ZKProofJobs
-    **/
-    _count?: true | ZKProofJobCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ZKProofJobMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ZKProofJobMaxAggregateInputType
-  }
-
-  export type GetZKProofJobAggregateType<T extends ZKProofJobAggregateArgs> = {
-        [P in keyof T & keyof AggregateZKProofJob]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateZKProofJob[P]>
-      : GetScalarType<T[P], AggregateZKProofJob[P]>
-  }
-
-
-
-
-  export type ZKProofJobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ZKProofJobWhereInput
-    orderBy?: ZKProofJobOrderByWithAggregationInput | ZKProofJobOrderByWithAggregationInput[]
-    by: ZKProofJobScalarFieldEnum[] | ZKProofJobScalarFieldEnum
-    having?: ZKProofJobScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ZKProofJobCountAggregateInputType | true
-    _min?: ZKProofJobMinAggregateInputType
-    _max?: ZKProofJobMaxAggregateInputType
-  }
-
-  export type ZKProofJobGroupByOutputType = {
-    proof_id: string
-    device_id: string
-    media_hash: string
-    status: string
-    proof_data: Buffer | null
-    created_at: Date
-    updated_at: Date
-    _count: ZKProofJobCountAggregateOutputType | null
-    _min: ZKProofJobMinAggregateOutputType | null
-    _max: ZKProofJobMaxAggregateOutputType | null
-  }
-
-  type GetZKProofJobGroupByPayload<T extends ZKProofJobGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ZKProofJobGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ZKProofJobGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ZKProofJobGroupByOutputType[P]>
-            : GetScalarType<T[P], ZKProofJobGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ZKProofJobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    proof_id?: boolean
-    device_id?: boolean
-    media_hash?: boolean
-    status?: boolean
-    proof_data?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["zKProofJob"]>
-
-  export type ZKProofJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    proof_id?: boolean
-    device_id?: boolean
-    media_hash?: boolean
-    status?: boolean
-    proof_data?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }, ExtArgs["result"]["zKProofJob"]>
-
-  export type ZKProofJobSelectScalar = {
-    proof_id?: boolean
-    device_id?: boolean
-    media_hash?: boolean
-    status?: boolean
-    proof_data?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-
-  export type $ZKProofJobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "ZKProofJob"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      proof_id: string
-      device_id: string
-      media_hash: string
-      status: string
-      proof_data: Buffer | null
-      created_at: Date
-      updated_at: Date
-    }, ExtArgs["result"]["zKProofJob"]>
-    composites: {}
-  }
-
-  type ZKProofJobGetPayload<S extends boolean | null | undefined | ZKProofJobDefaultArgs> = $Result.GetResult<Prisma.$ZKProofJobPayload, S>
-
-  type ZKProofJobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<ZKProofJobFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: ZKProofJobCountAggregateInputType | true
-    }
-
-  export interface ZKProofJobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ZKProofJob'], meta: { name: 'ZKProofJob' } }
-    /**
-     * Find zero or one ZKProofJob that matches the filter.
-     * @param {ZKProofJobFindUniqueArgs} args - Arguments to find a ZKProofJob
-     * @example
-     * // Get one ZKProofJob
-     * const zKProofJob = await prisma.zKProofJob.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ZKProofJobFindUniqueArgs>(args: SelectSubset<T, ZKProofJobFindUniqueArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one ZKProofJob that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {ZKProofJobFindUniqueOrThrowArgs} args - Arguments to find a ZKProofJob
-     * @example
-     * // Get one ZKProofJob
-     * const zKProofJob = await prisma.zKProofJob.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ZKProofJobFindUniqueOrThrowArgs>(args: SelectSubset<T, ZKProofJobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first ZKProofJob that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobFindFirstArgs} args - Arguments to find a ZKProofJob
-     * @example
-     * // Get one ZKProofJob
-     * const zKProofJob = await prisma.zKProofJob.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ZKProofJobFindFirstArgs>(args?: SelectSubset<T, ZKProofJobFindFirstArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first ZKProofJob that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobFindFirstOrThrowArgs} args - Arguments to find a ZKProofJob
-     * @example
-     * // Get one ZKProofJob
-     * const zKProofJob = await prisma.zKProofJob.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ZKProofJobFindFirstOrThrowArgs>(args?: SelectSubset<T, ZKProofJobFindFirstOrThrowArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more ZKProofJobs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ZKProofJobs
-     * const zKProofJobs = await prisma.zKProofJob.findMany()
-     * 
-     * // Get first 10 ZKProofJobs
-     * const zKProofJobs = await prisma.zKProofJob.findMany({ take: 10 })
-     * 
-     * // Only select the `proof_id`
-     * const zKProofJobWithProof_idOnly = await prisma.zKProofJob.findMany({ select: { proof_id: true } })
-     * 
-     */
-    findMany<T extends ZKProofJobFindManyArgs>(args?: SelectSubset<T, ZKProofJobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a ZKProofJob.
-     * @param {ZKProofJobCreateArgs} args - Arguments to create a ZKProofJob.
-     * @example
-     * // Create one ZKProofJob
-     * const ZKProofJob = await prisma.zKProofJob.create({
-     *   data: {
-     *     // ... data to create a ZKProofJob
-     *   }
-     * })
-     * 
-     */
-    create<T extends ZKProofJobCreateArgs>(args: SelectSubset<T, ZKProofJobCreateArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many ZKProofJobs.
-     * @param {ZKProofJobCreateManyArgs} args - Arguments to create many ZKProofJobs.
-     * @example
-     * // Create many ZKProofJobs
-     * const zKProofJob = await prisma.zKProofJob.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ZKProofJobCreateManyArgs>(args?: SelectSubset<T, ZKProofJobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many ZKProofJobs and returns the data saved in the database.
-     * @param {ZKProofJobCreateManyAndReturnArgs} args - Arguments to create many ZKProofJobs.
-     * @example
-     * // Create many ZKProofJobs
-     * const zKProofJob = await prisma.zKProofJob.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many ZKProofJobs and only return the `proof_id`
-     * const zKProofJobWithProof_idOnly = await prisma.zKProofJob.createManyAndReturn({ 
-     *   select: { proof_id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ZKProofJobCreateManyAndReturnArgs>(args?: SelectSubset<T, ZKProofJobCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a ZKProofJob.
-     * @param {ZKProofJobDeleteArgs} args - Arguments to delete one ZKProofJob.
-     * @example
-     * // Delete one ZKProofJob
-     * const ZKProofJob = await prisma.zKProofJob.delete({
-     *   where: {
-     *     // ... filter to delete one ZKProofJob
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ZKProofJobDeleteArgs>(args: SelectSubset<T, ZKProofJobDeleteArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one ZKProofJob.
-     * @param {ZKProofJobUpdateArgs} args - Arguments to update one ZKProofJob.
-     * @example
-     * // Update one ZKProofJob
-     * const zKProofJob = await prisma.zKProofJob.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ZKProofJobUpdateArgs>(args: SelectSubset<T, ZKProofJobUpdateArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more ZKProofJobs.
-     * @param {ZKProofJobDeleteManyArgs} args - Arguments to filter ZKProofJobs to delete.
-     * @example
-     * // Delete a few ZKProofJobs
-     * const { count } = await prisma.zKProofJob.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ZKProofJobDeleteManyArgs>(args?: SelectSubset<T, ZKProofJobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ZKProofJobs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ZKProofJobs
-     * const zKProofJob = await prisma.zKProofJob.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ZKProofJobUpdateManyArgs>(args: SelectSubset<T, ZKProofJobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ZKProofJob.
-     * @param {ZKProofJobUpsertArgs} args - Arguments to update or create a ZKProofJob.
-     * @example
-     * // Update or create a ZKProofJob
-     * const zKProofJob = await prisma.zKProofJob.upsert({
-     *   create: {
-     *     // ... data to create a ZKProofJob
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ZKProofJob we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ZKProofJobUpsertArgs>(args: SelectSubset<T, ZKProofJobUpsertArgs<ExtArgs>>): Prisma__ZKProofJobClient<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of ZKProofJobs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobCountArgs} args - Arguments to filter ZKProofJobs to count.
-     * @example
-     * // Count the number of ZKProofJobs
-     * const count = await prisma.zKProofJob.count({
-     *   where: {
-     *     // ... the filter for the ZKProofJobs we want to count
-     *   }
-     * })
-    **/
-    count<T extends ZKProofJobCountArgs>(
-      args?: Subset<T, ZKProofJobCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ZKProofJobCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ZKProofJob.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ZKProofJobAggregateArgs>(args: Subset<T, ZKProofJobAggregateArgs>): Prisma.PrismaPromise<GetZKProofJobAggregateType<T>>
-
-    /**
-     * Group by ZKProofJob.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ZKProofJobGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ZKProofJobGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ZKProofJobGroupByArgs['orderBy'] }
-        : { orderBy?: ZKProofJobGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ZKProofJobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetZKProofJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the ZKProofJob model
-   */
-  readonly fields: ZKProofJobFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ZKProofJob.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ZKProofJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the ZKProofJob model
-   */ 
-  interface ZKProofJobFieldRefs {
-    readonly proof_id: FieldRef<"ZKProofJob", 'String'>
-    readonly device_id: FieldRef<"ZKProofJob", 'String'>
-    readonly media_hash: FieldRef<"ZKProofJob", 'String'>
-    readonly status: FieldRef<"ZKProofJob", 'String'>
-    readonly proof_data: FieldRef<"ZKProofJob", 'Bytes'>
-    readonly created_at: FieldRef<"ZKProofJob", 'DateTime'>
-    readonly updated_at: FieldRef<"ZKProofJob", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * ZKProofJob findUnique
-   */
-  export type ZKProofJobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * Filter, which ZKProofJob to fetch.
-     */
-    where: ZKProofJobWhereUniqueInput
-  }
-
-  /**
-   * ZKProofJob findUniqueOrThrow
-   */
-  export type ZKProofJobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * Filter, which ZKProofJob to fetch.
-     */
-    where: ZKProofJobWhereUniqueInput
-  }
-
-  /**
-   * ZKProofJob findFirst
-   */
-  export type ZKProofJobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * Filter, which ZKProofJob to fetch.
-     */
-    where?: ZKProofJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ZKProofJobs to fetch.
-     */
-    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ZKProofJobs.
-     */
-    cursor?: ZKProofJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ZKProofJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ZKProofJobs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ZKProofJobs.
-     */
-    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
-  }
-
-  /**
-   * ZKProofJob findFirstOrThrow
-   */
-  export type ZKProofJobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * Filter, which ZKProofJob to fetch.
-     */
-    where?: ZKProofJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ZKProofJobs to fetch.
-     */
-    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ZKProofJobs.
-     */
-    cursor?: ZKProofJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ZKProofJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ZKProofJobs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ZKProofJobs.
-     */
-    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
-  }
-
-  /**
-   * ZKProofJob findMany
-   */
-  export type ZKProofJobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * Filter, which ZKProofJobs to fetch.
-     */
-    where?: ZKProofJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ZKProofJobs to fetch.
-     */
-    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ZKProofJobs.
-     */
-    cursor?: ZKProofJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ZKProofJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ZKProofJobs.
-     */
-    skip?: number
-    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
-  }
-
-  /**
-   * ZKProofJob create
-   */
-  export type ZKProofJobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * The data needed to create a ZKProofJob.
-     */
-    data: XOR<ZKProofJobCreateInput, ZKProofJobUncheckedCreateInput>
-  }
-
-  /**
-   * ZKProofJob createMany
-   */
-  export type ZKProofJobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ZKProofJobs.
-     */
-    data: ZKProofJobCreateManyInput | ZKProofJobCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ZKProofJob createManyAndReturn
-   */
-  export type ZKProofJobCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many ZKProofJobs.
-     */
-    data: ZKProofJobCreateManyInput | ZKProofJobCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * ZKProofJob update
-   */
-  export type ZKProofJobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * The data needed to update a ZKProofJob.
-     */
-    data: XOR<ZKProofJobUpdateInput, ZKProofJobUncheckedUpdateInput>
-    /**
-     * Choose, which ZKProofJob to update.
-     */
-    where: ZKProofJobWhereUniqueInput
-  }
-
-  /**
-   * ZKProofJob updateMany
-   */
-  export type ZKProofJobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ZKProofJobs.
-     */
-    data: XOR<ZKProofJobUpdateManyMutationInput, ZKProofJobUncheckedUpdateManyInput>
-    /**
-     * Filter which ZKProofJobs to update
-     */
-    where?: ZKProofJobWhereInput
-  }
-
-  /**
-   * ZKProofJob upsert
-   */
-  export type ZKProofJobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * The filter to search for the ZKProofJob to update in case it exists.
-     */
-    where: ZKProofJobWhereUniqueInput
-    /**
-     * In case the ZKProofJob found by the `where` argument doesn't exist, create a new ZKProofJob with this data.
-     */
-    create: XOR<ZKProofJobCreateInput, ZKProofJobUncheckedCreateInput>
-    /**
-     * In case the ZKProofJob was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ZKProofJobUpdateInput, ZKProofJobUncheckedUpdateInput>
-  }
-
-  /**
-   * ZKProofJob delete
-   */
-  export type ZKProofJobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-    /**
-     * Filter which ZKProofJob to delete.
-     */
-    where: ZKProofJobWhereUniqueInput
-  }
-
-  /**
-   * ZKProofJob deleteMany
-   */
-  export type ZKProofJobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ZKProofJobs to delete
-     */
-    where?: ZKProofJobWhereInput
-  }
-
-  /**
-   * ZKProofJob without action
-   */
-  export type ZKProofJobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ZKProofJob
-     */
-    select?: ZKProofJobSelect<ExtArgs> | null
-  }
-
-
-  /**
    * Model BlockchainAnchor
    */
 
@@ -5067,892 +7325,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the BlockchainAnchor
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * Model MediaVerification
-   */
-
-  export type AggregateMediaVerification = {
-    _count: MediaVerificationCountAggregateOutputType | null
-    _min: MediaVerificationMinAggregateOutputType | null
-    _max: MediaVerificationMaxAggregateOutputType | null
-  }
-
-  export type MediaVerificationMinAggregateOutputType = {
-    id: string | null
-    device_id: string | null
-    media_hash: string | null
-    signature: string | null
-    verified_at: Date | null
-  }
-
-  export type MediaVerificationMaxAggregateOutputType = {
-    id: string | null
-    device_id: string | null
-    media_hash: string | null
-    signature: string | null
-    verified_at: Date | null
-  }
-
-  export type MediaVerificationCountAggregateOutputType = {
-    id: number
-    device_id: number
-    media_hash: number
-    signature: number
-    verified_at: number
-    metadata: number
-    _all: number
-  }
-
-
-  export type MediaVerificationMinAggregateInputType = {
-    id?: true
-    device_id?: true
-    media_hash?: true
-    signature?: true
-    verified_at?: true
-  }
-
-  export type MediaVerificationMaxAggregateInputType = {
-    id?: true
-    device_id?: true
-    media_hash?: true
-    signature?: true
-    verified_at?: true
-  }
-
-  export type MediaVerificationCountAggregateInputType = {
-    id?: true
-    device_id?: true
-    media_hash?: true
-    signature?: true
-    verified_at?: true
-    metadata?: true
-    _all?: true
-  }
-
-  export type MediaVerificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which MediaVerification to aggregate.
-     */
-    where?: MediaVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MediaVerifications to fetch.
-     */
-    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: MediaVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MediaVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MediaVerifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned MediaVerifications
-    **/
-    _count?: true | MediaVerificationCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: MediaVerificationMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: MediaVerificationMaxAggregateInputType
-  }
-
-  export type GetMediaVerificationAggregateType<T extends MediaVerificationAggregateArgs> = {
-        [P in keyof T & keyof AggregateMediaVerification]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateMediaVerification[P]>
-      : GetScalarType<T[P], AggregateMediaVerification[P]>
-  }
-
-
-
-
-  export type MediaVerificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MediaVerificationWhereInput
-    orderBy?: MediaVerificationOrderByWithAggregationInput | MediaVerificationOrderByWithAggregationInput[]
-    by: MediaVerificationScalarFieldEnum[] | MediaVerificationScalarFieldEnum
-    having?: MediaVerificationScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: MediaVerificationCountAggregateInputType | true
-    _min?: MediaVerificationMinAggregateInputType
-    _max?: MediaVerificationMaxAggregateInputType
-  }
-
-  export type MediaVerificationGroupByOutputType = {
-    id: string
-    device_id: string
-    media_hash: string
-    signature: string
-    verified_at: Date
-    metadata: JsonValue | null
-    _count: MediaVerificationCountAggregateOutputType | null
-    _min: MediaVerificationMinAggregateOutputType | null
-    _max: MediaVerificationMaxAggregateOutputType | null
-  }
-
-  type GetMediaVerificationGroupByPayload<T extends MediaVerificationGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<MediaVerificationGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof MediaVerificationGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], MediaVerificationGroupByOutputType[P]>
-            : GetScalarType<T[P], MediaVerificationGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type MediaVerificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    device_id?: boolean
-    media_hash?: boolean
-    signature?: boolean
-    verified_at?: boolean
-    metadata?: boolean
-  }, ExtArgs["result"]["mediaVerification"]>
-
-  export type MediaVerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    device_id?: boolean
-    media_hash?: boolean
-    signature?: boolean
-    verified_at?: boolean
-    metadata?: boolean
-  }, ExtArgs["result"]["mediaVerification"]>
-
-  export type MediaVerificationSelectScalar = {
-    id?: boolean
-    device_id?: boolean
-    media_hash?: boolean
-    signature?: boolean
-    verified_at?: boolean
-    metadata?: boolean
-  }
-
-
-  export type $MediaVerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "MediaVerification"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      device_id: string
-      media_hash: string
-      signature: string
-      verified_at: Date
-      metadata: Prisma.JsonValue | null
-    }, ExtArgs["result"]["mediaVerification"]>
-    composites: {}
-  }
-
-  type MediaVerificationGetPayload<S extends boolean | null | undefined | MediaVerificationDefaultArgs> = $Result.GetResult<Prisma.$MediaVerificationPayload, S>
-
-  type MediaVerificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<MediaVerificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: MediaVerificationCountAggregateInputType | true
-    }
-
-  export interface MediaVerificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaVerification'], meta: { name: 'MediaVerification' } }
-    /**
-     * Find zero or one MediaVerification that matches the filter.
-     * @param {MediaVerificationFindUniqueArgs} args - Arguments to find a MediaVerification
-     * @example
-     * // Get one MediaVerification
-     * const mediaVerification = await prisma.mediaVerification.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends MediaVerificationFindUniqueArgs>(args: SelectSubset<T, MediaVerificationFindUniqueArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one MediaVerification that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {MediaVerificationFindUniqueOrThrowArgs} args - Arguments to find a MediaVerification
-     * @example
-     * // Get one MediaVerification
-     * const mediaVerification = await prisma.mediaVerification.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends MediaVerificationFindUniqueOrThrowArgs>(args: SelectSubset<T, MediaVerificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first MediaVerification that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationFindFirstArgs} args - Arguments to find a MediaVerification
-     * @example
-     * // Get one MediaVerification
-     * const mediaVerification = await prisma.mediaVerification.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends MediaVerificationFindFirstArgs>(args?: SelectSubset<T, MediaVerificationFindFirstArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first MediaVerification that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationFindFirstOrThrowArgs} args - Arguments to find a MediaVerification
-     * @example
-     * // Get one MediaVerification
-     * const mediaVerification = await prisma.mediaVerification.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends MediaVerificationFindFirstOrThrowArgs>(args?: SelectSubset<T, MediaVerificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more MediaVerifications that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all MediaVerifications
-     * const mediaVerifications = await prisma.mediaVerification.findMany()
-     * 
-     * // Get first 10 MediaVerifications
-     * const mediaVerifications = await prisma.mediaVerification.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const mediaVerificationWithIdOnly = await prisma.mediaVerification.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends MediaVerificationFindManyArgs>(args?: SelectSubset<T, MediaVerificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a MediaVerification.
-     * @param {MediaVerificationCreateArgs} args - Arguments to create a MediaVerification.
-     * @example
-     * // Create one MediaVerification
-     * const MediaVerification = await prisma.mediaVerification.create({
-     *   data: {
-     *     // ... data to create a MediaVerification
-     *   }
-     * })
-     * 
-     */
-    create<T extends MediaVerificationCreateArgs>(args: SelectSubset<T, MediaVerificationCreateArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many MediaVerifications.
-     * @param {MediaVerificationCreateManyArgs} args - Arguments to create many MediaVerifications.
-     * @example
-     * // Create many MediaVerifications
-     * const mediaVerification = await prisma.mediaVerification.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends MediaVerificationCreateManyArgs>(args?: SelectSubset<T, MediaVerificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many MediaVerifications and returns the data saved in the database.
-     * @param {MediaVerificationCreateManyAndReturnArgs} args - Arguments to create many MediaVerifications.
-     * @example
-     * // Create many MediaVerifications
-     * const mediaVerification = await prisma.mediaVerification.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many MediaVerifications and only return the `id`
-     * const mediaVerificationWithIdOnly = await prisma.mediaVerification.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends MediaVerificationCreateManyAndReturnArgs>(args?: SelectSubset<T, MediaVerificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a MediaVerification.
-     * @param {MediaVerificationDeleteArgs} args - Arguments to delete one MediaVerification.
-     * @example
-     * // Delete one MediaVerification
-     * const MediaVerification = await prisma.mediaVerification.delete({
-     *   where: {
-     *     // ... filter to delete one MediaVerification
-     *   }
-     * })
-     * 
-     */
-    delete<T extends MediaVerificationDeleteArgs>(args: SelectSubset<T, MediaVerificationDeleteArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one MediaVerification.
-     * @param {MediaVerificationUpdateArgs} args - Arguments to update one MediaVerification.
-     * @example
-     * // Update one MediaVerification
-     * const mediaVerification = await prisma.mediaVerification.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends MediaVerificationUpdateArgs>(args: SelectSubset<T, MediaVerificationUpdateArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more MediaVerifications.
-     * @param {MediaVerificationDeleteManyArgs} args - Arguments to filter MediaVerifications to delete.
-     * @example
-     * // Delete a few MediaVerifications
-     * const { count } = await prisma.mediaVerification.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends MediaVerificationDeleteManyArgs>(args?: SelectSubset<T, MediaVerificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more MediaVerifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many MediaVerifications
-     * const mediaVerification = await prisma.mediaVerification.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends MediaVerificationUpdateManyArgs>(args: SelectSubset<T, MediaVerificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one MediaVerification.
-     * @param {MediaVerificationUpsertArgs} args - Arguments to update or create a MediaVerification.
-     * @example
-     * // Update or create a MediaVerification
-     * const mediaVerification = await prisma.mediaVerification.upsert({
-     *   create: {
-     *     // ... data to create a MediaVerification
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the MediaVerification we want to update
-     *   }
-     * })
-     */
-    upsert<T extends MediaVerificationUpsertArgs>(args: SelectSubset<T, MediaVerificationUpsertArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of MediaVerifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationCountArgs} args - Arguments to filter MediaVerifications to count.
-     * @example
-     * // Count the number of MediaVerifications
-     * const count = await prisma.mediaVerification.count({
-     *   where: {
-     *     // ... the filter for the MediaVerifications we want to count
-     *   }
-     * })
-    **/
-    count<T extends MediaVerificationCountArgs>(
-      args?: Subset<T, MediaVerificationCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], MediaVerificationCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a MediaVerification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends MediaVerificationAggregateArgs>(args: Subset<T, MediaVerificationAggregateArgs>): Prisma.PrismaPromise<GetMediaVerificationAggregateType<T>>
-
-    /**
-     * Group by MediaVerification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {MediaVerificationGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends MediaVerificationGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: MediaVerificationGroupByArgs['orderBy'] }
-        : { orderBy?: MediaVerificationGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, MediaVerificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaVerificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the MediaVerification model
-   */
-  readonly fields: MediaVerificationFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for MediaVerification.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__MediaVerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the MediaVerification model
-   */ 
-  interface MediaVerificationFieldRefs {
-    readonly id: FieldRef<"MediaVerification", 'String'>
-    readonly device_id: FieldRef<"MediaVerification", 'String'>
-    readonly media_hash: FieldRef<"MediaVerification", 'String'>
-    readonly signature: FieldRef<"MediaVerification", 'String'>
-    readonly verified_at: FieldRef<"MediaVerification", 'DateTime'>
-    readonly metadata: FieldRef<"MediaVerification", 'Json'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * MediaVerification findUnique
-   */
-  export type MediaVerificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * Filter, which MediaVerification to fetch.
-     */
-    where: MediaVerificationWhereUniqueInput
-  }
-
-  /**
-   * MediaVerification findUniqueOrThrow
-   */
-  export type MediaVerificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * Filter, which MediaVerification to fetch.
-     */
-    where: MediaVerificationWhereUniqueInput
-  }
-
-  /**
-   * MediaVerification findFirst
-   */
-  export type MediaVerificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * Filter, which MediaVerification to fetch.
-     */
-    where?: MediaVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MediaVerifications to fetch.
-     */
-    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for MediaVerifications.
-     */
-    cursor?: MediaVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MediaVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MediaVerifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of MediaVerifications.
-     */
-    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
-  }
-
-  /**
-   * MediaVerification findFirstOrThrow
-   */
-  export type MediaVerificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * Filter, which MediaVerification to fetch.
-     */
-    where?: MediaVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MediaVerifications to fetch.
-     */
-    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for MediaVerifications.
-     */
-    cursor?: MediaVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MediaVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MediaVerifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of MediaVerifications.
-     */
-    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
-  }
-
-  /**
-   * MediaVerification findMany
-   */
-  export type MediaVerificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * Filter, which MediaVerifications to fetch.
-     */
-    where?: MediaVerificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of MediaVerifications to fetch.
-     */
-    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing MediaVerifications.
-     */
-    cursor?: MediaVerificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` MediaVerifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` MediaVerifications.
-     */
-    skip?: number
-    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
-  }
-
-  /**
-   * MediaVerification create
-   */
-  export type MediaVerificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * The data needed to create a MediaVerification.
-     */
-    data: XOR<MediaVerificationCreateInput, MediaVerificationUncheckedCreateInput>
-  }
-
-  /**
-   * MediaVerification createMany
-   */
-  export type MediaVerificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many MediaVerifications.
-     */
-    data: MediaVerificationCreateManyInput | MediaVerificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * MediaVerification createManyAndReturn
-   */
-  export type MediaVerificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many MediaVerifications.
-     */
-    data: MediaVerificationCreateManyInput | MediaVerificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * MediaVerification update
-   */
-  export type MediaVerificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * The data needed to update a MediaVerification.
-     */
-    data: XOR<MediaVerificationUpdateInput, MediaVerificationUncheckedUpdateInput>
-    /**
-     * Choose, which MediaVerification to update.
-     */
-    where: MediaVerificationWhereUniqueInput
-  }
-
-  /**
-   * MediaVerification updateMany
-   */
-  export type MediaVerificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update MediaVerifications.
-     */
-    data: XOR<MediaVerificationUpdateManyMutationInput, MediaVerificationUncheckedUpdateManyInput>
-    /**
-     * Filter which MediaVerifications to update
-     */
-    where?: MediaVerificationWhereInput
-  }
-
-  /**
-   * MediaVerification upsert
-   */
-  export type MediaVerificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * The filter to search for the MediaVerification to update in case it exists.
-     */
-    where: MediaVerificationWhereUniqueInput
-    /**
-     * In case the MediaVerification found by the `where` argument doesn't exist, create a new MediaVerification with this data.
-     */
-    create: XOR<MediaVerificationCreateInput, MediaVerificationUncheckedCreateInput>
-    /**
-     * In case the MediaVerification was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<MediaVerificationUpdateInput, MediaVerificationUncheckedUpdateInput>
-  }
-
-  /**
-   * MediaVerification delete
-   */
-  export type MediaVerificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
-    /**
-     * Filter which MediaVerification to delete.
-     */
-    where: MediaVerificationWhereUniqueInput
-  }
-
-  /**
-   * MediaVerification deleteMany
-   */
-  export type MediaVerificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which MediaVerifications to delete
-     */
-    where?: MediaVerificationWhereInput
-  }
-
-  /**
-   * MediaVerification without action
-   */
-  export type MediaVerificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the MediaVerification
-     */
-    select?: MediaVerificationSelect<ExtArgs> | null
   }
 
 
@@ -6893,6 +8265,892 @@ export namespace Prisma {
 
 
   /**
+   * Model MediaVerification
+   */
+
+  export type AggregateMediaVerification = {
+    _count: MediaVerificationCountAggregateOutputType | null
+    _min: MediaVerificationMinAggregateOutputType | null
+    _max: MediaVerificationMaxAggregateOutputType | null
+  }
+
+  export type MediaVerificationMinAggregateOutputType = {
+    id: string | null
+    device_id: string | null
+    media_hash: string | null
+    signature: string | null
+    verified_at: Date | null
+  }
+
+  export type MediaVerificationMaxAggregateOutputType = {
+    id: string | null
+    device_id: string | null
+    media_hash: string | null
+    signature: string | null
+    verified_at: Date | null
+  }
+
+  export type MediaVerificationCountAggregateOutputType = {
+    id: number
+    device_id: number
+    media_hash: number
+    signature: number
+    verified_at: number
+    metadata: number
+    _all: number
+  }
+
+
+  export type MediaVerificationMinAggregateInputType = {
+    id?: true
+    device_id?: true
+    media_hash?: true
+    signature?: true
+    verified_at?: true
+  }
+
+  export type MediaVerificationMaxAggregateInputType = {
+    id?: true
+    device_id?: true
+    media_hash?: true
+    signature?: true
+    verified_at?: true
+  }
+
+  export type MediaVerificationCountAggregateInputType = {
+    id?: true
+    device_id?: true
+    media_hash?: true
+    signature?: true
+    verified_at?: true
+    metadata?: true
+    _all?: true
+  }
+
+  export type MediaVerificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaVerification to aggregate.
+     */
+    where?: MediaVerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaVerifications to fetch.
+     */
+    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MediaVerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaVerifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaVerifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MediaVerifications
+    **/
+    _count?: true | MediaVerificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MediaVerificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MediaVerificationMaxAggregateInputType
+  }
+
+  export type GetMediaVerificationAggregateType<T extends MediaVerificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateMediaVerification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMediaVerification[P]>
+      : GetScalarType<T[P], AggregateMediaVerification[P]>
+  }
+
+
+
+
+  export type MediaVerificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaVerificationWhereInput
+    orderBy?: MediaVerificationOrderByWithAggregationInput | MediaVerificationOrderByWithAggregationInput[]
+    by: MediaVerificationScalarFieldEnum[] | MediaVerificationScalarFieldEnum
+    having?: MediaVerificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MediaVerificationCountAggregateInputType | true
+    _min?: MediaVerificationMinAggregateInputType
+    _max?: MediaVerificationMaxAggregateInputType
+  }
+
+  export type MediaVerificationGroupByOutputType = {
+    id: string
+    device_id: string
+    media_hash: string
+    signature: string
+    verified_at: Date
+    metadata: JsonValue | null
+    _count: MediaVerificationCountAggregateOutputType | null
+    _min: MediaVerificationMinAggregateOutputType | null
+    _max: MediaVerificationMaxAggregateOutputType | null
+  }
+
+  type GetMediaVerificationGroupByPayload<T extends MediaVerificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MediaVerificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MediaVerificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MediaVerificationGroupByOutputType[P]>
+            : GetScalarType<T[P], MediaVerificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MediaVerificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    device_id?: boolean
+    media_hash?: boolean
+    signature?: boolean
+    verified_at?: boolean
+    metadata?: boolean
+  }, ExtArgs["result"]["mediaVerification"]>
+
+  export type MediaVerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    device_id?: boolean
+    media_hash?: boolean
+    signature?: boolean
+    verified_at?: boolean
+    metadata?: boolean
+  }, ExtArgs["result"]["mediaVerification"]>
+
+  export type MediaVerificationSelectScalar = {
+    id?: boolean
+    device_id?: boolean
+    media_hash?: boolean
+    signature?: boolean
+    verified_at?: boolean
+    metadata?: boolean
+  }
+
+
+  export type $MediaVerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MediaVerification"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      device_id: string
+      media_hash: string
+      signature: string
+      verified_at: Date
+      metadata: Prisma.JsonValue | null
+    }, ExtArgs["result"]["mediaVerification"]>
+    composites: {}
+  }
+
+  type MediaVerificationGetPayload<S extends boolean | null | undefined | MediaVerificationDefaultArgs> = $Result.GetResult<Prisma.$MediaVerificationPayload, S>
+
+  type MediaVerificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<MediaVerificationFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: MediaVerificationCountAggregateInputType | true
+    }
+
+  export interface MediaVerificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MediaVerification'], meta: { name: 'MediaVerification' } }
+    /**
+     * Find zero or one MediaVerification that matches the filter.
+     * @param {MediaVerificationFindUniqueArgs} args - Arguments to find a MediaVerification
+     * @example
+     * // Get one MediaVerification
+     * const mediaVerification = await prisma.mediaVerification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MediaVerificationFindUniqueArgs>(args: SelectSubset<T, MediaVerificationFindUniqueArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one MediaVerification that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {MediaVerificationFindUniqueOrThrowArgs} args - Arguments to find a MediaVerification
+     * @example
+     * // Get one MediaVerification
+     * const mediaVerification = await prisma.mediaVerification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MediaVerificationFindUniqueOrThrowArgs>(args: SelectSubset<T, MediaVerificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first MediaVerification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationFindFirstArgs} args - Arguments to find a MediaVerification
+     * @example
+     * // Get one MediaVerification
+     * const mediaVerification = await prisma.mediaVerification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MediaVerificationFindFirstArgs>(args?: SelectSubset<T, MediaVerificationFindFirstArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first MediaVerification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationFindFirstOrThrowArgs} args - Arguments to find a MediaVerification
+     * @example
+     * // Get one MediaVerification
+     * const mediaVerification = await prisma.mediaVerification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MediaVerificationFindFirstOrThrowArgs>(args?: SelectSubset<T, MediaVerificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more MediaVerifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MediaVerifications
+     * const mediaVerifications = await prisma.mediaVerification.findMany()
+     * 
+     * // Get first 10 MediaVerifications
+     * const mediaVerifications = await prisma.mediaVerification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mediaVerificationWithIdOnly = await prisma.mediaVerification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MediaVerificationFindManyArgs>(args?: SelectSubset<T, MediaVerificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a MediaVerification.
+     * @param {MediaVerificationCreateArgs} args - Arguments to create a MediaVerification.
+     * @example
+     * // Create one MediaVerification
+     * const MediaVerification = await prisma.mediaVerification.create({
+     *   data: {
+     *     // ... data to create a MediaVerification
+     *   }
+     * })
+     * 
+     */
+    create<T extends MediaVerificationCreateArgs>(args: SelectSubset<T, MediaVerificationCreateArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many MediaVerifications.
+     * @param {MediaVerificationCreateManyArgs} args - Arguments to create many MediaVerifications.
+     * @example
+     * // Create many MediaVerifications
+     * const mediaVerification = await prisma.mediaVerification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MediaVerificationCreateManyArgs>(args?: SelectSubset<T, MediaVerificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MediaVerifications and returns the data saved in the database.
+     * @param {MediaVerificationCreateManyAndReturnArgs} args - Arguments to create many MediaVerifications.
+     * @example
+     * // Create many MediaVerifications
+     * const mediaVerification = await prisma.mediaVerification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MediaVerifications and only return the `id`
+     * const mediaVerificationWithIdOnly = await prisma.mediaVerification.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MediaVerificationCreateManyAndReturnArgs>(args?: SelectSubset<T, MediaVerificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a MediaVerification.
+     * @param {MediaVerificationDeleteArgs} args - Arguments to delete one MediaVerification.
+     * @example
+     * // Delete one MediaVerification
+     * const MediaVerification = await prisma.mediaVerification.delete({
+     *   where: {
+     *     // ... filter to delete one MediaVerification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MediaVerificationDeleteArgs>(args: SelectSubset<T, MediaVerificationDeleteArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one MediaVerification.
+     * @param {MediaVerificationUpdateArgs} args - Arguments to update one MediaVerification.
+     * @example
+     * // Update one MediaVerification
+     * const mediaVerification = await prisma.mediaVerification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MediaVerificationUpdateArgs>(args: SelectSubset<T, MediaVerificationUpdateArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more MediaVerifications.
+     * @param {MediaVerificationDeleteManyArgs} args - Arguments to filter MediaVerifications to delete.
+     * @example
+     * // Delete a few MediaVerifications
+     * const { count } = await prisma.mediaVerification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MediaVerificationDeleteManyArgs>(args?: SelectSubset<T, MediaVerificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MediaVerifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MediaVerifications
+     * const mediaVerification = await prisma.mediaVerification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MediaVerificationUpdateManyArgs>(args: SelectSubset<T, MediaVerificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one MediaVerification.
+     * @param {MediaVerificationUpsertArgs} args - Arguments to update or create a MediaVerification.
+     * @example
+     * // Update or create a MediaVerification
+     * const mediaVerification = await prisma.mediaVerification.upsert({
+     *   create: {
+     *     // ... data to create a MediaVerification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MediaVerification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MediaVerificationUpsertArgs>(args: SelectSubset<T, MediaVerificationUpsertArgs<ExtArgs>>): Prisma__MediaVerificationClient<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of MediaVerifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationCountArgs} args - Arguments to filter MediaVerifications to count.
+     * @example
+     * // Count the number of MediaVerifications
+     * const count = await prisma.mediaVerification.count({
+     *   where: {
+     *     // ... the filter for the MediaVerifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends MediaVerificationCountArgs>(
+      args?: Subset<T, MediaVerificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MediaVerificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MediaVerification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MediaVerificationAggregateArgs>(args: Subset<T, MediaVerificationAggregateArgs>): Prisma.PrismaPromise<GetMediaVerificationAggregateType<T>>
+
+    /**
+     * Group by MediaVerification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MediaVerificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MediaVerificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MediaVerificationGroupByArgs['orderBy'] }
+        : { orderBy?: MediaVerificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MediaVerificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMediaVerificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MediaVerification model
+   */
+  readonly fields: MediaVerificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MediaVerification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MediaVerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MediaVerification model
+   */ 
+  interface MediaVerificationFieldRefs {
+    readonly id: FieldRef<"MediaVerification", 'String'>
+    readonly device_id: FieldRef<"MediaVerification", 'String'>
+    readonly media_hash: FieldRef<"MediaVerification", 'String'>
+    readonly signature: FieldRef<"MediaVerification", 'String'>
+    readonly verified_at: FieldRef<"MediaVerification", 'DateTime'>
+    readonly metadata: FieldRef<"MediaVerification", 'Json'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MediaVerification findUnique
+   */
+  export type MediaVerificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaVerification to fetch.
+     */
+    where: MediaVerificationWhereUniqueInput
+  }
+
+  /**
+   * MediaVerification findUniqueOrThrow
+   */
+  export type MediaVerificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaVerification to fetch.
+     */
+    where: MediaVerificationWhereUniqueInput
+  }
+
+  /**
+   * MediaVerification findFirst
+   */
+  export type MediaVerificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaVerification to fetch.
+     */
+    where?: MediaVerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaVerifications to fetch.
+     */
+    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaVerifications.
+     */
+    cursor?: MediaVerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaVerifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaVerifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaVerifications.
+     */
+    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
+  }
+
+  /**
+   * MediaVerification findFirstOrThrow
+   */
+  export type MediaVerificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaVerification to fetch.
+     */
+    where?: MediaVerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaVerifications to fetch.
+     */
+    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MediaVerifications.
+     */
+    cursor?: MediaVerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaVerifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaVerifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MediaVerifications.
+     */
+    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
+  }
+
+  /**
+   * MediaVerification findMany
+   */
+  export type MediaVerificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Filter, which MediaVerifications to fetch.
+     */
+    where?: MediaVerificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MediaVerifications to fetch.
+     */
+    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MediaVerifications.
+     */
+    cursor?: MediaVerificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MediaVerifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MediaVerifications.
+     */
+    skip?: number
+    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
+  }
+
+  /**
+   * MediaVerification create
+   */
+  export type MediaVerificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * The data needed to create a MediaVerification.
+     */
+    data: XOR<MediaVerificationCreateInput, MediaVerificationUncheckedCreateInput>
+  }
+
+  /**
+   * MediaVerification createMany
+   */
+  export type MediaVerificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MediaVerifications.
+     */
+    data: MediaVerificationCreateManyInput | MediaVerificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MediaVerification createManyAndReturn
+   */
+  export type MediaVerificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many MediaVerifications.
+     */
+    data: MediaVerificationCreateManyInput | MediaVerificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MediaVerification update
+   */
+  export type MediaVerificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * The data needed to update a MediaVerification.
+     */
+    data: XOR<MediaVerificationUpdateInput, MediaVerificationUncheckedUpdateInput>
+    /**
+     * Choose, which MediaVerification to update.
+     */
+    where: MediaVerificationWhereUniqueInput
+  }
+
+  /**
+   * MediaVerification updateMany
+   */
+  export type MediaVerificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MediaVerifications.
+     */
+    data: XOR<MediaVerificationUpdateManyMutationInput, MediaVerificationUncheckedUpdateManyInput>
+    /**
+     * Filter which MediaVerifications to update
+     */
+    where?: MediaVerificationWhereInput
+  }
+
+  /**
+   * MediaVerification upsert
+   */
+  export type MediaVerificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * The filter to search for the MediaVerification to update in case it exists.
+     */
+    where: MediaVerificationWhereUniqueInput
+    /**
+     * In case the MediaVerification found by the `where` argument doesn't exist, create a new MediaVerification with this data.
+     */
+    create: XOR<MediaVerificationCreateInput, MediaVerificationUncheckedCreateInput>
+    /**
+     * In case the MediaVerification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MediaVerificationUpdateInput, MediaVerificationUncheckedUpdateInput>
+  }
+
+  /**
+   * MediaVerification delete
+   */
+  export type MediaVerificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Filter which MediaVerification to delete.
+     */
+    where: MediaVerificationWhereUniqueInput
+  }
+
+  /**
+   * MediaVerification deleteMany
+   */
+  export type MediaVerificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MediaVerifications to delete
+     */
+    where?: MediaVerificationWhereInput
+  }
+
+  /**
+   * MediaVerification without action
+   */
+  export type MediaVerificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6908,13 +9166,73 @@ export namespace Prisma {
 
   export const DeviceScalarFieldEnum: {
     device_id: 'device_id',
+    tpm_serial: 'tpm_serial',
     name: 'name',
+    device_name: 'device_name',
+    device_type: 'device_type',
+    os_version: 'os_version',
+    app_version: 'app_version',
     tpm_public_key: 'tpm_public_key',
+    api_key_hash: 'api_key_hash',
+    registration_ip: 'registration_ip',
+    user_agent: 'user_agent',
+    attestation_key: 'attestation_key',
+    verified_at: 'verified_at',
+    status: 'status',
+    metadata: 'metadata',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    last_activity_at: 'last_activity_at'
+  };
+
+  export type DeviceScalarFieldEnum = (typeof DeviceScalarFieldEnum)[keyof typeof DeviceScalarFieldEnum]
+
+
+  export const MediaFileScalarFieldEnum: {
+    media_id: 'media_id',
+    device_id: 'device_id',
+    media_type: 'media_type',
+    file_name: 'file_name',
+    file_hash: 'file_hash',
+    ipfs_hash: 'ipfs_hash',
+    file_size: 'file_size',
+    storage_path: 'storage_path',
+    signature_verified: 'signature_verified',
+    uploaded_at: 'uploaded_at'
+  };
+
+  export type MediaFileScalarFieldEnum = (typeof MediaFileScalarFieldEnum)[keyof typeof MediaFileScalarFieldEnum]
+
+
+  export const VerificationScalarFieldEnum: {
+    verification_id: 'verification_id',
+    device_id: 'device_id',
+    media_id: 'media_id',
+    status: 'status',
+    proof_data: 'proof_data',
+    created_at: 'created_at',
+    completed_at: 'completed_at'
+  };
+
+  export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+  export const ZKProofJobScalarFieldEnum: {
+    proof_id: 'proof_id',
+    device_id: 'device_id',
+    media_hash: 'media_hash',
+    proof_type: 'proof_type',
+    attestation_data: 'attestation_data',
+    status: 'status',
+    proof_data: 'proof_data',
+    proof_hash: 'proof_hash',
+    completed_at: 'completed_at',
+    error_message: 'error_message',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
-  export type DeviceScalarFieldEnum = (typeof DeviceScalarFieldEnum)[keyof typeof DeviceScalarFieldEnum]
+  export type ZKProofJobScalarFieldEnum = (typeof ZKProofJobScalarFieldEnum)[keyof typeof ZKProofJobScalarFieldEnum]
 
 
   export const UsageMeterScalarFieldEnum: {
@@ -6927,19 +9245,6 @@ export namespace Prisma {
   };
 
   export type UsageMeterScalarFieldEnum = (typeof UsageMeterScalarFieldEnum)[keyof typeof UsageMeterScalarFieldEnum]
-
-
-  export const ZKProofJobScalarFieldEnum: {
-    proof_id: 'proof_id',
-    device_id: 'device_id',
-    media_hash: 'media_hash',
-    status: 'status',
-    proof_data: 'proof_data',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
-  };
-
-  export type ZKProofJobScalarFieldEnum = (typeof ZKProofJobScalarFieldEnum)[keyof typeof ZKProofJobScalarFieldEnum]
 
 
   export const BlockchainAnchorScalarFieldEnum: {
@@ -6958,18 +9263,6 @@ export namespace Prisma {
   export type BlockchainAnchorScalarFieldEnum = (typeof BlockchainAnchorScalarFieldEnum)[keyof typeof BlockchainAnchorScalarFieldEnum]
 
 
-  export const MediaVerificationScalarFieldEnum: {
-    id: 'id',
-    device_id: 'device_id',
-    media_hash: 'media_hash',
-    signature: 'signature',
-    verified_at: 'verified_at',
-    metadata: 'metadata'
-  };
-
-  export type MediaVerificationScalarFieldEnum = (typeof MediaVerificationScalarFieldEnum)[keyof typeof MediaVerificationScalarFieldEnum]
-
-
   export const DeviceMediaScalarFieldEnum: {
     id: 'id',
     device_id: 'device_id',
@@ -6981,6 +9274,18 @@ export namespace Prisma {
   };
 
   export type DeviceMediaScalarFieldEnum = (typeof DeviceMediaScalarFieldEnum)[keyof typeof DeviceMediaScalarFieldEnum]
+
+
+  export const MediaVerificationScalarFieldEnum: {
+    id: 'id',
+    device_id: 'device_id',
+    media_hash: 'media_hash',
+    signature: 'signature',
+    verified_at: 'verified_at',
+    metadata: 'metadata'
+  };
+
+  export type MediaVerificationScalarFieldEnum = (typeof MediaVerificationScalarFieldEnum)[keyof typeof MediaVerificationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7007,14 +9312,6 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
   export const JsonNullValueFilter: {
     DbNull: typeof DbNull,
     JsonNull: typeof JsonNull,
@@ -7022,6 +9319,14 @@ export namespace Prisma {
   };
 
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -7058,6 +9363,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
    * Reference to a field of type 'BigInt'
    */
   export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
@@ -7072,6 +9384,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Bytes'
    */
   export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
@@ -7082,13 +9401,6 @@ export namespace Prisma {
    * Reference to a field of type 'Bytes[]'
    */
   export type ListBytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
@@ -7128,40 +9440,92 @@ export namespace Prisma {
     OR?: DeviceWhereInput[]
     NOT?: DeviceWhereInput | DeviceWhereInput[]
     device_id?: StringFilter<"Device"> | string
+    tpm_serial?: StringNullableFilter<"Device"> | string | null
     name?: StringNullableFilter<"Device"> | string | null
+    device_name?: StringNullableFilter<"Device"> | string | null
+    device_type?: StringNullableFilter<"Device"> | string | null
+    os_version?: StringNullableFilter<"Device"> | string | null
+    app_version?: StringNullableFilter<"Device"> | string | null
     tpm_public_key?: StringFilter<"Device"> | string
+    api_key_hash?: StringNullableFilter<"Device"> | string | null
+    registration_ip?: StringNullableFilter<"Device"> | string | null
+    user_agent?: StringNullableFilter<"Device"> | string | null
+    attestation_key?: StringNullableFilter<"Device"> | string | null
+    verified_at?: DateTimeNullableFilter<"Device"> | Date | string | null
+    status?: StringNullableFilter<"Device"> | string | null
+    metadata?: JsonNullableFilter<"Device">
     created_at?: DateTimeFilter<"Device"> | Date | string
     updated_at?: DateTimeFilter<"Device"> | Date | string
+    last_activity_at?: DateTimeNullableFilter<"Device"> | Date | string | null
     usage_meters?: UsageMeterListRelationFilter
   }
 
   export type DeviceOrderByWithRelationInput = {
     device_id?: SortOrder
+    tpm_serial?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
+    device_name?: SortOrderInput | SortOrder
+    device_type?: SortOrderInput | SortOrder
+    os_version?: SortOrderInput | SortOrder
+    app_version?: SortOrderInput | SortOrder
     tpm_public_key?: SortOrder
+    api_key_hash?: SortOrderInput | SortOrder
+    registration_ip?: SortOrderInput | SortOrder
+    user_agent?: SortOrderInput | SortOrder
+    attestation_key?: SortOrderInput | SortOrder
+    verified_at?: SortOrderInput | SortOrder
+    status?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    last_activity_at?: SortOrderInput | SortOrder
     usage_meters?: UsageMeterOrderByRelationAggregateInput
   }
 
   export type DeviceWhereUniqueInput = Prisma.AtLeast<{
     device_id?: string
+    tpm_serial?: string
     AND?: DeviceWhereInput | DeviceWhereInput[]
     OR?: DeviceWhereInput[]
     NOT?: DeviceWhereInput | DeviceWhereInput[]
     name?: StringNullableFilter<"Device"> | string | null
+    device_name?: StringNullableFilter<"Device"> | string | null
+    device_type?: StringNullableFilter<"Device"> | string | null
+    os_version?: StringNullableFilter<"Device"> | string | null
+    app_version?: StringNullableFilter<"Device"> | string | null
     tpm_public_key?: StringFilter<"Device"> | string
+    api_key_hash?: StringNullableFilter<"Device"> | string | null
+    registration_ip?: StringNullableFilter<"Device"> | string | null
+    user_agent?: StringNullableFilter<"Device"> | string | null
+    attestation_key?: StringNullableFilter<"Device"> | string | null
+    verified_at?: DateTimeNullableFilter<"Device"> | Date | string | null
+    status?: StringNullableFilter<"Device"> | string | null
+    metadata?: JsonNullableFilter<"Device">
     created_at?: DateTimeFilter<"Device"> | Date | string
     updated_at?: DateTimeFilter<"Device"> | Date | string
+    last_activity_at?: DateTimeNullableFilter<"Device"> | Date | string | null
     usage_meters?: UsageMeterListRelationFilter
-  }, "device_id">
+  }, "device_id" | "tpm_serial">
 
   export type DeviceOrderByWithAggregationInput = {
     device_id?: SortOrder
+    tpm_serial?: SortOrderInput | SortOrder
     name?: SortOrderInput | SortOrder
+    device_name?: SortOrderInput | SortOrder
+    device_type?: SortOrderInput | SortOrder
+    os_version?: SortOrderInput | SortOrder
+    app_version?: SortOrderInput | SortOrder
     tpm_public_key?: SortOrder
+    api_key_hash?: SortOrderInput | SortOrder
+    registration_ip?: SortOrderInput | SortOrder
+    user_agent?: SortOrderInput | SortOrder
+    attestation_key?: SortOrderInput | SortOrder
+    verified_at?: SortOrderInput | SortOrder
+    status?: SortOrderInput | SortOrder
+    metadata?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    last_activity_at?: SortOrderInput | SortOrder
     _count?: DeviceCountOrderByAggregateInput
     _max?: DeviceMaxOrderByAggregateInput
     _min?: DeviceMinOrderByAggregateInput
@@ -7172,10 +9536,251 @@ export namespace Prisma {
     OR?: DeviceScalarWhereWithAggregatesInput[]
     NOT?: DeviceScalarWhereWithAggregatesInput | DeviceScalarWhereWithAggregatesInput[]
     device_id?: StringWithAggregatesFilter<"Device"> | string
+    tpm_serial?: StringNullableWithAggregatesFilter<"Device"> | string | null
     name?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    device_name?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    device_type?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    os_version?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    app_version?: StringNullableWithAggregatesFilter<"Device"> | string | null
     tpm_public_key?: StringWithAggregatesFilter<"Device"> | string
+    api_key_hash?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    registration_ip?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    user_agent?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    attestation_key?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    verified_at?: DateTimeNullableWithAggregatesFilter<"Device"> | Date | string | null
+    status?: StringNullableWithAggregatesFilter<"Device"> | string | null
+    metadata?: JsonNullableWithAggregatesFilter<"Device">
     created_at?: DateTimeWithAggregatesFilter<"Device"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Device"> | Date | string
+    last_activity_at?: DateTimeNullableWithAggregatesFilter<"Device"> | Date | string | null
+  }
+
+  export type MediaFileWhereInput = {
+    AND?: MediaFileWhereInput | MediaFileWhereInput[]
+    OR?: MediaFileWhereInput[]
+    NOT?: MediaFileWhereInput | MediaFileWhereInput[]
+    media_id?: StringFilter<"MediaFile"> | string
+    device_id?: StringFilter<"MediaFile"> | string
+    media_type?: StringFilter<"MediaFile"> | string
+    file_name?: StringFilter<"MediaFile"> | string
+    file_hash?: StringFilter<"MediaFile"> | string
+    ipfs_hash?: StringNullableFilter<"MediaFile"> | string | null
+    file_size?: BigIntFilter<"MediaFile"> | bigint | number
+    storage_path?: StringNullableFilter<"MediaFile"> | string | null
+    signature_verified?: BoolFilter<"MediaFile"> | boolean
+    uploaded_at?: DateTimeFilter<"MediaFile"> | Date | string
+  }
+
+  export type MediaFileOrderByWithRelationInput = {
+    media_id?: SortOrder
+    device_id?: SortOrder
+    media_type?: SortOrder
+    file_name?: SortOrder
+    file_hash?: SortOrder
+    ipfs_hash?: SortOrderInput | SortOrder
+    file_size?: SortOrder
+    storage_path?: SortOrderInput | SortOrder
+    signature_verified?: SortOrder
+    uploaded_at?: SortOrder
+  }
+
+  export type MediaFileWhereUniqueInput = Prisma.AtLeast<{
+    media_id?: string
+    file_hash?: string
+    AND?: MediaFileWhereInput | MediaFileWhereInput[]
+    OR?: MediaFileWhereInput[]
+    NOT?: MediaFileWhereInput | MediaFileWhereInput[]
+    device_id?: StringFilter<"MediaFile"> | string
+    media_type?: StringFilter<"MediaFile"> | string
+    file_name?: StringFilter<"MediaFile"> | string
+    ipfs_hash?: StringNullableFilter<"MediaFile"> | string | null
+    file_size?: BigIntFilter<"MediaFile"> | bigint | number
+    storage_path?: StringNullableFilter<"MediaFile"> | string | null
+    signature_verified?: BoolFilter<"MediaFile"> | boolean
+    uploaded_at?: DateTimeFilter<"MediaFile"> | Date | string
+  }, "media_id" | "file_hash">
+
+  export type MediaFileOrderByWithAggregationInput = {
+    media_id?: SortOrder
+    device_id?: SortOrder
+    media_type?: SortOrder
+    file_name?: SortOrder
+    file_hash?: SortOrder
+    ipfs_hash?: SortOrderInput | SortOrder
+    file_size?: SortOrder
+    storage_path?: SortOrderInput | SortOrder
+    signature_verified?: SortOrder
+    uploaded_at?: SortOrder
+    _count?: MediaFileCountOrderByAggregateInput
+    _avg?: MediaFileAvgOrderByAggregateInput
+    _max?: MediaFileMaxOrderByAggregateInput
+    _min?: MediaFileMinOrderByAggregateInput
+    _sum?: MediaFileSumOrderByAggregateInput
+  }
+
+  export type MediaFileScalarWhereWithAggregatesInput = {
+    AND?: MediaFileScalarWhereWithAggregatesInput | MediaFileScalarWhereWithAggregatesInput[]
+    OR?: MediaFileScalarWhereWithAggregatesInput[]
+    NOT?: MediaFileScalarWhereWithAggregatesInput | MediaFileScalarWhereWithAggregatesInput[]
+    media_id?: StringWithAggregatesFilter<"MediaFile"> | string
+    device_id?: StringWithAggregatesFilter<"MediaFile"> | string
+    media_type?: StringWithAggregatesFilter<"MediaFile"> | string
+    file_name?: StringWithAggregatesFilter<"MediaFile"> | string
+    file_hash?: StringWithAggregatesFilter<"MediaFile"> | string
+    ipfs_hash?: StringNullableWithAggregatesFilter<"MediaFile"> | string | null
+    file_size?: BigIntWithAggregatesFilter<"MediaFile"> | bigint | number
+    storage_path?: StringNullableWithAggregatesFilter<"MediaFile"> | string | null
+    signature_verified?: BoolWithAggregatesFilter<"MediaFile"> | boolean
+    uploaded_at?: DateTimeWithAggregatesFilter<"MediaFile"> | Date | string
+  }
+
+  export type VerificationWhereInput = {
+    AND?: VerificationWhereInput | VerificationWhereInput[]
+    OR?: VerificationWhereInput[]
+    NOT?: VerificationWhereInput | VerificationWhereInput[]
+    verification_id?: StringFilter<"Verification"> | string
+    device_id?: StringFilter<"Verification"> | string
+    media_id?: StringNullableFilter<"Verification"> | string | null
+    status?: StringFilter<"Verification"> | string
+    proof_data?: StringNullableFilter<"Verification"> | string | null
+    created_at?: DateTimeFilter<"Verification"> | Date | string
+    completed_at?: DateTimeNullableFilter<"Verification"> | Date | string | null
+  }
+
+  export type VerificationOrderByWithRelationInput = {
+    verification_id?: SortOrder
+    device_id?: SortOrder
+    media_id?: SortOrderInput | SortOrder
+    status?: SortOrder
+    proof_data?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    completed_at?: SortOrderInput | SortOrder
+  }
+
+  export type VerificationWhereUniqueInput = Prisma.AtLeast<{
+    verification_id?: string
+    AND?: VerificationWhereInput | VerificationWhereInput[]
+    OR?: VerificationWhereInput[]
+    NOT?: VerificationWhereInput | VerificationWhereInput[]
+    device_id?: StringFilter<"Verification"> | string
+    media_id?: StringNullableFilter<"Verification"> | string | null
+    status?: StringFilter<"Verification"> | string
+    proof_data?: StringNullableFilter<"Verification"> | string | null
+    created_at?: DateTimeFilter<"Verification"> | Date | string
+    completed_at?: DateTimeNullableFilter<"Verification"> | Date | string | null
+  }, "verification_id">
+
+  export type VerificationOrderByWithAggregationInput = {
+    verification_id?: SortOrder
+    device_id?: SortOrder
+    media_id?: SortOrderInput | SortOrder
+    status?: SortOrder
+    proof_data?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    completed_at?: SortOrderInput | SortOrder
+    _count?: VerificationCountOrderByAggregateInput
+    _max?: VerificationMaxOrderByAggregateInput
+    _min?: VerificationMinOrderByAggregateInput
+  }
+
+  export type VerificationScalarWhereWithAggregatesInput = {
+    AND?: VerificationScalarWhereWithAggregatesInput | VerificationScalarWhereWithAggregatesInput[]
+    OR?: VerificationScalarWhereWithAggregatesInput[]
+    NOT?: VerificationScalarWhereWithAggregatesInput | VerificationScalarWhereWithAggregatesInput[]
+    verification_id?: StringWithAggregatesFilter<"Verification"> | string
+    device_id?: StringWithAggregatesFilter<"Verification"> | string
+    media_id?: StringNullableWithAggregatesFilter<"Verification"> | string | null
+    status?: StringWithAggregatesFilter<"Verification"> | string
+    proof_data?: StringNullableWithAggregatesFilter<"Verification"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"Verification"> | Date | string
+    completed_at?: DateTimeNullableWithAggregatesFilter<"Verification"> | Date | string | null
+  }
+
+  export type ZKProofJobWhereInput = {
+    AND?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
+    OR?: ZKProofJobWhereInput[]
+    NOT?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
+    proof_id?: StringFilter<"ZKProofJob"> | string
+    device_id?: StringFilter<"ZKProofJob"> | string
+    media_hash?: StringNullableFilter<"ZKProofJob"> | string | null
+    proof_type?: StringFilter<"ZKProofJob"> | string
+    attestation_data?: StringNullableFilter<"ZKProofJob"> | string | null
+    status?: StringFilter<"ZKProofJob"> | string
+    proof_data?: BytesNullableFilter<"ZKProofJob"> | Buffer | null
+    proof_hash?: StringNullableFilter<"ZKProofJob"> | string | null
+    completed_at?: DateTimeNullableFilter<"ZKProofJob"> | Date | string | null
+    error_message?: StringNullableFilter<"ZKProofJob"> | string | null
+    created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+    updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+  }
+
+  export type ZKProofJobOrderByWithRelationInput = {
+    proof_id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrderInput | SortOrder
+    proof_type?: SortOrder
+    attestation_data?: SortOrderInput | SortOrder
+    status?: SortOrder
+    proof_data?: SortOrderInput | SortOrder
+    proof_hash?: SortOrderInput | SortOrder
+    completed_at?: SortOrderInput | SortOrder
+    error_message?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ZKProofJobWhereUniqueInput = Prisma.AtLeast<{
+    proof_id?: string
+    AND?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
+    OR?: ZKProofJobWhereInput[]
+    NOT?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
+    device_id?: StringFilter<"ZKProofJob"> | string
+    media_hash?: StringNullableFilter<"ZKProofJob"> | string | null
+    proof_type?: StringFilter<"ZKProofJob"> | string
+    attestation_data?: StringNullableFilter<"ZKProofJob"> | string | null
+    status?: StringFilter<"ZKProofJob"> | string
+    proof_data?: BytesNullableFilter<"ZKProofJob"> | Buffer | null
+    proof_hash?: StringNullableFilter<"ZKProofJob"> | string | null
+    completed_at?: DateTimeNullableFilter<"ZKProofJob"> | Date | string | null
+    error_message?: StringNullableFilter<"ZKProofJob"> | string | null
+    created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+    updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+  }, "proof_id">
+
+  export type ZKProofJobOrderByWithAggregationInput = {
+    proof_id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrderInput | SortOrder
+    proof_type?: SortOrder
+    attestation_data?: SortOrderInput | SortOrder
+    status?: SortOrder
+    proof_data?: SortOrderInput | SortOrder
+    proof_hash?: SortOrderInput | SortOrder
+    completed_at?: SortOrderInput | SortOrder
+    error_message?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: ZKProofJobCountOrderByAggregateInput
+    _max?: ZKProofJobMaxOrderByAggregateInput
+    _min?: ZKProofJobMinOrderByAggregateInput
+  }
+
+  export type ZKProofJobScalarWhereWithAggregatesInput = {
+    AND?: ZKProofJobScalarWhereWithAggregatesInput | ZKProofJobScalarWhereWithAggregatesInput[]
+    OR?: ZKProofJobScalarWhereWithAggregatesInput[]
+    NOT?: ZKProofJobScalarWhereWithAggregatesInput | ZKProofJobScalarWhereWithAggregatesInput[]
+    proof_id?: StringWithAggregatesFilter<"ZKProofJob"> | string
+    device_id?: StringWithAggregatesFilter<"ZKProofJob"> | string
+    media_hash?: StringNullableWithAggregatesFilter<"ZKProofJob"> | string | null
+    proof_type?: StringWithAggregatesFilter<"ZKProofJob"> | string
+    attestation_data?: StringNullableWithAggregatesFilter<"ZKProofJob"> | string | null
+    status?: StringWithAggregatesFilter<"ZKProofJob"> | string
+    proof_data?: BytesNullableWithAggregatesFilter<"ZKProofJob"> | Buffer | null
+    proof_hash?: StringNullableWithAggregatesFilter<"ZKProofJob"> | string | null
+    completed_at?: DateTimeNullableWithAggregatesFilter<"ZKProofJob"> | Date | string | null
+    error_message?: StringNullableWithAggregatesFilter<"ZKProofJob"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"ZKProofJob"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"ZKProofJob"> | Date | string
   }
 
   export type UsageMeterWhereInput = {
@@ -7239,68 +9844,6 @@ export namespace Prisma {
     value?: BigIntWithAggregatesFilter<"UsageMeter"> | bigint | number
     period_start?: DateTimeWithAggregatesFilter<"UsageMeter"> | Date | string
     period_end?: DateTimeNullableWithAggregatesFilter<"UsageMeter"> | Date | string | null
-  }
-
-  export type ZKProofJobWhereInput = {
-    AND?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
-    OR?: ZKProofJobWhereInput[]
-    NOT?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
-    proof_id?: StringFilter<"ZKProofJob"> | string
-    device_id?: StringFilter<"ZKProofJob"> | string
-    media_hash?: StringFilter<"ZKProofJob"> | string
-    status?: StringFilter<"ZKProofJob"> | string
-    proof_data?: BytesNullableFilter<"ZKProofJob"> | Buffer | null
-    created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
-    updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
-  }
-
-  export type ZKProofJobOrderByWithRelationInput = {
-    proof_id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    status?: SortOrder
-    proof_data?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type ZKProofJobWhereUniqueInput = Prisma.AtLeast<{
-    proof_id?: string
-    AND?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
-    OR?: ZKProofJobWhereInput[]
-    NOT?: ZKProofJobWhereInput | ZKProofJobWhereInput[]
-    device_id?: StringFilter<"ZKProofJob"> | string
-    media_hash?: StringFilter<"ZKProofJob"> | string
-    status?: StringFilter<"ZKProofJob"> | string
-    proof_data?: BytesNullableFilter<"ZKProofJob"> | Buffer | null
-    created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
-    updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
-  }, "proof_id">
-
-  export type ZKProofJobOrderByWithAggregationInput = {
-    proof_id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    status?: SortOrder
-    proof_data?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    _count?: ZKProofJobCountOrderByAggregateInput
-    _max?: ZKProofJobMaxOrderByAggregateInput
-    _min?: ZKProofJobMinOrderByAggregateInput
-  }
-
-  export type ZKProofJobScalarWhereWithAggregatesInput = {
-    AND?: ZKProofJobScalarWhereWithAggregatesInput | ZKProofJobScalarWhereWithAggregatesInput[]
-    OR?: ZKProofJobScalarWhereWithAggregatesInput[]
-    NOT?: ZKProofJobScalarWhereWithAggregatesInput | ZKProofJobScalarWhereWithAggregatesInput[]
-    proof_id?: StringWithAggregatesFilter<"ZKProofJob"> | string
-    device_id?: StringWithAggregatesFilter<"ZKProofJob"> | string
-    media_hash?: StringWithAggregatesFilter<"ZKProofJob"> | string
-    status?: StringWithAggregatesFilter<"ZKProofJob"> | string
-    proof_data?: BytesNullableWithAggregatesFilter<"ZKProofJob"> | Buffer | null
-    created_at?: DateTimeWithAggregatesFilter<"ZKProofJob"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"ZKProofJob"> | Date | string
   }
 
   export type BlockchainAnchorWhereInput = {
@@ -7380,63 +9923,6 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"BlockchainAnchor"> | Date | string
   }
 
-  export type MediaVerificationWhereInput = {
-    AND?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
-    OR?: MediaVerificationWhereInput[]
-    NOT?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
-    id?: StringFilter<"MediaVerification"> | string
-    device_id?: StringFilter<"MediaVerification"> | string
-    media_hash?: StringFilter<"MediaVerification"> | string
-    signature?: StringFilter<"MediaVerification"> | string
-    verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
-    metadata?: JsonNullableFilter<"MediaVerification">
-  }
-
-  export type MediaVerificationOrderByWithRelationInput = {
-    id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    signature?: SortOrder
-    verified_at?: SortOrder
-    metadata?: SortOrderInput | SortOrder
-  }
-
-  export type MediaVerificationWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    media_hash?: string
-    AND?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
-    OR?: MediaVerificationWhereInput[]
-    NOT?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
-    device_id?: StringFilter<"MediaVerification"> | string
-    signature?: StringFilter<"MediaVerification"> | string
-    verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
-    metadata?: JsonNullableFilter<"MediaVerification">
-  }, "id" | "media_hash">
-
-  export type MediaVerificationOrderByWithAggregationInput = {
-    id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    signature?: SortOrder
-    verified_at?: SortOrder
-    metadata?: SortOrderInput | SortOrder
-    _count?: MediaVerificationCountOrderByAggregateInput
-    _max?: MediaVerificationMaxOrderByAggregateInput
-    _min?: MediaVerificationMinOrderByAggregateInput
-  }
-
-  export type MediaVerificationScalarWhereWithAggregatesInput = {
-    AND?: MediaVerificationScalarWhereWithAggregatesInput | MediaVerificationScalarWhereWithAggregatesInput[]
-    OR?: MediaVerificationScalarWhereWithAggregatesInput[]
-    NOT?: MediaVerificationScalarWhereWithAggregatesInput | MediaVerificationScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"MediaVerification"> | string
-    device_id?: StringWithAggregatesFilter<"MediaVerification"> | string
-    media_hash?: StringWithAggregatesFilter<"MediaVerification"> | string
-    signature?: StringWithAggregatesFilter<"MediaVerification"> | string
-    verified_at?: DateTimeWithAggregatesFilter<"MediaVerification"> | Date | string
-    metadata?: JsonNullableWithAggregatesFilter<"MediaVerification">
-  }
-
   export type DeviceMediaWhereInput = {
     AND?: DeviceMediaWhereInput | DeviceMediaWhereInput[]
     OR?: DeviceMediaWhereInput[]
@@ -7501,62 +9987,476 @@ export namespace Prisma {
     uploaded_at?: DateTimeWithAggregatesFilter<"DeviceMedia"> | Date | string
   }
 
+  export type MediaVerificationWhereInput = {
+    AND?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
+    OR?: MediaVerificationWhereInput[]
+    NOT?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
+    id?: StringFilter<"MediaVerification"> | string
+    device_id?: StringFilter<"MediaVerification"> | string
+    media_hash?: StringFilter<"MediaVerification"> | string
+    signature?: StringFilter<"MediaVerification"> | string
+    verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
+    metadata?: JsonNullableFilter<"MediaVerification">
+  }
+
+  export type MediaVerificationOrderByWithRelationInput = {
+    id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    signature?: SortOrder
+    verified_at?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+  }
+
+  export type MediaVerificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    media_hash?: string
+    AND?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
+    OR?: MediaVerificationWhereInput[]
+    NOT?: MediaVerificationWhereInput | MediaVerificationWhereInput[]
+    device_id?: StringFilter<"MediaVerification"> | string
+    signature?: StringFilter<"MediaVerification"> | string
+    verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
+    metadata?: JsonNullableFilter<"MediaVerification">
+  }, "id" | "media_hash">
+
+  export type MediaVerificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    signature?: SortOrder
+    verified_at?: SortOrder
+    metadata?: SortOrderInput | SortOrder
+    _count?: MediaVerificationCountOrderByAggregateInput
+    _max?: MediaVerificationMaxOrderByAggregateInput
+    _min?: MediaVerificationMinOrderByAggregateInput
+  }
+
+  export type MediaVerificationScalarWhereWithAggregatesInput = {
+    AND?: MediaVerificationScalarWhereWithAggregatesInput | MediaVerificationScalarWhereWithAggregatesInput[]
+    OR?: MediaVerificationScalarWhereWithAggregatesInput[]
+    NOT?: MediaVerificationScalarWhereWithAggregatesInput | MediaVerificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"MediaVerification"> | string
+    device_id?: StringWithAggregatesFilter<"MediaVerification"> | string
+    media_hash?: StringWithAggregatesFilter<"MediaVerification"> | string
+    signature?: StringWithAggregatesFilter<"MediaVerification"> | string
+    verified_at?: DateTimeWithAggregatesFilter<"MediaVerification"> | Date | string
+    metadata?: JsonNullableWithAggregatesFilter<"MediaVerification">
+  }
+
   export type DeviceCreateInput = {
     device_id: string
+    tpm_serial?: string | null
     name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
     tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
+    last_activity_at?: Date | string | null
     usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
   }
 
   export type DeviceUncheckedCreateInput = {
     device_id: string
+    tpm_serial?: string | null
     name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
     tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
+    last_activity_at?: Date | string | null
     usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
   }
 
   export type DeviceUpdateInput = {
     device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
     tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
   }
 
   export type DeviceUncheckedUpdateInput = {
     device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
     tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
   }
 
   export type DeviceCreateManyInput = {
     device_id: string
+    tpm_serial?: string | null
     name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
     tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
+    last_activity_at?: Date | string | null
   }
 
   export type DeviceUpdateManyMutationInput = {
     device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
     tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type DeviceUncheckedUpdateManyInput = {
     device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
     tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type MediaFileCreateInput = {
+    media_id: string
+    device_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash?: string | null
+    file_size: bigint | number
+    storage_path?: string | null
+    signature_verified?: boolean
+    uploaded_at?: Date | string
+  }
+
+  export type MediaFileUncheckedCreateInput = {
+    media_id: string
+    device_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash?: string | null
+    file_size: bigint | number
+    storage_path?: string | null
+    signature_verified?: boolean
+    uploaded_at?: Date | string
+  }
+
+  export type MediaFileUpdateInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaFileUncheckedUpdateInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaFileCreateManyInput = {
+    media_id: string
+    device_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash?: string | null
+    file_size: bigint | number
+    storage_path?: string | null
+    signature_verified?: boolean
+    uploaded_at?: Date | string
+  }
+
+  export type MediaFileUpdateManyMutationInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaFileUncheckedUpdateManyInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationCreateInput = {
+    verification_id: string
+    device_id: string
+    media_id?: string | null
+    status: string
+    proof_data?: string | null
+    created_at?: Date | string
+    completed_at?: Date | string | null
+  }
+
+  export type VerificationUncheckedCreateInput = {
+    verification_id: string
+    device_id: string
+    media_id?: string | null
+    status: string
+    proof_data?: string | null
+    created_at?: Date | string
+    completed_at?: Date | string | null
+  }
+
+  export type VerificationUpdateInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VerificationUncheckedUpdateInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VerificationCreateManyInput = {
+    verification_id: string
+    device_id: string
+    media_id?: string | null
+    status: string
+    proof_data?: string | null
+    created_at?: Date | string
+    completed_at?: Date | string | null
+  }
+
+  export type VerificationUpdateManyMutationInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VerificationUncheckedUpdateManyInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ZKProofJobCreateInput = {
+    proof_id: string
+    device_id: string
+    media_hash?: string | null
+    proof_type: string
+    attestation_data?: string | null
+    status?: string
+    proof_data?: Buffer | null
+    proof_hash?: string | null
+    completed_at?: Date | string | null
+    error_message?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ZKProofJobUncheckedCreateInput = {
+    proof_id: string
+    device_id: string
+    media_hash?: string | null
+    proof_type: string
+    attestation_data?: string | null
+    status?: string
+    proof_data?: Buffer | null
+    proof_hash?: string | null
+    completed_at?: Date | string | null
+    error_message?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ZKProofJobUpdateInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZKProofJobUncheckedUpdateInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZKProofJobCreateManyInput = {
+    proof_id: string
+    device_id: string
+    media_hash?: string | null
+    proof_type: string
+    attestation_data?: string | null
+    status?: string
+    proof_data?: Buffer | null
+    proof_hash?: string | null
+    completed_at?: Date | string | null
+    error_message?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ZKProofJobUpdateManyMutationInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZKProofJobUncheckedUpdateManyInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7621,76 +10521,6 @@ export namespace Prisma {
     value?: BigIntFieldUpdateOperationsInput | bigint | number
     period_start?: DateTimeFieldUpdateOperationsInput | Date | string
     period_end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type ZKProofJobCreateInput = {
-    proof_id: string
-    device_id: string
-    media_hash: string
-    status: string
-    proof_data?: Buffer | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type ZKProofJobUncheckedCreateInput = {
-    proof_id: string
-    device_id: string
-    media_hash: string
-    status: string
-    proof_data?: Buffer | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type ZKProofJobUpdateInput = {
-    proof_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ZKProofJobUncheckedUpdateInput = {
-    proof_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ZKProofJobCreateManyInput = {
-    proof_id: string
-    device_id: string
-    media_hash: string
-    status: string
-    proof_data?: Buffer | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type ZKProofJobUpdateManyMutationInput = {
-    proof_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ZKProofJobUncheckedUpdateManyInput = {
-    proof_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BlockchainAnchorCreateInput = {
@@ -7784,69 +10614,6 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MediaVerificationCreateInput = {
-    id?: string
-    device_id: string
-    media_hash: string
-    signature: string
-    verified_at?: Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type MediaVerificationUncheckedCreateInput = {
-    id?: string
-    device_id: string
-    media_hash: string
-    signature: string
-    verified_at?: Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type MediaVerificationUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    signature?: StringFieldUpdateOperationsInput | string
-    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type MediaVerificationUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    signature?: StringFieldUpdateOperationsInput | string
-    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type MediaVerificationCreateManyInput = {
-    id?: string
-    device_id: string
-    media_hash: string
-    signature: string
-    verified_at?: Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type MediaVerificationUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    signature?: StringFieldUpdateOperationsInput | string
-    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type MediaVerificationUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
-    media_hash?: StringFieldUpdateOperationsInput | string
-    signature?: StringFieldUpdateOperationsInput | string
-    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    metadata?: NullableJsonNullValueInput | InputJsonValue
-  }
-
   export type DeviceMediaCreateInput = {
     id?: string
     device_id: string
@@ -7917,6 +10684,69 @@ export namespace Prisma {
     uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MediaVerificationCreateInput = {
+    id?: string
+    device_id: string
+    media_hash: string
+    signature: string
+    verified_at?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUncheckedCreateInput = {
+    id?: string
+    device_id: string
+    media_hash: string
+    signature: string
+    verified_at?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationCreateManyInput = {
+    id?: string
+    device_id: string
+    media_hash: string
+    signature: string
+    verified_at?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    device_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -7947,6 +10777,39 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+  export type JsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -7975,26 +10838,63 @@ export namespace Prisma {
 
   export type DeviceCountOrderByAggregateInput = {
     device_id?: SortOrder
+    tpm_serial?: SortOrder
     name?: SortOrder
+    device_name?: SortOrder
+    device_type?: SortOrder
+    os_version?: SortOrder
+    app_version?: SortOrder
     tpm_public_key?: SortOrder
+    api_key_hash?: SortOrder
+    registration_ip?: SortOrder
+    user_agent?: SortOrder
+    attestation_key?: SortOrder
+    verified_at?: SortOrder
+    status?: SortOrder
+    metadata?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    last_activity_at?: SortOrder
   }
 
   export type DeviceMaxOrderByAggregateInput = {
     device_id?: SortOrder
+    tpm_serial?: SortOrder
     name?: SortOrder
+    device_name?: SortOrder
+    device_type?: SortOrder
+    os_version?: SortOrder
+    app_version?: SortOrder
     tpm_public_key?: SortOrder
+    api_key_hash?: SortOrder
+    registration_ip?: SortOrder
+    user_agent?: SortOrder
+    attestation_key?: SortOrder
+    verified_at?: SortOrder
+    status?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    last_activity_at?: SortOrder
   }
 
   export type DeviceMinOrderByAggregateInput = {
     device_id?: SortOrder
+    tpm_serial?: SortOrder
     name?: SortOrder
+    device_name?: SortOrder
+    device_type?: SortOrder
+    os_version?: SortOrder
+    app_version?: SortOrder
     tpm_public_key?: SortOrder
+    api_key_hash?: SortOrder
+    registration_ip?: SortOrder
+    user_agent?: SortOrder
+    attestation_key?: SortOrder
+    verified_at?: SortOrder
+    status?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    last_activity_at?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -8033,6 +10933,45 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -8058,15 +10997,172 @@ export namespace Prisma {
     not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type MediaFileCountOrderByAggregateInput = {
+    media_id?: SortOrder
+    device_id?: SortOrder
+    media_type?: SortOrder
+    file_name?: SortOrder
+    file_hash?: SortOrder
+    ipfs_hash?: SortOrder
+    file_size?: SortOrder
+    storage_path?: SortOrder
+    signature_verified?: SortOrder
+    uploaded_at?: SortOrder
+  }
+
+  export type MediaFileAvgOrderByAggregateInput = {
+    file_size?: SortOrder
+  }
+
+  export type MediaFileMaxOrderByAggregateInput = {
+    media_id?: SortOrder
+    device_id?: SortOrder
+    media_type?: SortOrder
+    file_name?: SortOrder
+    file_hash?: SortOrder
+    ipfs_hash?: SortOrder
+    file_size?: SortOrder
+    storage_path?: SortOrder
+    signature_verified?: SortOrder
+    uploaded_at?: SortOrder
+  }
+
+  export type MediaFileMinOrderByAggregateInput = {
+    media_id?: SortOrder
+    device_id?: SortOrder
+    media_type?: SortOrder
+    file_name?: SortOrder
+    file_hash?: SortOrder
+    ipfs_hash?: SortOrder
+    file_size?: SortOrder
+    storage_path?: SortOrder
+    signature_verified?: SortOrder
+    uploaded_at?: SortOrder
+  }
+
+  export type MediaFileSumOrderByAggregateInput = {
+    file_size?: SortOrder
+  }
+
+  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type VerificationCountOrderByAggregateInput = {
+    verification_id?: SortOrder
+    device_id?: SortOrder
+    media_id?: SortOrder
+    status?: SortOrder
+    proof_data?: SortOrder
+    created_at?: SortOrder
+    completed_at?: SortOrder
+  }
+
+  export type VerificationMaxOrderByAggregateInput = {
+    verification_id?: SortOrder
+    device_id?: SortOrder
+    media_id?: SortOrder
+    status?: SortOrder
+    proof_data?: SortOrder
+    created_at?: SortOrder
+    completed_at?: SortOrder
+  }
+
+  export type VerificationMinOrderByAggregateInput = {
+    verification_id?: SortOrder
+    device_id?: SortOrder
+    media_id?: SortOrder
+    status?: SortOrder
+    proof_data?: SortOrder
+    created_at?: SortOrder
+    completed_at?: SortOrder
+  }
+
+  export type BytesNullableFilter<$PrismaModel = never> = {
+    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
+    in?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
+  }
+
+  export type ZKProofJobCountOrderByAggregateInput = {
+    proof_id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    proof_type?: SortOrder
+    attestation_data?: SortOrder
+    status?: SortOrder
+    proof_data?: SortOrder
+    proof_hash?: SortOrder
+    completed_at?: SortOrder
+    error_message?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ZKProofJobMaxOrderByAggregateInput = {
+    proof_id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    proof_type?: SortOrder
+    attestation_data?: SortOrder
+    status?: SortOrder
+    proof_data?: SortOrder
+    proof_hash?: SortOrder
+    completed_at?: SortOrder
+    error_message?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ZKProofJobMinOrderByAggregateInput = {
+    proof_id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    proof_type?: SortOrder
+    attestation_data?: SortOrder
+    status?: SortOrder
+    proof_data?: SortOrder
+    proof_hash?: SortOrder
+    completed_at?: SortOrder
+    error_message?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
+    in?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
+    notIn?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
+    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Buffer | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBytesNullableFilter<$PrismaModel>
+    _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
   export type DeviceRelationFilter = {
@@ -8115,83 +11211,6 @@ export namespace Prisma {
     value?: SortOrder
   }
 
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type BytesNullableFilter<$PrismaModel = never> = {
-    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
-    in?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableFilter<$PrismaModel> | Buffer | null
-  }
-
-  export type ZKProofJobCountOrderByAggregateInput = {
-    proof_id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    status?: SortOrder
-    proof_data?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type ZKProofJobMaxOrderByAggregateInput = {
-    proof_id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    status?: SortOrder
-    proof_data?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type ZKProofJobMinOrderByAggregateInput = {
-    proof_id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    status?: SortOrder
-    proof_data?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type BytesNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Buffer | BytesFieldRefInput<$PrismaModel> | null
-    in?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
-    notIn?: Buffer[] | ListBytesFieldRefInput<$PrismaModel> | null
-    not?: NestedBytesNullableWithAggregatesFilter<$PrismaModel> | Buffer | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBytesNullableFilter<$PrismaModel>
-    _max?: NestedBytesNullableFilter<$PrismaModel>
-  }
-
   export type BlockchainAnchorCountOrderByAggregateInput = {
     anchor_id?: SortOrder
     device_id?: SortOrder
@@ -8229,78 +11248,6 @@ export namespace Prisma {
     solana_status?: SortOrder
     anchored_at?: SortOrder
     updated_at?: SortOrder
-  }
-  export type JsonNullableFilter<$PrismaModel = never> = 
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type MediaVerificationCountOrderByAggregateInput = {
-    id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    signature?: SortOrder
-    verified_at?: SortOrder
-    metadata?: SortOrder
-  }
-
-  export type MediaVerificationMaxOrderByAggregateInput = {
-    id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    signature?: SortOrder
-    verified_at?: SortOrder
-  }
-
-  export type MediaVerificationMinOrderByAggregateInput = {
-    id?: SortOrder
-    device_id?: SortOrder
-    media_hash?: SortOrder
-    signature?: SortOrder
-    verified_at?: SortOrder
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type DeviceMediaCountOrderByAggregateInput = {
@@ -8341,6 +11288,31 @@ export namespace Prisma {
     size?: SortOrder
   }
 
+  export type MediaVerificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    signature?: SortOrder
+    verified_at?: SortOrder
+    metadata?: SortOrder
+  }
+
+  export type MediaVerificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    signature?: SortOrder
+    verified_at?: SortOrder
+  }
+
+  export type MediaVerificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    device_id?: SortOrder
+    media_hash?: SortOrder
+    signature?: SortOrder
+    verified_at?: SortOrder
+  }
+
   export type UsageMeterCreateNestedManyWithoutDeviceInput = {
     create?: XOR<UsageMeterCreateWithoutDeviceInput, UsageMeterUncheckedCreateWithoutDeviceInput> | UsageMeterCreateWithoutDeviceInput[] | UsageMeterUncheckedCreateWithoutDeviceInput[]
     connectOrCreate?: UsageMeterCreateOrConnectWithoutDeviceInput | UsageMeterCreateOrConnectWithoutDeviceInput[]
@@ -8361,6 +11333,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -8395,12 +11371,6 @@ export namespace Prisma {
     deleteMany?: UsageMeterScalarWhereInput | UsageMeterScalarWhereInput[]
   }
 
-  export type DeviceCreateNestedOneWithoutUsage_metersInput = {
-    create?: XOR<DeviceCreateWithoutUsage_metersInput, DeviceUncheckedCreateWithoutUsage_metersInput>
-    connectOrCreate?: DeviceCreateOrConnectWithoutUsage_metersInput
-    connect?: DeviceWhereUniqueInput
-  }
-
   export type BigIntFieldUpdateOperationsInput = {
     set?: bigint | number
     increment?: bigint | number
@@ -8409,8 +11379,18 @@ export namespace Prisma {
     divide?: bigint | number
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableBytesFieldUpdateOperationsInput = {
+    set?: Buffer | null
+  }
+
+  export type DeviceCreateNestedOneWithoutUsage_metersInput = {
+    create?: XOR<DeviceCreateWithoutUsage_metersInput, DeviceUncheckedCreateWithoutUsage_metersInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutUsage_metersInput
+    connect?: DeviceWhereUniqueInput
   }
 
   export type DeviceUpdateOneRequiredWithoutUsage_metersNestedInput = {
@@ -8419,10 +11399,6 @@ export namespace Prisma {
     upsert?: DeviceUpsertWithoutUsage_metersInput
     connect?: DeviceWhereUniqueInput
     update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutUsage_metersInput, DeviceUpdateWithoutUsage_metersInput>, DeviceUncheckedUpdateWithoutUsage_metersInput>
-  }
-
-  export type NullableBytesFieldUpdateOperationsInput = {
-    set?: Buffer | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8451,6 +11427,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -8520,6 +11507,42 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -8545,15 +11568,9 @@ export namespace Prisma {
     not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -8583,18 +11600,12 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedBytesNullableFilter<$PrismaModel = never> = {
@@ -8612,28 +11623,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBytesNullableFilter<$PrismaModel>
     _max?: NestedBytesNullableFilter<$PrismaModel>
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> = 
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type UsageMeterCreateWithoutDeviceInput = {
@@ -8692,18 +11681,44 @@ export namespace Prisma {
 
   export type DeviceCreateWithoutUsage_metersInput = {
     device_id: string
+    tpm_serial?: string | null
     name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
     tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
+    last_activity_at?: Date | string | null
   }
 
   export type DeviceUncheckedCreateWithoutUsage_metersInput = {
     device_id: string
+    tpm_serial?: string | null
     name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
     tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: Date | string
     updated_at?: Date | string
+    last_activity_at?: Date | string | null
   }
 
   export type DeviceCreateOrConnectWithoutUsage_metersInput = {
@@ -8724,18 +11739,44 @@ export namespace Prisma {
 
   export type DeviceUpdateWithoutUsage_metersInput = {
     device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
     tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type DeviceUncheckedUpdateWithoutUsage_metersInput = {
     device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
     tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UsageMeterCreateManyDeviceInput = {
@@ -8784,25 +11825,33 @@ export namespace Prisma {
      */
     export type DeviceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DeviceDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use UsageMeterDefaultArgs instead
+     * @deprecated Use MediaFileDefaultArgs instead
      */
-    export type UsageMeterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UsageMeterDefaultArgs<ExtArgs>
+    export type MediaFileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MediaFileDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use VerificationDefaultArgs instead
+     */
+    export type VerificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = VerificationDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ZKProofJobDefaultArgs instead
      */
     export type ZKProofJobArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ZKProofJobDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use UsageMeterDefaultArgs instead
+     */
+    export type UsageMeterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UsageMeterDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use BlockchainAnchorDefaultArgs instead
      */
     export type BlockchainAnchorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BlockchainAnchorDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use MediaVerificationDefaultArgs instead
-     */
-    export type MediaVerificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MediaVerificationDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use DeviceMediaDefaultArgs instead
      */
     export type DeviceMediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DeviceMediaDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use MediaVerificationDefaultArgs instead
+     */
+    export type MediaVerificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = MediaVerificationDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

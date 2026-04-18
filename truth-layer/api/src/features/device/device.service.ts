@@ -143,9 +143,10 @@ export class DeviceService {
         message: 'Device registered successfully. Store api_key securely - it will not be shown again.',
       };
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
       winstonLogger.error('[DEVICE_SERVICE] Registration failed', {
         requestId,
-        error: error.message,
+        error: errorMessage,
       });
       throw error;
     }

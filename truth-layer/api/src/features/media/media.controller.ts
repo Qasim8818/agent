@@ -18,7 +18,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { MediaService } from './media.service';
 
-@Controller('api/v1/media')
+@Controller('media')
 export class MediaController {
   private readonly logger = new Logger(MediaController.name);
 
