@@ -80,7 +80,8 @@ import { PrismaService } from './database/prisma.service';
         JWT_SECRET: Joi.string().default('dev-jwt-secret-change-in-production'),
         JWT_EXPIRATION: Joi.string().default('24h'),
         API_KEY_SECRET: Joi.string().default('dev-api-key-secret-change-in-production'),
-        CORS_ORIGINS: Joi.string().default('http://localhost:3000,http://localhost:3001'),
+CORS_ORIGINS: Joi.string().default('http://localhost:3000,http://localhost:3001'),
+        API_KEYS: Joi.string().required().description('Comma-separated API keys for X-API-Key auth'),
 
         // Storage
         STORAGE_TYPE: Joi.string()

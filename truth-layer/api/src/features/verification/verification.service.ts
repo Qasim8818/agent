@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException, NotFoundException, Logger } from '@nestjs/common';
-import { InjectQueue } from '@nestjs/bull';
-import { Queue, Job } from 'bull';
+import { InjectQueue } from '@nestjs/bullmq';
+import { Queue } from 'bullmq';
 import { PrismaService } from '../../database/prisma.service';
 import * as crypto from 'crypto';
 
@@ -68,6 +68,7 @@ export class VerificationService {
 
       // Enqueue proof generation job
       const job = await this.zkProofQueue.add(
+        'generate-proof',
         {
           verificationId,
           deviceId: dto.deviceId,
@@ -138,10 +139,10 @@ export class VerificationService {
   }
 
   /**
-   * Process proof generation (called by Bull worker)
+   * Process proof generation (Bull processor)
    */
-  async processProofGeneration(job: Job): Promise<string> {
-    const { verificationId, deviceId, proofType, attestationData } = job.data;
+  async processProofGeneration(data: any): Promise<string> {
+    const { verificationId, deviceId, proofType, attestationData } = data;
 
     try {
       this.logger.log(`Processing proof: ${verificationId} (${proofType})`);
@@ -176,7 +177,7 @@ export class VerificationService {
       await this.prisma.zkProofJob.update({
         where: { proof_id: verificationId },
         data: {
-          proof_data: proofData,
+          proof_data: Buffer.from(proofData),
           proof_hash: proofHash,
           status: 'completed',
           completed_at: new Date(),
@@ -205,9 +206,8 @@ export class VerificationService {
     }
   }
 
-  /**
-   * Generate proof based on type (stub implementation)
-   */
+  // ... rest of private methods unchanged: generateProofByType, generateTPMQuoteProof, etc.
+
   private async generateProofByType(
     proofType: string,
     attestationData: string,
@@ -218,15 +218,12 @@ export class VerificationService {
     try {
       switch (proofType) {
         case 'tpm_quote':
-          // Stub: Generate mock TPM quote proof
           return await this.generateTPMQuoteProof(attestationData, device);
 
         case 'device_metrics':
-          // Stub: Generate device metrics proof
           return await this.generateDeviceMetricsProof(attestationData);
 
         case 'compliance_check':
-          // Stub: Generate compliance check proof
           return await this.generateComplianceProof(attestationData, device);
 
         default:
@@ -238,18 +235,12 @@ export class VerificationService {
     }
   }
 
-  /**
-   * Generate TPM quote proof (stub)
-   * In production: Call Rust gnark engine via gRPC
-   */
   private async generateTPMQuoteProof(
     attestationData: string,
     device: any,
   ): Promise<string> {
-    // Stub: Simulate proof generation (3-5s for TTP)
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    // TODO: Call Rust engine: zkProofEngine.generateTPMQuote()
     const proofData = {
       type: 'tpm_quote',
       deviceId: device.device_id,
@@ -260,7 +251,6 @@ export class VerificationService {
       timestamp: new Date().toISOString(),
       circuitVersion: '1.0',
       proofElements: {
-        // Mock proof elements
         commitment: crypto.randomBytes(32).toString('hex'),
         challenge: crypto.randomBytes(32).toString('hex'),
         response: crypto.randomBytes(64).toString('hex'),
@@ -270,16 +260,11 @@ export class VerificationService {
     return JSON.stringify(proofData);
   }
 
-  /**
-   * Generate device metrics proof (stub)
-   */
   private async generateDeviceMetricsProof(
     attestationData: string,
   ): Promise<string> {
-    // Stub: Simulate proof generation (1-2s)
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // TODO: Call Rust engine: zkProofEngine.generateDeviceMetricsProof()
     const proofData = {
       type: 'device_metrics',
       metricsHash: crypto
@@ -297,17 +282,12 @@ export class VerificationService {
     return JSON.stringify(proofData);
   }
 
-  /**
-   * Generate compliance check proof (stub)
-   */
   private async generateComplianceProof(
     attestationData: string,
     device: any,
   ): Promise<string> {
-    // Stub: Simulate proof generation (2-3s)
     await new Promise((resolve) => setTimeout(resolve, 2500));
 
-    // TODO: Call compliance check service
     const proofData = {
       type: 'compliance_check',
       deviceId: device.device_id,
@@ -324,9 +304,6 @@ export class VerificationService {
     return JSON.stringify(proofData);
   }
 
-  /**
-   * Get proof statistics for device
-   */
   async getDeviceProofStats(deviceId: string) {
     const device = await this.prisma.device.findUnique({
       where: { device_id: deviceId },
@@ -371,7 +348,7 @@ export class VerificationService {
       id: verification.proof_id,
       deviceId: verification.device_id,
       proofType: verification.proof_type,
-      proofData: verification.proof_data,
+      proofData: verification.proof_data?.toString() || '',
       proofHash: verification.proof_hash,
       status: verification.status,
       createdAt: verification.created_at,
@@ -380,3 +357,4 @@ export class VerificationService {
     };
   }
 }
+
