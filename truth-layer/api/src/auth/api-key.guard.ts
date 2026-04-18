@@ -23,6 +23,11 @@ export class ApiKeyGuard implements CanActivate {
       .split(',')
       .map(key => key.trim())
       .filter(key => key.length > 0);
+    
+    // Production safety: Fail fast if no API keys configured
+    if (this.validApiKeys.length === 0) {
+      throw new Error('FATAL: API_KEYS environment variable is empty or invalid. No valid API keys configured. Set API_KEYS="key1,key2" in environment.');
+    }
   }
 
   canActivate(context: ExecutionContext): boolean {

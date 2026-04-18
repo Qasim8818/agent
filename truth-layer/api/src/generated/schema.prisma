@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Device {
+  device_id      String       @id @db.VarChar(64)
+  name           String?      @db.VarChar(128)
+  tpm_public_key String       @db.VarChar(256)
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+  usage_meters   UsageMeter[]
+
+  @@index([device_id])
+  @@index([tpm_public_key])
+  @@map("devices")
+}
+
+model UsageMeter {
+  id           String    @id @default(cuid())
+  device_id    String    @db.VarChar(64)
+  metric       String    @db.VarChar(64)
+  value        BigInt    @default(0)
+  period_start DateTime  @default(now())
+  period_end   DateTime?
+  device       Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
+
+  @@unique([device_id, metric, period_start])
+  @@index([device_id])
+  @@index([metric])
+  @@map("usage_meters")
+}
+
+model ZKProofJob {
+  proof_id   String   @id @db.VarChar(64)
+  device_id  String   @db.VarChar(64)
+  media_hash String   @db.VarChar(128)
+  status     String   @db.VarChar(32) // pending|processing|completed|failed
+  proof_data Bytes?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@index([device_id])
+  @@index([media_hash])
+  @@index([status])
+  @@map("zk_proof_jobs")
+}
+
+model BlockchainAnchor {
+  anchor_id      String   @id @db.VarChar(64)
+  device_id      String   @db.VarChar(64)
+  proof_id       String   @db.VarChar(64)
+  proof_hash     String   @db.VarChar(128)
+  arweave_tx_id  String?  @db.VarChar(64)
+  arweave_status String?  @default("pending")
+  solana_tx_sig  String?  @db.VarChar(88)
+  solana_status  String?  @default("pending")
+  anchored_at    DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  @@index([device_id])
+  @@index([proof_id])
+  @@index([proof_hash])
+  @@index([arweave_status])
+  @@index([solana_status])
+  @@map("blockchain_anchors")
+}
+
+model MediaVerification {
+  id          String   @id @default(cuid())
+  device_id   String   @db.VarChar(64)
+  media_hash  String   @unique @db.VarChar(128)
+  signature   String   @db.VarChar(256)
+  verified_at DateTime @default(now())
+  metadata    Json?
+
+  @@index([device_id])
+  @@index([media_hash])
+  @@map("media_verifications")
+}
+
+model DeviceMedia {
+  id          String   @id @default(cuid())
+  device_id   String   @db.VarChar(64)
+  file_path   String   @db.VarChar(512)
+  hash        String   @db.VarChar(128)
+  size        BigInt
+  mime_type   String   @db.VarChar(64)
+  uploaded_at DateTime @default(now())
+
+  @@index([device_id])
+  @@index([hash])
+  @@map("device_media")
+}
+
+// Scalable indexes for 10M+ records
+// Timestamps for all tables could be added if needed
+// Relations cascade delete for cleanup
