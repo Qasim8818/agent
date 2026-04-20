@@ -1446,10 +1446,22 @@ export namespace Prisma {
 
   export type DeviceCountOutputType = {
     usage_meters: number
+    media_files: number
+    verifications: number
+    zk_proof_jobs: number
+    blockchain_anchors: number
+    device_media: number
+    media_verifications: number
   }
 
   export type DeviceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usage_meters?: boolean | DeviceCountOutputTypeCountUsage_metersArgs
+    media_files?: boolean | DeviceCountOutputTypeCountMedia_filesArgs
+    verifications?: boolean | DeviceCountOutputTypeCountVerificationsArgs
+    zk_proof_jobs?: boolean | DeviceCountOutputTypeCountZk_proof_jobsArgs
+    blockchain_anchors?: boolean | DeviceCountOutputTypeCountBlockchain_anchorsArgs
+    device_media?: boolean | DeviceCountOutputTypeCountDevice_mediaArgs
+    media_verifications?: boolean | DeviceCountOutputTypeCountMedia_verificationsArgs
   }
 
   // Custom InputTypes
@@ -1468,6 +1480,48 @@ export namespace Prisma {
    */
   export type DeviceCountOutputTypeCountUsage_metersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UsageMeterWhereInput
+  }
+
+  /**
+   * DeviceCountOutputType without action
+   */
+  export type DeviceCountOutputTypeCountMedia_filesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaFileWhereInput
+  }
+
+  /**
+   * DeviceCountOutputType without action
+   */
+  export type DeviceCountOutputTypeCountVerificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VerificationWhereInput
+  }
+
+  /**
+   * DeviceCountOutputType without action
+   */
+  export type DeviceCountOutputTypeCountZk_proof_jobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ZKProofJobWhereInput
+  }
+
+  /**
+   * DeviceCountOutputType without action
+   */
+  export type DeviceCountOutputTypeCountBlockchain_anchorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlockchainAnchorWhereInput
+  }
+
+  /**
+   * DeviceCountOutputType without action
+   */
+  export type DeviceCountOutputTypeCountDevice_mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DeviceMediaWhereInput
+  }
+
+  /**
+   * DeviceCountOutputType without action
+   */
+  export type DeviceCountOutputTypeCountMedia_verificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MediaVerificationWhereInput
   }
 
 
@@ -1740,6 +1794,12 @@ export namespace Prisma {
     updated_at?: boolean
     last_activity_at?: boolean
     usage_meters?: boolean | Device$usage_metersArgs<ExtArgs>
+    media_files?: boolean | Device$media_filesArgs<ExtArgs>
+    verifications?: boolean | Device$verificationsArgs<ExtArgs>
+    zk_proof_jobs?: boolean | Device$zk_proof_jobsArgs<ExtArgs>
+    blockchain_anchors?: boolean | Device$blockchain_anchorsArgs<ExtArgs>
+    device_media?: boolean | Device$device_mediaArgs<ExtArgs>
+    media_verifications?: boolean | Device$media_verificationsArgs<ExtArgs>
     _count?: boolean | DeviceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["device"]>
 
@@ -1787,6 +1847,12 @@ export namespace Prisma {
 
   export type DeviceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usage_meters?: boolean | Device$usage_metersArgs<ExtArgs>
+    media_files?: boolean | Device$media_filesArgs<ExtArgs>
+    verifications?: boolean | Device$verificationsArgs<ExtArgs>
+    zk_proof_jobs?: boolean | Device$zk_proof_jobsArgs<ExtArgs>
+    blockchain_anchors?: boolean | Device$blockchain_anchorsArgs<ExtArgs>
+    device_media?: boolean | Device$device_mediaArgs<ExtArgs>
+    media_verifications?: boolean | Device$media_verificationsArgs<ExtArgs>
     _count?: boolean | DeviceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DeviceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1795,6 +1861,12 @@ export namespace Prisma {
     name: "Device"
     objects: {
       usage_meters: Prisma.$UsageMeterPayload<ExtArgs>[]
+      media_files: Prisma.$MediaFilePayload<ExtArgs>[]
+      verifications: Prisma.$VerificationPayload<ExtArgs>[]
+      zk_proof_jobs: Prisma.$ZKProofJobPayload<ExtArgs>[]
+      blockchain_anchors: Prisma.$BlockchainAnchorPayload<ExtArgs>[]
+      device_media: Prisma.$DeviceMediaPayload<ExtArgs>[]
+      media_verifications: Prisma.$MediaVerificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       device_id: string
@@ -2180,6 +2252,12 @@ export namespace Prisma {
   export interface Prisma__DeviceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     usage_meters<T extends Device$usage_metersArgs<ExtArgs> = {}>(args?: Subset<T, Device$usage_metersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageMeterPayload<ExtArgs>, T, "findMany"> | Null>
+    media_files<T extends Device$media_filesArgs<ExtArgs> = {}>(args?: Subset<T, Device$media_filesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaFilePayload<ExtArgs>, T, "findMany"> | Null>
+    verifications<T extends Device$verificationsArgs<ExtArgs> = {}>(args?: Subset<T, Device$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationPayload<ExtArgs>, T, "findMany"> | Null>
+    zk_proof_jobs<T extends Device$zk_proof_jobsArgs<ExtArgs> = {}>(args?: Subset<T, Device$zk_proof_jobsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZKProofJobPayload<ExtArgs>, T, "findMany"> | Null>
+    blockchain_anchors<T extends Device$blockchain_anchorsArgs<ExtArgs> = {}>(args?: Subset<T, Device$blockchain_anchorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlockchainAnchorPayload<ExtArgs>, T, "findMany"> | Null>
+    device_media<T extends Device$device_mediaArgs<ExtArgs> = {}>(args?: Subset<T, Device$device_mediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DeviceMediaPayload<ExtArgs>, T, "findMany"> | Null>
+    media_verifications<T extends Device$media_verificationsArgs<ExtArgs> = {}>(args?: Subset<T, Device$media_verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MediaVerificationPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2561,6 +2639,126 @@ export namespace Prisma {
   }
 
   /**
+   * Device.media_files
+   */
+  export type Device$media_filesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaFile
+     */
+    select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    where?: MediaFileWhereInput
+    orderBy?: MediaFileOrderByWithRelationInput | MediaFileOrderByWithRelationInput[]
+    cursor?: MediaFileWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaFileScalarFieldEnum | MediaFileScalarFieldEnum[]
+  }
+
+  /**
+   * Device.verifications
+   */
+  export type Device$verificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Verification
+     */
+    select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    where?: VerificationWhereInput
+    orderBy?: VerificationOrderByWithRelationInput | VerificationOrderByWithRelationInput[]
+    cursor?: VerificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VerificationScalarFieldEnum | VerificationScalarFieldEnum[]
+  }
+
+  /**
+   * Device.zk_proof_jobs
+   */
+  export type Device$zk_proof_jobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZKProofJob
+     */
+    select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    where?: ZKProofJobWhereInput
+    orderBy?: ZKProofJobOrderByWithRelationInput | ZKProofJobOrderByWithRelationInput[]
+    cursor?: ZKProofJobWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ZKProofJobScalarFieldEnum | ZKProofJobScalarFieldEnum[]
+  }
+
+  /**
+   * Device.blockchain_anchors
+   */
+  export type Device$blockchain_anchorsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainAnchor
+     */
+    select?: BlockchainAnchorSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    where?: BlockchainAnchorWhereInput
+    orderBy?: BlockchainAnchorOrderByWithRelationInput | BlockchainAnchorOrderByWithRelationInput[]
+    cursor?: BlockchainAnchorWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlockchainAnchorScalarFieldEnum | BlockchainAnchorScalarFieldEnum[]
+  }
+
+  /**
+   * Device.device_media
+   */
+  export type Device$device_mediaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeviceMedia
+     */
+    select?: DeviceMediaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    where?: DeviceMediaWhereInput
+    orderBy?: DeviceMediaOrderByWithRelationInput | DeviceMediaOrderByWithRelationInput[]
+    cursor?: DeviceMediaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DeviceMediaScalarFieldEnum | DeviceMediaScalarFieldEnum[]
+  }
+
+  /**
+   * Device.media_verifications
+   */
+  export type Device$media_verificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MediaVerification
+     */
+    select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    where?: MediaVerificationWhereInput
+    orderBy?: MediaVerificationOrderByWithRelationInput | MediaVerificationOrderByWithRelationInput[]
+    cursor?: MediaVerificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MediaVerificationScalarFieldEnum | MediaVerificationScalarFieldEnum[]
+  }
+
+  /**
    * Device without action
    */
   export type DeviceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2813,6 +3011,7 @@ export namespace Prisma {
     storage_path?: boolean
     signature_verified?: boolean
     uploaded_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mediaFile"]>
 
   export type MediaFileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2826,6 +3025,7 @@ export namespace Prisma {
     storage_path?: boolean
     signature_verified?: boolean
     uploaded_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mediaFile"]>
 
   export type MediaFileSelectScalar = {
@@ -2841,10 +3041,18 @@ export namespace Prisma {
     uploaded_at?: boolean
   }
 
+  export type MediaFileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
+  export type MediaFileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
 
   export type $MediaFilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MediaFile"
-    objects: {}
+    objects: {
+      device: Prisma.$DevicePayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       media_id: string
       device_id: string
@@ -3220,6 +3428,7 @@ export namespace Prisma {
    */
   export interface Prisma__MediaFileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    device<T extends DeviceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeviceDefaultArgs<ExtArgs>>): Prisma__DeviceClient<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3272,6 +3481,10 @@ export namespace Prisma {
      */
     select?: MediaFileSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
      * Filter, which MediaFile to fetch.
      */
     where: MediaFileWhereUniqueInput
@@ -3286,6 +3499,10 @@ export namespace Prisma {
      */
     select?: MediaFileSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
      * Filter, which MediaFile to fetch.
      */
     where: MediaFileWhereUniqueInput
@@ -3299,6 +3516,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaFile
      */
     select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
     /**
      * Filter, which MediaFile to fetch.
      */
@@ -3344,6 +3565,10 @@ export namespace Prisma {
      */
     select?: MediaFileSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
      * Filter, which MediaFile to fetch.
      */
     where?: MediaFileWhereInput
@@ -3388,6 +3613,10 @@ export namespace Prisma {
      */
     select?: MediaFileSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
      * Filter, which MediaFiles to fetch.
      */
     where?: MediaFileWhereInput
@@ -3427,6 +3656,10 @@ export namespace Prisma {
      */
     select?: MediaFileSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
      * The data needed to create a MediaFile.
      */
     data: XOR<MediaFileCreateInput, MediaFileUncheckedCreateInput>
@@ -3456,6 +3689,10 @@ export namespace Prisma {
      */
     data: MediaFileCreateManyInput | MediaFileCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3466,6 +3703,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaFile
      */
     select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
     /**
      * The data needed to update a MediaFile.
      */
@@ -3499,6 +3740,10 @@ export namespace Prisma {
      */
     select?: MediaFileSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
+    /**
      * The filter to search for the MediaFile to update in case it exists.
      */
     where: MediaFileWhereUniqueInput
@@ -3520,6 +3765,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaFile
      */
     select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
     /**
      * Filter which MediaFile to delete.
      */
@@ -3544,6 +3793,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaFile
      */
     select?: MediaFileSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaFileInclude<ExtArgs> | null
   }
 
 
@@ -3727,6 +3980,7 @@ export namespace Prisma {
     proof_data?: boolean
     created_at?: boolean
     completed_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3737,6 +3991,7 @@ export namespace Prisma {
     proof_data?: boolean
     created_at?: boolean
     completed_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["verification"]>
 
   export type VerificationSelectScalar = {
@@ -3749,10 +4004,18 @@ export namespace Prisma {
     completed_at?: boolean
   }
 
+  export type VerificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
+  export type VerificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
 
   export type $VerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Verification"
-    objects: {}
+    objects: {
+      device: Prisma.$DevicePayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       verification_id: string
       device_id: string
@@ -4125,6 +4388,7 @@ export namespace Prisma {
    */
   export interface Prisma__VerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    device<T extends DeviceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeviceDefaultArgs<ExtArgs>>): Prisma__DeviceClient<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4174,6 +4438,10 @@ export namespace Prisma {
      */
     select?: VerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    /**
      * Filter, which Verification to fetch.
      */
     where: VerificationWhereUniqueInput
@@ -4188,6 +4456,10 @@ export namespace Prisma {
      */
     select?: VerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    /**
      * Filter, which Verification to fetch.
      */
     where: VerificationWhereUniqueInput
@@ -4201,6 +4473,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Verification
      */
     select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
     /**
      * Filter, which Verification to fetch.
      */
@@ -4246,6 +4522,10 @@ export namespace Prisma {
      */
     select?: VerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    /**
      * Filter, which Verification to fetch.
      */
     where?: VerificationWhereInput
@@ -4290,6 +4570,10 @@ export namespace Prisma {
      */
     select?: VerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    /**
      * Filter, which Verifications to fetch.
      */
     where?: VerificationWhereInput
@@ -4329,6 +4613,10 @@ export namespace Prisma {
      */
     select?: VerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    /**
      * The data needed to create a Verification.
      */
     data: XOR<VerificationCreateInput, VerificationUncheckedCreateInput>
@@ -4358,6 +4646,10 @@ export namespace Prisma {
      */
     data: VerificationCreateManyInput | VerificationCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4368,6 +4660,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Verification
      */
     select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
     /**
      * The data needed to update a Verification.
      */
@@ -4401,6 +4697,10 @@ export namespace Prisma {
      */
     select?: VerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
+    /**
      * The filter to search for the Verification to update in case it exists.
      */
     where: VerificationWhereUniqueInput
@@ -4422,6 +4722,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Verification
      */
     select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
     /**
      * Filter which Verification to delete.
      */
@@ -4446,6 +4750,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Verification
      */
     select?: VerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VerificationInclude<ExtArgs> | null
   }
 
 
@@ -4669,6 +4977,7 @@ export namespace Prisma {
     error_message?: boolean
     created_at?: boolean
     updated_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["zKProofJob"]>
 
   export type ZKProofJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4684,6 +4993,7 @@ export namespace Prisma {
     error_message?: boolean
     created_at?: boolean
     updated_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["zKProofJob"]>
 
   export type ZKProofJobSelectScalar = {
@@ -4701,10 +5011,18 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type ZKProofJobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
+  export type ZKProofJobIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
 
   export type $ZKProofJobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ZKProofJob"
-    objects: {}
+    objects: {
+      device: Prisma.$DevicePayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       proof_id: string
       device_id: string
@@ -5082,6 +5400,7 @@ export namespace Prisma {
    */
   export interface Prisma__ZKProofJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    device<T extends DeviceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeviceDefaultArgs<ExtArgs>>): Prisma__DeviceClient<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5136,6 +5455,10 @@ export namespace Prisma {
      */
     select?: ZKProofJobSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    /**
      * Filter, which ZKProofJob to fetch.
      */
     where: ZKProofJobWhereUniqueInput
@@ -5150,6 +5473,10 @@ export namespace Prisma {
      */
     select?: ZKProofJobSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    /**
      * Filter, which ZKProofJob to fetch.
      */
     where: ZKProofJobWhereUniqueInput
@@ -5163,6 +5490,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ZKProofJob
      */
     select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
     /**
      * Filter, which ZKProofJob to fetch.
      */
@@ -5208,6 +5539,10 @@ export namespace Prisma {
      */
     select?: ZKProofJobSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    /**
      * Filter, which ZKProofJob to fetch.
      */
     where?: ZKProofJobWhereInput
@@ -5252,6 +5587,10 @@ export namespace Prisma {
      */
     select?: ZKProofJobSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    /**
      * Filter, which ZKProofJobs to fetch.
      */
     where?: ZKProofJobWhereInput
@@ -5291,6 +5630,10 @@ export namespace Prisma {
      */
     select?: ZKProofJobSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    /**
      * The data needed to create a ZKProofJob.
      */
     data: XOR<ZKProofJobCreateInput, ZKProofJobUncheckedCreateInput>
@@ -5320,6 +5663,10 @@ export namespace Prisma {
      */
     data: ZKProofJobCreateManyInput | ZKProofJobCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5330,6 +5677,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ZKProofJob
      */
     select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
     /**
      * The data needed to update a ZKProofJob.
      */
@@ -5363,6 +5714,10 @@ export namespace Prisma {
      */
     select?: ZKProofJobSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
+    /**
      * The filter to search for the ZKProofJob to update in case it exists.
      */
     where: ZKProofJobWhereUniqueInput
@@ -5384,6 +5739,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ZKProofJob
      */
     select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
     /**
      * Filter which ZKProofJob to delete.
      */
@@ -5408,6 +5767,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the ZKProofJob
      */
     select?: ZKProofJobSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZKProofJobInclude<ExtArgs> | null
   }
 
 
@@ -6594,6 +6957,7 @@ export namespace Prisma {
     solana_status?: boolean
     anchored_at?: boolean
     updated_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blockchainAnchor"]>
 
   export type BlockchainAnchorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6607,6 +6971,7 @@ export namespace Prisma {
     solana_status?: boolean
     anchored_at?: boolean
     updated_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blockchainAnchor"]>
 
   export type BlockchainAnchorSelectScalar = {
@@ -6622,10 +6987,18 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
+  export type BlockchainAnchorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
+  export type BlockchainAnchorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
 
   export type $BlockchainAnchorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "BlockchainAnchor"
-    objects: {}
+    objects: {
+      device: Prisma.$DevicePayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       anchor_id: string
       device_id: string
@@ -7001,6 +7374,7 @@ export namespace Prisma {
    */
   export interface Prisma__BlockchainAnchorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    device<T extends DeviceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeviceDefaultArgs<ExtArgs>>): Prisma__DeviceClient<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7053,6 +7427,10 @@ export namespace Prisma {
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    /**
      * Filter, which BlockchainAnchor to fetch.
      */
     where: BlockchainAnchorWhereUniqueInput
@@ -7067,6 +7445,10 @@ export namespace Prisma {
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    /**
      * Filter, which BlockchainAnchor to fetch.
      */
     where: BlockchainAnchorWhereUniqueInput
@@ -7080,6 +7462,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the BlockchainAnchor
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
     /**
      * Filter, which BlockchainAnchor to fetch.
      */
@@ -7125,6 +7511,10 @@ export namespace Prisma {
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    /**
      * Filter, which BlockchainAnchor to fetch.
      */
     where?: BlockchainAnchorWhereInput
@@ -7169,6 +7559,10 @@ export namespace Prisma {
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    /**
      * Filter, which BlockchainAnchors to fetch.
      */
     where?: BlockchainAnchorWhereInput
@@ -7208,6 +7602,10 @@ export namespace Prisma {
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    /**
      * The data needed to create a BlockchainAnchor.
      */
     data: XOR<BlockchainAnchorCreateInput, BlockchainAnchorUncheckedCreateInput>
@@ -7237,6 +7635,10 @@ export namespace Prisma {
      */
     data: BlockchainAnchorCreateManyInput | BlockchainAnchorCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7247,6 +7649,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the BlockchainAnchor
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
     /**
      * The data needed to update a BlockchainAnchor.
      */
@@ -7280,6 +7686,10 @@ export namespace Prisma {
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
+    /**
      * The filter to search for the BlockchainAnchor to update in case it exists.
      */
     where: BlockchainAnchorWhereUniqueInput
@@ -7301,6 +7711,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the BlockchainAnchor
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
     /**
      * Filter which BlockchainAnchor to delete.
      */
@@ -7325,6 +7739,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the BlockchainAnchor
      */
     select?: BlockchainAnchorSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainAnchorInclude<ExtArgs> | null
   }
 
 
@@ -7542,6 +7960,7 @@ export namespace Prisma {
     size?: boolean
     mime_type?: boolean
     uploaded_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["deviceMedia"]>
 
   export type DeviceMediaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7552,6 +7971,7 @@ export namespace Prisma {
     size?: boolean
     mime_type?: boolean
     uploaded_at?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["deviceMedia"]>
 
   export type DeviceMediaSelectScalar = {
@@ -7564,10 +7984,18 @@ export namespace Prisma {
     uploaded_at?: boolean
   }
 
+  export type DeviceMediaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
+  export type DeviceMediaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
 
   export type $DeviceMediaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "DeviceMedia"
-    objects: {}
+    objects: {
+      device: Prisma.$DevicePayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       device_id: string
@@ -7940,6 +8368,7 @@ export namespace Prisma {
    */
   export interface Prisma__DeviceMediaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    device<T extends DeviceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeviceDefaultArgs<ExtArgs>>): Prisma__DeviceClient<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7989,6 +8418,10 @@ export namespace Prisma {
      */
     select?: DeviceMediaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    /**
      * Filter, which DeviceMedia to fetch.
      */
     where: DeviceMediaWhereUniqueInput
@@ -8003,6 +8436,10 @@ export namespace Prisma {
      */
     select?: DeviceMediaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    /**
      * Filter, which DeviceMedia to fetch.
      */
     where: DeviceMediaWhereUniqueInput
@@ -8016,6 +8453,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the DeviceMedia
      */
     select?: DeviceMediaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
     /**
      * Filter, which DeviceMedia to fetch.
      */
@@ -8061,6 +8502,10 @@ export namespace Prisma {
      */
     select?: DeviceMediaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    /**
      * Filter, which DeviceMedia to fetch.
      */
     where?: DeviceMediaWhereInput
@@ -8105,6 +8550,10 @@ export namespace Prisma {
      */
     select?: DeviceMediaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    /**
      * Filter, which DeviceMedias to fetch.
      */
     where?: DeviceMediaWhereInput
@@ -8144,6 +8593,10 @@ export namespace Prisma {
      */
     select?: DeviceMediaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    /**
      * The data needed to create a DeviceMedia.
      */
     data: XOR<DeviceMediaCreateInput, DeviceMediaUncheckedCreateInput>
@@ -8173,6 +8626,10 @@ export namespace Prisma {
      */
     data: DeviceMediaCreateManyInput | DeviceMediaCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8183,6 +8640,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the DeviceMedia
      */
     select?: DeviceMediaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
     /**
      * The data needed to update a DeviceMedia.
      */
@@ -8216,6 +8677,10 @@ export namespace Prisma {
      */
     select?: DeviceMediaSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
+    /**
      * The filter to search for the DeviceMedia to update in case it exists.
      */
     where: DeviceMediaWhereUniqueInput
@@ -8237,6 +8702,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the DeviceMedia
      */
     select?: DeviceMediaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
     /**
      * Filter which DeviceMedia to delete.
      */
@@ -8261,6 +8730,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the DeviceMedia
      */
     select?: DeviceMediaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DeviceMediaInclude<ExtArgs> | null
   }
 
 
@@ -8432,6 +8905,7 @@ export namespace Prisma {
     signature?: boolean
     verified_at?: boolean
     metadata?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mediaVerification"]>
 
   export type MediaVerificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8441,6 +8915,7 @@ export namespace Prisma {
     signature?: boolean
     verified_at?: boolean
     metadata?: boolean
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["mediaVerification"]>
 
   export type MediaVerificationSelectScalar = {
@@ -8452,10 +8927,18 @@ export namespace Prisma {
     metadata?: boolean
   }
 
+  export type MediaVerificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
+  export type MediaVerificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    device?: boolean | DeviceDefaultArgs<ExtArgs>
+  }
 
   export type $MediaVerificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "MediaVerification"
-    objects: {}
+    objects: {
+      device: Prisma.$DevicePayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       device_id: string
@@ -8827,6 +9310,7 @@ export namespace Prisma {
    */
   export interface Prisma__MediaVerificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    device<T extends DeviceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeviceDefaultArgs<ExtArgs>>): Prisma__DeviceClient<$Result.GetResult<Prisma.$DevicePayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8875,6 +9359,10 @@ export namespace Prisma {
      */
     select?: MediaVerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    /**
      * Filter, which MediaVerification to fetch.
      */
     where: MediaVerificationWhereUniqueInput
@@ -8889,6 +9377,10 @@ export namespace Prisma {
      */
     select?: MediaVerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    /**
      * Filter, which MediaVerification to fetch.
      */
     where: MediaVerificationWhereUniqueInput
@@ -8902,6 +9394,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaVerification
      */
     select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
     /**
      * Filter, which MediaVerification to fetch.
      */
@@ -8947,6 +9443,10 @@ export namespace Prisma {
      */
     select?: MediaVerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    /**
      * Filter, which MediaVerification to fetch.
      */
     where?: MediaVerificationWhereInput
@@ -8991,6 +9491,10 @@ export namespace Prisma {
      */
     select?: MediaVerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    /**
      * Filter, which MediaVerifications to fetch.
      */
     where?: MediaVerificationWhereInput
@@ -9030,6 +9534,10 @@ export namespace Prisma {
      */
     select?: MediaVerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    /**
      * The data needed to create a MediaVerification.
      */
     data: XOR<MediaVerificationCreateInput, MediaVerificationUncheckedCreateInput>
@@ -9059,6 +9567,10 @@ export namespace Prisma {
      */
     data: MediaVerificationCreateManyInput | MediaVerificationCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -9069,6 +9581,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaVerification
      */
     select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
     /**
      * The data needed to update a MediaVerification.
      */
@@ -9102,6 +9618,10 @@ export namespace Prisma {
      */
     select?: MediaVerificationSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
+    /**
      * The filter to search for the MediaVerification to update in case it exists.
      */
     where: MediaVerificationWhereUniqueInput
@@ -9123,6 +9643,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaVerification
      */
     select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
     /**
      * Filter which MediaVerification to delete.
      */
@@ -9147,6 +9671,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the MediaVerification
      */
     select?: MediaVerificationSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MediaVerificationInclude<ExtArgs> | null
   }
 
 
@@ -9458,6 +9986,12 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Device"> | Date | string
     last_activity_at?: DateTimeNullableFilter<"Device"> | Date | string | null
     usage_meters?: UsageMeterListRelationFilter
+    media_files?: MediaFileListRelationFilter
+    verifications?: VerificationListRelationFilter
+    zk_proof_jobs?: ZKProofJobListRelationFilter
+    blockchain_anchors?: BlockchainAnchorListRelationFilter
+    device_media?: DeviceMediaListRelationFilter
+    media_verifications?: MediaVerificationListRelationFilter
   }
 
   export type DeviceOrderByWithRelationInput = {
@@ -9480,6 +10014,12 @@ export namespace Prisma {
     updated_at?: SortOrder
     last_activity_at?: SortOrderInput | SortOrder
     usage_meters?: UsageMeterOrderByRelationAggregateInput
+    media_files?: MediaFileOrderByRelationAggregateInput
+    verifications?: VerificationOrderByRelationAggregateInput
+    zk_proof_jobs?: ZKProofJobOrderByRelationAggregateInput
+    blockchain_anchors?: BlockchainAnchorOrderByRelationAggregateInput
+    device_media?: DeviceMediaOrderByRelationAggregateInput
+    media_verifications?: MediaVerificationOrderByRelationAggregateInput
   }
 
   export type DeviceWhereUniqueInput = Prisma.AtLeast<{
@@ -9505,6 +10045,12 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Device"> | Date | string
     last_activity_at?: DateTimeNullableFilter<"Device"> | Date | string | null
     usage_meters?: UsageMeterListRelationFilter
+    media_files?: MediaFileListRelationFilter
+    verifications?: VerificationListRelationFilter
+    zk_proof_jobs?: ZKProofJobListRelationFilter
+    blockchain_anchors?: BlockchainAnchorListRelationFilter
+    device_media?: DeviceMediaListRelationFilter
+    media_verifications?: MediaVerificationListRelationFilter
   }, "device_id" | "tpm_serial">
 
   export type DeviceOrderByWithAggregationInput = {
@@ -9569,6 +10115,7 @@ export namespace Prisma {
     storage_path?: StringNullableFilter<"MediaFile"> | string | null
     signature_verified?: BoolFilter<"MediaFile"> | boolean
     uploaded_at?: DateTimeFilter<"MediaFile"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }
 
   export type MediaFileOrderByWithRelationInput = {
@@ -9582,6 +10129,7 @@ export namespace Prisma {
     storage_path?: SortOrderInput | SortOrder
     signature_verified?: SortOrder
     uploaded_at?: SortOrder
+    device?: DeviceOrderByWithRelationInput
   }
 
   export type MediaFileWhereUniqueInput = Prisma.AtLeast<{
@@ -9598,6 +10146,7 @@ export namespace Prisma {
     storage_path?: StringNullableFilter<"MediaFile"> | string | null
     signature_verified?: BoolFilter<"MediaFile"> | boolean
     uploaded_at?: DateTimeFilter<"MediaFile"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }, "media_id" | "file_hash">
 
   export type MediaFileOrderByWithAggregationInput = {
@@ -9645,6 +10194,7 @@ export namespace Prisma {
     proof_data?: StringNullableFilter<"Verification"> | string | null
     created_at?: DateTimeFilter<"Verification"> | Date | string
     completed_at?: DateTimeNullableFilter<"Verification"> | Date | string | null
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }
 
   export type VerificationOrderByWithRelationInput = {
@@ -9655,6 +10205,7 @@ export namespace Prisma {
     proof_data?: SortOrderInput | SortOrder
     created_at?: SortOrder
     completed_at?: SortOrderInput | SortOrder
+    device?: DeviceOrderByWithRelationInput
   }
 
   export type VerificationWhereUniqueInput = Prisma.AtLeast<{
@@ -9668,6 +10219,7 @@ export namespace Prisma {
     proof_data?: StringNullableFilter<"Verification"> | string | null
     created_at?: DateTimeFilter<"Verification"> | Date | string
     completed_at?: DateTimeNullableFilter<"Verification"> | Date | string | null
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }, "verification_id">
 
   export type VerificationOrderByWithAggregationInput = {
@@ -9712,6 +10264,7 @@ export namespace Prisma {
     error_message?: StringNullableFilter<"ZKProofJob"> | string | null
     created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
     updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }
 
   export type ZKProofJobOrderByWithRelationInput = {
@@ -9727,6 +10280,7 @@ export namespace Prisma {
     error_message?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    device?: DeviceOrderByWithRelationInput
   }
 
   export type ZKProofJobWhereUniqueInput = Prisma.AtLeast<{
@@ -9745,6 +10299,7 @@ export namespace Prisma {
     error_message?: StringNullableFilter<"ZKProofJob"> | string | null
     created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
     updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }, "proof_id">
 
   export type ZKProofJobOrderByWithAggregationInput = {
@@ -9860,6 +10415,7 @@ export namespace Prisma {
     solana_status?: StringNullableFilter<"BlockchainAnchor"> | string | null
     anchored_at?: DateTimeFilter<"BlockchainAnchor"> | Date | string
     updated_at?: DateTimeFilter<"BlockchainAnchor"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }
 
   export type BlockchainAnchorOrderByWithRelationInput = {
@@ -9873,6 +10429,7 @@ export namespace Prisma {
     solana_status?: SortOrderInput | SortOrder
     anchored_at?: SortOrder
     updated_at?: SortOrder
+    device?: DeviceOrderByWithRelationInput
   }
 
   export type BlockchainAnchorWhereUniqueInput = Prisma.AtLeast<{
@@ -9889,6 +10446,7 @@ export namespace Prisma {
     solana_status?: StringNullableFilter<"BlockchainAnchor"> | string | null
     anchored_at?: DateTimeFilter<"BlockchainAnchor"> | Date | string
     updated_at?: DateTimeFilter<"BlockchainAnchor"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }, "anchor_id">
 
   export type BlockchainAnchorOrderByWithAggregationInput = {
@@ -9934,6 +10492,7 @@ export namespace Prisma {
     size?: BigIntFilter<"DeviceMedia"> | bigint | number
     mime_type?: StringFilter<"DeviceMedia"> | string
     uploaded_at?: DateTimeFilter<"DeviceMedia"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }
 
   export type DeviceMediaOrderByWithRelationInput = {
@@ -9944,6 +10503,7 @@ export namespace Prisma {
     size?: SortOrder
     mime_type?: SortOrder
     uploaded_at?: SortOrder
+    device?: DeviceOrderByWithRelationInput
   }
 
   export type DeviceMediaWhereUniqueInput = Prisma.AtLeast<{
@@ -9957,6 +10517,7 @@ export namespace Prisma {
     size?: BigIntFilter<"DeviceMedia"> | bigint | number
     mime_type?: StringFilter<"DeviceMedia"> | string
     uploaded_at?: DateTimeFilter<"DeviceMedia"> | Date | string
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }, "id">
 
   export type DeviceMediaOrderByWithAggregationInput = {
@@ -9997,6 +10558,7 @@ export namespace Prisma {
     signature?: StringFilter<"MediaVerification"> | string
     verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
     metadata?: JsonNullableFilter<"MediaVerification">
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }
 
   export type MediaVerificationOrderByWithRelationInput = {
@@ -10006,6 +10568,7 @@ export namespace Prisma {
     signature?: SortOrder
     verified_at?: SortOrder
     metadata?: SortOrderInput | SortOrder
+    device?: DeviceOrderByWithRelationInput
   }
 
   export type MediaVerificationWhereUniqueInput = Prisma.AtLeast<{
@@ -10018,6 +10581,7 @@ export namespace Prisma {
     signature?: StringFilter<"MediaVerification"> | string
     verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
     metadata?: JsonNullableFilter<"MediaVerification">
+    device?: XOR<DeviceRelationFilter, DeviceWhereInput>
   }, "id" | "media_hash">
 
   export type MediaVerificationOrderByWithAggregationInput = {
@@ -10064,6 +10628,12 @@ export namespace Prisma {
     updated_at?: Date | string
     last_activity_at?: Date | string | null
     usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
   }
 
   export type DeviceUncheckedCreateInput = {
@@ -10086,6 +10656,12 @@ export namespace Prisma {
     updated_at?: Date | string
     last_activity_at?: Date | string | null
     usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
   }
 
   export type DeviceUpdateInput = {
@@ -10108,6 +10684,12 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
   }
 
   export type DeviceUncheckedUpdateInput = {
@@ -10130,6 +10712,12 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
   }
 
   export type DeviceCreateManyInput = {
@@ -10197,7 +10785,6 @@ export namespace Prisma {
 
   export type MediaFileCreateInput = {
     media_id: string
-    device_id: string
     media_type: string
     file_name: string
     file_hash: string
@@ -10206,6 +10793,7 @@ export namespace Prisma {
     storage_path?: string | null
     signature_verified?: boolean
     uploaded_at?: Date | string
+    device: DeviceCreateNestedOneWithoutMedia_filesInput
   }
 
   export type MediaFileUncheckedCreateInput = {
@@ -10223,7 +10811,6 @@ export namespace Prisma {
 
   export type MediaFileUpdateInput = {
     media_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_type?: StringFieldUpdateOperationsInput | string
     file_name?: StringFieldUpdateOperationsInput | string
     file_hash?: StringFieldUpdateOperationsInput | string
@@ -10232,6 +10819,7 @@ export namespace Prisma {
     storage_path?: NullableStringFieldUpdateOperationsInput | string | null
     signature_verified?: BoolFieldUpdateOperationsInput | boolean
     uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    device?: DeviceUpdateOneRequiredWithoutMedia_filesNestedInput
   }
 
   export type MediaFileUncheckedUpdateInput = {
@@ -10262,7 +10850,6 @@ export namespace Prisma {
 
   export type MediaFileUpdateManyMutationInput = {
     media_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_type?: StringFieldUpdateOperationsInput | string
     file_name?: StringFieldUpdateOperationsInput | string
     file_hash?: StringFieldUpdateOperationsInput | string
@@ -10288,12 +10875,12 @@ export namespace Prisma {
 
   export type VerificationCreateInput = {
     verification_id: string
-    device_id: string
     media_id?: string | null
     status: string
     proof_data?: string | null
     created_at?: Date | string
     completed_at?: Date | string | null
+    device: DeviceCreateNestedOneWithoutVerificationsInput
   }
 
   export type VerificationUncheckedCreateInput = {
@@ -10308,12 +10895,12 @@ export namespace Prisma {
 
   export type VerificationUpdateInput = {
     verification_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_id?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     proof_data?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    device?: DeviceUpdateOneRequiredWithoutVerificationsNestedInput
   }
 
   export type VerificationUncheckedUpdateInput = {
@@ -10338,7 +10925,6 @@ export namespace Prisma {
 
   export type VerificationUpdateManyMutationInput = {
     verification_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_id?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     proof_data?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10358,7 +10944,6 @@ export namespace Prisma {
 
   export type ZKProofJobCreateInput = {
     proof_id: string
-    device_id: string
     media_hash?: string | null
     proof_type: string
     attestation_data?: string | null
@@ -10369,6 +10954,7 @@ export namespace Prisma {
     error_message?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    device: DeviceCreateNestedOneWithoutZk_proof_jobsInput
   }
 
   export type ZKProofJobUncheckedCreateInput = {
@@ -10388,7 +10974,6 @@ export namespace Prisma {
 
   export type ZKProofJobUpdateInput = {
     proof_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_hash?: NullableStringFieldUpdateOperationsInput | string | null
     proof_type?: StringFieldUpdateOperationsInput | string
     attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10399,6 +10984,7 @@ export namespace Prisma {
     error_message?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    device?: DeviceUpdateOneRequiredWithoutZk_proof_jobsNestedInput
   }
 
   export type ZKProofJobUncheckedUpdateInput = {
@@ -10433,7 +11019,6 @@ export namespace Prisma {
 
   export type ZKProofJobUpdateManyMutationInput = {
     proof_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_hash?: NullableStringFieldUpdateOperationsInput | string | null
     proof_type?: StringFieldUpdateOperationsInput | string
     attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10525,7 +11110,6 @@ export namespace Prisma {
 
   export type BlockchainAnchorCreateInput = {
     anchor_id: string
-    device_id: string
     proof_id: string
     proof_hash: string
     arweave_tx_id?: string | null
@@ -10534,6 +11118,7 @@ export namespace Prisma {
     solana_status?: string | null
     anchored_at?: Date | string
     updated_at?: Date | string
+    device: DeviceCreateNestedOneWithoutBlockchain_anchorsInput
   }
 
   export type BlockchainAnchorUncheckedCreateInput = {
@@ -10551,7 +11136,6 @@ export namespace Prisma {
 
   export type BlockchainAnchorUpdateInput = {
     anchor_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     proof_id?: StringFieldUpdateOperationsInput | string
     proof_hash?: StringFieldUpdateOperationsInput | string
     arweave_tx_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10560,6 +11144,7 @@ export namespace Prisma {
     solana_status?: NullableStringFieldUpdateOperationsInput | string | null
     anchored_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    device?: DeviceUpdateOneRequiredWithoutBlockchain_anchorsNestedInput
   }
 
   export type BlockchainAnchorUncheckedUpdateInput = {
@@ -10590,7 +11175,6 @@ export namespace Prisma {
 
   export type BlockchainAnchorUpdateManyMutationInput = {
     anchor_id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     proof_id?: StringFieldUpdateOperationsInput | string
     proof_hash?: StringFieldUpdateOperationsInput | string
     arweave_tx_id?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10616,12 +11200,12 @@ export namespace Prisma {
 
   export type DeviceMediaCreateInput = {
     id?: string
-    device_id: string
     file_path: string
     hash: string
     size: bigint | number
     mime_type: string
     uploaded_at?: Date | string
+    device: DeviceCreateNestedOneWithoutDevice_mediaInput
   }
 
   export type DeviceMediaUncheckedCreateInput = {
@@ -10636,12 +11220,12 @@ export namespace Prisma {
 
   export type DeviceMediaUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     file_path?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     size?: BigIntFieldUpdateOperationsInput | bigint | number
     mime_type?: StringFieldUpdateOperationsInput | string
     uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    device?: DeviceUpdateOneRequiredWithoutDevice_mediaNestedInput
   }
 
   export type DeviceMediaUncheckedUpdateInput = {
@@ -10666,7 +11250,6 @@ export namespace Prisma {
 
   export type DeviceMediaUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     file_path?: StringFieldUpdateOperationsInput | string
     hash?: StringFieldUpdateOperationsInput | string
     size?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -10686,11 +11269,11 @@ export namespace Prisma {
 
   export type MediaVerificationCreateInput = {
     id?: string
-    device_id: string
     media_hash: string
     signature: string
     verified_at?: Date | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    device: DeviceCreateNestedOneWithoutMedia_verificationsInput
   }
 
   export type MediaVerificationUncheckedCreateInput = {
@@ -10704,11 +11287,11 @@ export namespace Prisma {
 
   export type MediaVerificationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_hash?: StringFieldUpdateOperationsInput | string
     signature?: StringFieldUpdateOperationsInput | string
     verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
+    device?: DeviceUpdateOneRequiredWithoutMedia_verificationsNestedInput
   }
 
   export type MediaVerificationUncheckedUpdateInput = {
@@ -10731,7 +11314,6 @@ export namespace Prisma {
 
   export type MediaVerificationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    device_id?: StringFieldUpdateOperationsInput | string
     media_hash?: StringFieldUpdateOperationsInput | string
     signature?: StringFieldUpdateOperationsInput | string
     verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10827,12 +11409,72 @@ export namespace Prisma {
     none?: UsageMeterWhereInput
   }
 
+  export type MediaFileListRelationFilter = {
+    every?: MediaFileWhereInput
+    some?: MediaFileWhereInput
+    none?: MediaFileWhereInput
+  }
+
+  export type VerificationListRelationFilter = {
+    every?: VerificationWhereInput
+    some?: VerificationWhereInput
+    none?: VerificationWhereInput
+  }
+
+  export type ZKProofJobListRelationFilter = {
+    every?: ZKProofJobWhereInput
+    some?: ZKProofJobWhereInput
+    none?: ZKProofJobWhereInput
+  }
+
+  export type BlockchainAnchorListRelationFilter = {
+    every?: BlockchainAnchorWhereInput
+    some?: BlockchainAnchorWhereInput
+    none?: BlockchainAnchorWhereInput
+  }
+
+  export type DeviceMediaListRelationFilter = {
+    every?: DeviceMediaWhereInput
+    some?: DeviceMediaWhereInput
+    none?: DeviceMediaWhereInput
+  }
+
+  export type MediaVerificationListRelationFilter = {
+    every?: MediaVerificationWhereInput
+    some?: MediaVerificationWhereInput
+    none?: MediaVerificationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type UsageMeterOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MediaFileOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VerificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ZKProofJobOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BlockchainAnchorOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DeviceMediaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MediaVerificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11002,6 +11644,11 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DeviceRelationFilter = {
+    is?: DeviceWhereInput
+    isNot?: DeviceWhereInput
+  }
+
   export type MediaFileCountOrderByAggregateInput = {
     media_id?: SortOrder
     device_id?: SortOrder
@@ -11165,11 +11812,6 @@ export namespace Prisma {
     _max?: NestedBytesNullableFilter<$PrismaModel>
   }
 
-  export type DeviceRelationFilter = {
-    is?: DeviceWhereInput
-    isNot?: DeviceWhereInput
-  }
-
   export type UsageMeterDevice_idMetricPeriod_startCompoundUniqueInput = {
     device_id: string
     metric: string
@@ -11320,11 +11962,95 @@ export namespace Prisma {
     connect?: UsageMeterWhereUniqueInput | UsageMeterWhereUniqueInput[]
   }
 
+  export type MediaFileCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<MediaFileCreateWithoutDeviceInput, MediaFileUncheckedCreateWithoutDeviceInput> | MediaFileCreateWithoutDeviceInput[] | MediaFileUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutDeviceInput | MediaFileCreateOrConnectWithoutDeviceInput[]
+    createMany?: MediaFileCreateManyDeviceInputEnvelope
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+  }
+
+  export type VerificationCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<VerificationCreateWithoutDeviceInput, VerificationUncheckedCreateWithoutDeviceInput> | VerificationCreateWithoutDeviceInput[] | VerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: VerificationCreateOrConnectWithoutDeviceInput | VerificationCreateOrConnectWithoutDeviceInput[]
+    createMany?: VerificationCreateManyDeviceInputEnvelope
+    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+  }
+
+  export type ZKProofJobCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<ZKProofJobCreateWithoutDeviceInput, ZKProofJobUncheckedCreateWithoutDeviceInput> | ZKProofJobCreateWithoutDeviceInput[] | ZKProofJobUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: ZKProofJobCreateOrConnectWithoutDeviceInput | ZKProofJobCreateOrConnectWithoutDeviceInput[]
+    createMany?: ZKProofJobCreateManyDeviceInputEnvelope
+    connect?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+  }
+
+  export type BlockchainAnchorCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<BlockchainAnchorCreateWithoutDeviceInput, BlockchainAnchorUncheckedCreateWithoutDeviceInput> | BlockchainAnchorCreateWithoutDeviceInput[] | BlockchainAnchorUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: BlockchainAnchorCreateOrConnectWithoutDeviceInput | BlockchainAnchorCreateOrConnectWithoutDeviceInput[]
+    createMany?: BlockchainAnchorCreateManyDeviceInputEnvelope
+    connect?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+  }
+
+  export type DeviceMediaCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<DeviceMediaCreateWithoutDeviceInput, DeviceMediaUncheckedCreateWithoutDeviceInput> | DeviceMediaCreateWithoutDeviceInput[] | DeviceMediaUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: DeviceMediaCreateOrConnectWithoutDeviceInput | DeviceMediaCreateOrConnectWithoutDeviceInput[]
+    createMany?: DeviceMediaCreateManyDeviceInputEnvelope
+    connect?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+  }
+
+  export type MediaVerificationCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<MediaVerificationCreateWithoutDeviceInput, MediaVerificationUncheckedCreateWithoutDeviceInput> | MediaVerificationCreateWithoutDeviceInput[] | MediaVerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaVerificationCreateOrConnectWithoutDeviceInput | MediaVerificationCreateOrConnectWithoutDeviceInput[]
+    createMany?: MediaVerificationCreateManyDeviceInputEnvelope
+    connect?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+  }
+
   export type UsageMeterUncheckedCreateNestedManyWithoutDeviceInput = {
     create?: XOR<UsageMeterCreateWithoutDeviceInput, UsageMeterUncheckedCreateWithoutDeviceInput> | UsageMeterCreateWithoutDeviceInput[] | UsageMeterUncheckedCreateWithoutDeviceInput[]
     connectOrCreate?: UsageMeterCreateOrConnectWithoutDeviceInput | UsageMeterCreateOrConnectWithoutDeviceInput[]
     createMany?: UsageMeterCreateManyDeviceInputEnvelope
     connect?: UsageMeterWhereUniqueInput | UsageMeterWhereUniqueInput[]
+  }
+
+  export type MediaFileUncheckedCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<MediaFileCreateWithoutDeviceInput, MediaFileUncheckedCreateWithoutDeviceInput> | MediaFileCreateWithoutDeviceInput[] | MediaFileUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutDeviceInput | MediaFileCreateOrConnectWithoutDeviceInput[]
+    createMany?: MediaFileCreateManyDeviceInputEnvelope
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+  }
+
+  export type VerificationUncheckedCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<VerificationCreateWithoutDeviceInput, VerificationUncheckedCreateWithoutDeviceInput> | VerificationCreateWithoutDeviceInput[] | VerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: VerificationCreateOrConnectWithoutDeviceInput | VerificationCreateOrConnectWithoutDeviceInput[]
+    createMany?: VerificationCreateManyDeviceInputEnvelope
+    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+  }
+
+  export type ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<ZKProofJobCreateWithoutDeviceInput, ZKProofJobUncheckedCreateWithoutDeviceInput> | ZKProofJobCreateWithoutDeviceInput[] | ZKProofJobUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: ZKProofJobCreateOrConnectWithoutDeviceInput | ZKProofJobCreateOrConnectWithoutDeviceInput[]
+    createMany?: ZKProofJobCreateManyDeviceInputEnvelope
+    connect?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+  }
+
+  export type BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<BlockchainAnchorCreateWithoutDeviceInput, BlockchainAnchorUncheckedCreateWithoutDeviceInput> | BlockchainAnchorCreateWithoutDeviceInput[] | BlockchainAnchorUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: BlockchainAnchorCreateOrConnectWithoutDeviceInput | BlockchainAnchorCreateOrConnectWithoutDeviceInput[]
+    createMany?: BlockchainAnchorCreateManyDeviceInputEnvelope
+    connect?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+  }
+
+  export type DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<DeviceMediaCreateWithoutDeviceInput, DeviceMediaUncheckedCreateWithoutDeviceInput> | DeviceMediaCreateWithoutDeviceInput[] | DeviceMediaUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: DeviceMediaCreateOrConnectWithoutDeviceInput | DeviceMediaCreateOrConnectWithoutDeviceInput[]
+    createMany?: DeviceMediaCreateManyDeviceInputEnvelope
+    connect?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+  }
+
+  export type MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput = {
+    create?: XOR<MediaVerificationCreateWithoutDeviceInput, MediaVerificationUncheckedCreateWithoutDeviceInput> | MediaVerificationCreateWithoutDeviceInput[] | MediaVerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaVerificationCreateOrConnectWithoutDeviceInput | MediaVerificationCreateOrConnectWithoutDeviceInput[]
+    createMany?: MediaVerificationCreateManyDeviceInputEnvelope
+    connect?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11357,6 +12083,90 @@ export namespace Prisma {
     deleteMany?: UsageMeterScalarWhereInput | UsageMeterScalarWhereInput[]
   }
 
+  export type MediaFileUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<MediaFileCreateWithoutDeviceInput, MediaFileUncheckedCreateWithoutDeviceInput> | MediaFileCreateWithoutDeviceInput[] | MediaFileUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutDeviceInput | MediaFileCreateOrConnectWithoutDeviceInput[]
+    upsert?: MediaFileUpsertWithWhereUniqueWithoutDeviceInput | MediaFileUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: MediaFileCreateManyDeviceInputEnvelope
+    set?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    disconnect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    delete?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    update?: MediaFileUpdateWithWhereUniqueWithoutDeviceInput | MediaFileUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: MediaFileUpdateManyWithWhereWithoutDeviceInput | MediaFileUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+  }
+
+  export type VerificationUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<VerificationCreateWithoutDeviceInput, VerificationUncheckedCreateWithoutDeviceInput> | VerificationCreateWithoutDeviceInput[] | VerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: VerificationCreateOrConnectWithoutDeviceInput | VerificationCreateOrConnectWithoutDeviceInput[]
+    upsert?: VerificationUpsertWithWhereUniqueWithoutDeviceInput | VerificationUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: VerificationCreateManyDeviceInputEnvelope
+    set?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    disconnect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    delete?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    update?: VerificationUpdateWithWhereUniqueWithoutDeviceInput | VerificationUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: VerificationUpdateManyWithWhereWithoutDeviceInput | VerificationUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
+  }
+
+  export type ZKProofJobUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<ZKProofJobCreateWithoutDeviceInput, ZKProofJobUncheckedCreateWithoutDeviceInput> | ZKProofJobCreateWithoutDeviceInput[] | ZKProofJobUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: ZKProofJobCreateOrConnectWithoutDeviceInput | ZKProofJobCreateOrConnectWithoutDeviceInput[]
+    upsert?: ZKProofJobUpsertWithWhereUniqueWithoutDeviceInput | ZKProofJobUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: ZKProofJobCreateManyDeviceInputEnvelope
+    set?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    disconnect?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    delete?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    connect?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    update?: ZKProofJobUpdateWithWhereUniqueWithoutDeviceInput | ZKProofJobUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: ZKProofJobUpdateManyWithWhereWithoutDeviceInput | ZKProofJobUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: ZKProofJobScalarWhereInput | ZKProofJobScalarWhereInput[]
+  }
+
+  export type BlockchainAnchorUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<BlockchainAnchorCreateWithoutDeviceInput, BlockchainAnchorUncheckedCreateWithoutDeviceInput> | BlockchainAnchorCreateWithoutDeviceInput[] | BlockchainAnchorUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: BlockchainAnchorCreateOrConnectWithoutDeviceInput | BlockchainAnchorCreateOrConnectWithoutDeviceInput[]
+    upsert?: BlockchainAnchorUpsertWithWhereUniqueWithoutDeviceInput | BlockchainAnchorUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: BlockchainAnchorCreateManyDeviceInputEnvelope
+    set?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    disconnect?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    delete?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    connect?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    update?: BlockchainAnchorUpdateWithWhereUniqueWithoutDeviceInput | BlockchainAnchorUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: BlockchainAnchorUpdateManyWithWhereWithoutDeviceInput | BlockchainAnchorUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: BlockchainAnchorScalarWhereInput | BlockchainAnchorScalarWhereInput[]
+  }
+
+  export type DeviceMediaUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<DeviceMediaCreateWithoutDeviceInput, DeviceMediaUncheckedCreateWithoutDeviceInput> | DeviceMediaCreateWithoutDeviceInput[] | DeviceMediaUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: DeviceMediaCreateOrConnectWithoutDeviceInput | DeviceMediaCreateOrConnectWithoutDeviceInput[]
+    upsert?: DeviceMediaUpsertWithWhereUniqueWithoutDeviceInput | DeviceMediaUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: DeviceMediaCreateManyDeviceInputEnvelope
+    set?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    disconnect?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    delete?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    connect?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    update?: DeviceMediaUpdateWithWhereUniqueWithoutDeviceInput | DeviceMediaUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: DeviceMediaUpdateManyWithWhereWithoutDeviceInput | DeviceMediaUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: DeviceMediaScalarWhereInput | DeviceMediaScalarWhereInput[]
+  }
+
+  export type MediaVerificationUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<MediaVerificationCreateWithoutDeviceInput, MediaVerificationUncheckedCreateWithoutDeviceInput> | MediaVerificationCreateWithoutDeviceInput[] | MediaVerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaVerificationCreateOrConnectWithoutDeviceInput | MediaVerificationCreateOrConnectWithoutDeviceInput[]
+    upsert?: MediaVerificationUpsertWithWhereUniqueWithoutDeviceInput | MediaVerificationUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: MediaVerificationCreateManyDeviceInputEnvelope
+    set?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    disconnect?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    delete?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    connect?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    update?: MediaVerificationUpdateWithWhereUniqueWithoutDeviceInput | MediaVerificationUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: MediaVerificationUpdateManyWithWhereWithoutDeviceInput | MediaVerificationUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: MediaVerificationScalarWhereInput | MediaVerificationScalarWhereInput[]
+  }
+
   export type UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput = {
     create?: XOR<UsageMeterCreateWithoutDeviceInput, UsageMeterUncheckedCreateWithoutDeviceInput> | UsageMeterCreateWithoutDeviceInput[] | UsageMeterUncheckedCreateWithoutDeviceInput[]
     connectOrCreate?: UsageMeterCreateOrConnectWithoutDeviceInput | UsageMeterCreateOrConnectWithoutDeviceInput[]
@@ -11371,6 +12181,96 @@ export namespace Prisma {
     deleteMany?: UsageMeterScalarWhereInput | UsageMeterScalarWhereInput[]
   }
 
+  export type MediaFileUncheckedUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<MediaFileCreateWithoutDeviceInput, MediaFileUncheckedCreateWithoutDeviceInput> | MediaFileCreateWithoutDeviceInput[] | MediaFileUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaFileCreateOrConnectWithoutDeviceInput | MediaFileCreateOrConnectWithoutDeviceInput[]
+    upsert?: MediaFileUpsertWithWhereUniqueWithoutDeviceInput | MediaFileUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: MediaFileCreateManyDeviceInputEnvelope
+    set?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    disconnect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    delete?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    connect?: MediaFileWhereUniqueInput | MediaFileWhereUniqueInput[]
+    update?: MediaFileUpdateWithWhereUniqueWithoutDeviceInput | MediaFileUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: MediaFileUpdateManyWithWhereWithoutDeviceInput | MediaFileUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+  }
+
+  export type VerificationUncheckedUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<VerificationCreateWithoutDeviceInput, VerificationUncheckedCreateWithoutDeviceInput> | VerificationCreateWithoutDeviceInput[] | VerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: VerificationCreateOrConnectWithoutDeviceInput | VerificationCreateOrConnectWithoutDeviceInput[]
+    upsert?: VerificationUpsertWithWhereUniqueWithoutDeviceInput | VerificationUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: VerificationCreateManyDeviceInputEnvelope
+    set?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    disconnect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    delete?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    connect?: VerificationWhereUniqueInput | VerificationWhereUniqueInput[]
+    update?: VerificationUpdateWithWhereUniqueWithoutDeviceInput | VerificationUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: VerificationUpdateManyWithWhereWithoutDeviceInput | VerificationUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
+  }
+
+  export type ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<ZKProofJobCreateWithoutDeviceInput, ZKProofJobUncheckedCreateWithoutDeviceInput> | ZKProofJobCreateWithoutDeviceInput[] | ZKProofJobUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: ZKProofJobCreateOrConnectWithoutDeviceInput | ZKProofJobCreateOrConnectWithoutDeviceInput[]
+    upsert?: ZKProofJobUpsertWithWhereUniqueWithoutDeviceInput | ZKProofJobUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: ZKProofJobCreateManyDeviceInputEnvelope
+    set?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    disconnect?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    delete?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    connect?: ZKProofJobWhereUniqueInput | ZKProofJobWhereUniqueInput[]
+    update?: ZKProofJobUpdateWithWhereUniqueWithoutDeviceInput | ZKProofJobUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: ZKProofJobUpdateManyWithWhereWithoutDeviceInput | ZKProofJobUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: ZKProofJobScalarWhereInput | ZKProofJobScalarWhereInput[]
+  }
+
+  export type BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<BlockchainAnchorCreateWithoutDeviceInput, BlockchainAnchorUncheckedCreateWithoutDeviceInput> | BlockchainAnchorCreateWithoutDeviceInput[] | BlockchainAnchorUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: BlockchainAnchorCreateOrConnectWithoutDeviceInput | BlockchainAnchorCreateOrConnectWithoutDeviceInput[]
+    upsert?: BlockchainAnchorUpsertWithWhereUniqueWithoutDeviceInput | BlockchainAnchorUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: BlockchainAnchorCreateManyDeviceInputEnvelope
+    set?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    disconnect?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    delete?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    connect?: BlockchainAnchorWhereUniqueInput | BlockchainAnchorWhereUniqueInput[]
+    update?: BlockchainAnchorUpdateWithWhereUniqueWithoutDeviceInput | BlockchainAnchorUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: BlockchainAnchorUpdateManyWithWhereWithoutDeviceInput | BlockchainAnchorUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: BlockchainAnchorScalarWhereInput | BlockchainAnchorScalarWhereInput[]
+  }
+
+  export type DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<DeviceMediaCreateWithoutDeviceInput, DeviceMediaUncheckedCreateWithoutDeviceInput> | DeviceMediaCreateWithoutDeviceInput[] | DeviceMediaUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: DeviceMediaCreateOrConnectWithoutDeviceInput | DeviceMediaCreateOrConnectWithoutDeviceInput[]
+    upsert?: DeviceMediaUpsertWithWhereUniqueWithoutDeviceInput | DeviceMediaUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: DeviceMediaCreateManyDeviceInputEnvelope
+    set?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    disconnect?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    delete?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    connect?: DeviceMediaWhereUniqueInput | DeviceMediaWhereUniqueInput[]
+    update?: DeviceMediaUpdateWithWhereUniqueWithoutDeviceInput | DeviceMediaUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: DeviceMediaUpdateManyWithWhereWithoutDeviceInput | DeviceMediaUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: DeviceMediaScalarWhereInput | DeviceMediaScalarWhereInput[]
+  }
+
+  export type MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput = {
+    create?: XOR<MediaVerificationCreateWithoutDeviceInput, MediaVerificationUncheckedCreateWithoutDeviceInput> | MediaVerificationCreateWithoutDeviceInput[] | MediaVerificationUncheckedCreateWithoutDeviceInput[]
+    connectOrCreate?: MediaVerificationCreateOrConnectWithoutDeviceInput | MediaVerificationCreateOrConnectWithoutDeviceInput[]
+    upsert?: MediaVerificationUpsertWithWhereUniqueWithoutDeviceInput | MediaVerificationUpsertWithWhereUniqueWithoutDeviceInput[]
+    createMany?: MediaVerificationCreateManyDeviceInputEnvelope
+    set?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    disconnect?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    delete?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    connect?: MediaVerificationWhereUniqueInput | MediaVerificationWhereUniqueInput[]
+    update?: MediaVerificationUpdateWithWhereUniqueWithoutDeviceInput | MediaVerificationUpdateWithWhereUniqueWithoutDeviceInput[]
+    updateMany?: MediaVerificationUpdateManyWithWhereWithoutDeviceInput | MediaVerificationUpdateManyWithWhereWithoutDeviceInput[]
+    deleteMany?: MediaVerificationScalarWhereInput | MediaVerificationScalarWhereInput[]
+  }
+
+  export type DeviceCreateNestedOneWithoutMedia_filesInput = {
+    create?: XOR<DeviceCreateWithoutMedia_filesInput, DeviceUncheckedCreateWithoutMedia_filesInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutMedia_filesInput
+    connect?: DeviceWhereUniqueInput
+  }
+
   export type BigIntFieldUpdateOperationsInput = {
     set?: bigint | number
     increment?: bigint | number
@@ -11383,8 +12283,44 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type DeviceUpdateOneRequiredWithoutMedia_filesNestedInput = {
+    create?: XOR<DeviceCreateWithoutMedia_filesInput, DeviceUncheckedCreateWithoutMedia_filesInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutMedia_filesInput
+    upsert?: DeviceUpsertWithoutMedia_filesInput
+    connect?: DeviceWhereUniqueInput
+    update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutMedia_filesInput, DeviceUpdateWithoutMedia_filesInput>, DeviceUncheckedUpdateWithoutMedia_filesInput>
+  }
+
+  export type DeviceCreateNestedOneWithoutVerificationsInput = {
+    create?: XOR<DeviceCreateWithoutVerificationsInput, DeviceUncheckedCreateWithoutVerificationsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutVerificationsInput
+    connect?: DeviceWhereUniqueInput
+  }
+
+  export type DeviceUpdateOneRequiredWithoutVerificationsNestedInput = {
+    create?: XOR<DeviceCreateWithoutVerificationsInput, DeviceUncheckedCreateWithoutVerificationsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutVerificationsInput
+    upsert?: DeviceUpsertWithoutVerificationsInput
+    connect?: DeviceWhereUniqueInput
+    update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutVerificationsInput, DeviceUpdateWithoutVerificationsInput>, DeviceUncheckedUpdateWithoutVerificationsInput>
+  }
+
+  export type DeviceCreateNestedOneWithoutZk_proof_jobsInput = {
+    create?: XOR<DeviceCreateWithoutZk_proof_jobsInput, DeviceUncheckedCreateWithoutZk_proof_jobsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutZk_proof_jobsInput
+    connect?: DeviceWhereUniqueInput
+  }
+
   export type NullableBytesFieldUpdateOperationsInput = {
     set?: Buffer | null
+  }
+
+  export type DeviceUpdateOneRequiredWithoutZk_proof_jobsNestedInput = {
+    create?: XOR<DeviceCreateWithoutZk_proof_jobsInput, DeviceUncheckedCreateWithoutZk_proof_jobsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutZk_proof_jobsInput
+    upsert?: DeviceUpsertWithoutZk_proof_jobsInput
+    connect?: DeviceWhereUniqueInput
+    update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutZk_proof_jobsInput, DeviceUpdateWithoutZk_proof_jobsInput>, DeviceUncheckedUpdateWithoutZk_proof_jobsInput>
   }
 
   export type DeviceCreateNestedOneWithoutUsage_metersInput = {
@@ -11399,6 +12335,48 @@ export namespace Prisma {
     upsert?: DeviceUpsertWithoutUsage_metersInput
     connect?: DeviceWhereUniqueInput
     update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutUsage_metersInput, DeviceUpdateWithoutUsage_metersInput>, DeviceUncheckedUpdateWithoutUsage_metersInput>
+  }
+
+  export type DeviceCreateNestedOneWithoutBlockchain_anchorsInput = {
+    create?: XOR<DeviceCreateWithoutBlockchain_anchorsInput, DeviceUncheckedCreateWithoutBlockchain_anchorsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutBlockchain_anchorsInput
+    connect?: DeviceWhereUniqueInput
+  }
+
+  export type DeviceUpdateOneRequiredWithoutBlockchain_anchorsNestedInput = {
+    create?: XOR<DeviceCreateWithoutBlockchain_anchorsInput, DeviceUncheckedCreateWithoutBlockchain_anchorsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutBlockchain_anchorsInput
+    upsert?: DeviceUpsertWithoutBlockchain_anchorsInput
+    connect?: DeviceWhereUniqueInput
+    update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutBlockchain_anchorsInput, DeviceUpdateWithoutBlockchain_anchorsInput>, DeviceUncheckedUpdateWithoutBlockchain_anchorsInput>
+  }
+
+  export type DeviceCreateNestedOneWithoutDevice_mediaInput = {
+    create?: XOR<DeviceCreateWithoutDevice_mediaInput, DeviceUncheckedCreateWithoutDevice_mediaInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutDevice_mediaInput
+    connect?: DeviceWhereUniqueInput
+  }
+
+  export type DeviceUpdateOneRequiredWithoutDevice_mediaNestedInput = {
+    create?: XOR<DeviceCreateWithoutDevice_mediaInput, DeviceUncheckedCreateWithoutDevice_mediaInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutDevice_mediaInput
+    upsert?: DeviceUpsertWithoutDevice_mediaInput
+    connect?: DeviceWhereUniqueInput
+    update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutDevice_mediaInput, DeviceUpdateWithoutDevice_mediaInput>, DeviceUncheckedUpdateWithoutDevice_mediaInput>
+  }
+
+  export type DeviceCreateNestedOneWithoutMedia_verificationsInput = {
+    create?: XOR<DeviceCreateWithoutMedia_verificationsInput, DeviceUncheckedCreateWithoutMedia_verificationsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutMedia_verificationsInput
+    connect?: DeviceWhereUniqueInput
+  }
+
+  export type DeviceUpdateOneRequiredWithoutMedia_verificationsNestedInput = {
+    create?: XOR<DeviceCreateWithoutMedia_verificationsInput, DeviceUncheckedCreateWithoutMedia_verificationsInput>
+    connectOrCreate?: DeviceCreateOrConnectWithoutMedia_verificationsInput
+    upsert?: DeviceUpsertWithoutMedia_verificationsInput
+    connect?: DeviceWhereUniqueInput
+    update?: XOR<XOR<DeviceUpdateToOneWithWhereWithoutMedia_verificationsInput, DeviceUpdateWithoutMedia_verificationsInput>, DeviceUncheckedUpdateWithoutMedia_verificationsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11651,6 +12629,194 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MediaFileCreateWithoutDeviceInput = {
+    media_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash?: string | null
+    file_size: bigint | number
+    storage_path?: string | null
+    signature_verified?: boolean
+    uploaded_at?: Date | string
+  }
+
+  export type MediaFileUncheckedCreateWithoutDeviceInput = {
+    media_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash?: string | null
+    file_size: bigint | number
+    storage_path?: string | null
+    signature_verified?: boolean
+    uploaded_at?: Date | string
+  }
+
+  export type MediaFileCreateOrConnectWithoutDeviceInput = {
+    where: MediaFileWhereUniqueInput
+    create: XOR<MediaFileCreateWithoutDeviceInput, MediaFileUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type MediaFileCreateManyDeviceInputEnvelope = {
+    data: MediaFileCreateManyDeviceInput | MediaFileCreateManyDeviceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type VerificationCreateWithoutDeviceInput = {
+    verification_id: string
+    media_id?: string | null
+    status: string
+    proof_data?: string | null
+    created_at?: Date | string
+    completed_at?: Date | string | null
+  }
+
+  export type VerificationUncheckedCreateWithoutDeviceInput = {
+    verification_id: string
+    media_id?: string | null
+    status: string
+    proof_data?: string | null
+    created_at?: Date | string
+    completed_at?: Date | string | null
+  }
+
+  export type VerificationCreateOrConnectWithoutDeviceInput = {
+    where: VerificationWhereUniqueInput
+    create: XOR<VerificationCreateWithoutDeviceInput, VerificationUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type VerificationCreateManyDeviceInputEnvelope = {
+    data: VerificationCreateManyDeviceInput | VerificationCreateManyDeviceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ZKProofJobCreateWithoutDeviceInput = {
+    proof_id: string
+    media_hash?: string | null
+    proof_type: string
+    attestation_data?: string | null
+    status?: string
+    proof_data?: Buffer | null
+    proof_hash?: string | null
+    completed_at?: Date | string | null
+    error_message?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ZKProofJobUncheckedCreateWithoutDeviceInput = {
+    proof_id: string
+    media_hash?: string | null
+    proof_type: string
+    attestation_data?: string | null
+    status?: string
+    proof_data?: Buffer | null
+    proof_hash?: string | null
+    completed_at?: Date | string | null
+    error_message?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ZKProofJobCreateOrConnectWithoutDeviceInput = {
+    where: ZKProofJobWhereUniqueInput
+    create: XOR<ZKProofJobCreateWithoutDeviceInput, ZKProofJobUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type ZKProofJobCreateManyDeviceInputEnvelope = {
+    data: ZKProofJobCreateManyDeviceInput | ZKProofJobCreateManyDeviceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BlockchainAnchorCreateWithoutDeviceInput = {
+    anchor_id: string
+    proof_id: string
+    proof_hash: string
+    arweave_tx_id?: string | null
+    arweave_status?: string | null
+    solana_tx_sig?: string | null
+    solana_status?: string | null
+    anchored_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type BlockchainAnchorUncheckedCreateWithoutDeviceInput = {
+    anchor_id: string
+    proof_id: string
+    proof_hash: string
+    arweave_tx_id?: string | null
+    arweave_status?: string | null
+    solana_tx_sig?: string | null
+    solana_status?: string | null
+    anchored_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type BlockchainAnchorCreateOrConnectWithoutDeviceInput = {
+    where: BlockchainAnchorWhereUniqueInput
+    create: XOR<BlockchainAnchorCreateWithoutDeviceInput, BlockchainAnchorUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type BlockchainAnchorCreateManyDeviceInputEnvelope = {
+    data: BlockchainAnchorCreateManyDeviceInput | BlockchainAnchorCreateManyDeviceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DeviceMediaCreateWithoutDeviceInput = {
+    id?: string
+    file_path: string
+    hash: string
+    size: bigint | number
+    mime_type: string
+    uploaded_at?: Date | string
+  }
+
+  export type DeviceMediaUncheckedCreateWithoutDeviceInput = {
+    id?: string
+    file_path: string
+    hash: string
+    size: bigint | number
+    mime_type: string
+    uploaded_at?: Date | string
+  }
+
+  export type DeviceMediaCreateOrConnectWithoutDeviceInput = {
+    where: DeviceMediaWhereUniqueInput
+    create: XOR<DeviceMediaCreateWithoutDeviceInput, DeviceMediaUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type DeviceMediaCreateManyDeviceInputEnvelope = {
+    data: DeviceMediaCreateManyDeviceInput | DeviceMediaCreateManyDeviceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MediaVerificationCreateWithoutDeviceInput = {
+    id?: string
+    media_hash: string
+    signature: string
+    verified_at?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUncheckedCreateWithoutDeviceInput = {
+    id?: string
+    media_hash: string
+    signature: string
+    verified_at?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationCreateOrConnectWithoutDeviceInput = {
+    where: MediaVerificationWhereUniqueInput
+    create: XOR<MediaVerificationCreateWithoutDeviceInput, MediaVerificationUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type MediaVerificationCreateManyDeviceInputEnvelope = {
+    data: MediaVerificationCreateManyDeviceInput | MediaVerificationCreateManyDeviceInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UsageMeterUpsertWithWhereUniqueWithoutDeviceInput = {
     where: UsageMeterWhereUniqueInput
     update: XOR<UsageMeterUpdateWithoutDeviceInput, UsageMeterUncheckedUpdateWithoutDeviceInput>
@@ -11679,6 +12845,562 @@ export namespace Prisma {
     period_end?: DateTimeNullableFilter<"UsageMeter"> | Date | string | null
   }
 
+  export type MediaFileUpsertWithWhereUniqueWithoutDeviceInput = {
+    where: MediaFileWhereUniqueInput
+    update: XOR<MediaFileUpdateWithoutDeviceInput, MediaFileUncheckedUpdateWithoutDeviceInput>
+    create: XOR<MediaFileCreateWithoutDeviceInput, MediaFileUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type MediaFileUpdateWithWhereUniqueWithoutDeviceInput = {
+    where: MediaFileWhereUniqueInput
+    data: XOR<MediaFileUpdateWithoutDeviceInput, MediaFileUncheckedUpdateWithoutDeviceInput>
+  }
+
+  export type MediaFileUpdateManyWithWhereWithoutDeviceInput = {
+    where: MediaFileScalarWhereInput
+    data: XOR<MediaFileUpdateManyMutationInput, MediaFileUncheckedUpdateManyWithoutDeviceInput>
+  }
+
+  export type MediaFileScalarWhereInput = {
+    AND?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+    OR?: MediaFileScalarWhereInput[]
+    NOT?: MediaFileScalarWhereInput | MediaFileScalarWhereInput[]
+    media_id?: StringFilter<"MediaFile"> | string
+    device_id?: StringFilter<"MediaFile"> | string
+    media_type?: StringFilter<"MediaFile"> | string
+    file_name?: StringFilter<"MediaFile"> | string
+    file_hash?: StringFilter<"MediaFile"> | string
+    ipfs_hash?: StringNullableFilter<"MediaFile"> | string | null
+    file_size?: BigIntFilter<"MediaFile"> | bigint | number
+    storage_path?: StringNullableFilter<"MediaFile"> | string | null
+    signature_verified?: BoolFilter<"MediaFile"> | boolean
+    uploaded_at?: DateTimeFilter<"MediaFile"> | Date | string
+  }
+
+  export type VerificationUpsertWithWhereUniqueWithoutDeviceInput = {
+    where: VerificationWhereUniqueInput
+    update: XOR<VerificationUpdateWithoutDeviceInput, VerificationUncheckedUpdateWithoutDeviceInput>
+    create: XOR<VerificationCreateWithoutDeviceInput, VerificationUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type VerificationUpdateWithWhereUniqueWithoutDeviceInput = {
+    where: VerificationWhereUniqueInput
+    data: XOR<VerificationUpdateWithoutDeviceInput, VerificationUncheckedUpdateWithoutDeviceInput>
+  }
+
+  export type VerificationUpdateManyWithWhereWithoutDeviceInput = {
+    where: VerificationScalarWhereInput
+    data: XOR<VerificationUpdateManyMutationInput, VerificationUncheckedUpdateManyWithoutDeviceInput>
+  }
+
+  export type VerificationScalarWhereInput = {
+    AND?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
+    OR?: VerificationScalarWhereInput[]
+    NOT?: VerificationScalarWhereInput | VerificationScalarWhereInput[]
+    verification_id?: StringFilter<"Verification"> | string
+    device_id?: StringFilter<"Verification"> | string
+    media_id?: StringNullableFilter<"Verification"> | string | null
+    status?: StringFilter<"Verification"> | string
+    proof_data?: StringNullableFilter<"Verification"> | string | null
+    created_at?: DateTimeFilter<"Verification"> | Date | string
+    completed_at?: DateTimeNullableFilter<"Verification"> | Date | string | null
+  }
+
+  export type ZKProofJobUpsertWithWhereUniqueWithoutDeviceInput = {
+    where: ZKProofJobWhereUniqueInput
+    update: XOR<ZKProofJobUpdateWithoutDeviceInput, ZKProofJobUncheckedUpdateWithoutDeviceInput>
+    create: XOR<ZKProofJobCreateWithoutDeviceInput, ZKProofJobUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type ZKProofJobUpdateWithWhereUniqueWithoutDeviceInput = {
+    where: ZKProofJobWhereUniqueInput
+    data: XOR<ZKProofJobUpdateWithoutDeviceInput, ZKProofJobUncheckedUpdateWithoutDeviceInput>
+  }
+
+  export type ZKProofJobUpdateManyWithWhereWithoutDeviceInput = {
+    where: ZKProofJobScalarWhereInput
+    data: XOR<ZKProofJobUpdateManyMutationInput, ZKProofJobUncheckedUpdateManyWithoutDeviceInput>
+  }
+
+  export type ZKProofJobScalarWhereInput = {
+    AND?: ZKProofJobScalarWhereInput | ZKProofJobScalarWhereInput[]
+    OR?: ZKProofJobScalarWhereInput[]
+    NOT?: ZKProofJobScalarWhereInput | ZKProofJobScalarWhereInput[]
+    proof_id?: StringFilter<"ZKProofJob"> | string
+    device_id?: StringFilter<"ZKProofJob"> | string
+    media_hash?: StringNullableFilter<"ZKProofJob"> | string | null
+    proof_type?: StringFilter<"ZKProofJob"> | string
+    attestation_data?: StringNullableFilter<"ZKProofJob"> | string | null
+    status?: StringFilter<"ZKProofJob"> | string
+    proof_data?: BytesNullableFilter<"ZKProofJob"> | Buffer | null
+    proof_hash?: StringNullableFilter<"ZKProofJob"> | string | null
+    completed_at?: DateTimeNullableFilter<"ZKProofJob"> | Date | string | null
+    error_message?: StringNullableFilter<"ZKProofJob"> | string | null
+    created_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+    updated_at?: DateTimeFilter<"ZKProofJob"> | Date | string
+  }
+
+  export type BlockchainAnchorUpsertWithWhereUniqueWithoutDeviceInput = {
+    where: BlockchainAnchorWhereUniqueInput
+    update: XOR<BlockchainAnchorUpdateWithoutDeviceInput, BlockchainAnchorUncheckedUpdateWithoutDeviceInput>
+    create: XOR<BlockchainAnchorCreateWithoutDeviceInput, BlockchainAnchorUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type BlockchainAnchorUpdateWithWhereUniqueWithoutDeviceInput = {
+    where: BlockchainAnchorWhereUniqueInput
+    data: XOR<BlockchainAnchorUpdateWithoutDeviceInput, BlockchainAnchorUncheckedUpdateWithoutDeviceInput>
+  }
+
+  export type BlockchainAnchorUpdateManyWithWhereWithoutDeviceInput = {
+    where: BlockchainAnchorScalarWhereInput
+    data: XOR<BlockchainAnchorUpdateManyMutationInput, BlockchainAnchorUncheckedUpdateManyWithoutDeviceInput>
+  }
+
+  export type BlockchainAnchorScalarWhereInput = {
+    AND?: BlockchainAnchorScalarWhereInput | BlockchainAnchorScalarWhereInput[]
+    OR?: BlockchainAnchorScalarWhereInput[]
+    NOT?: BlockchainAnchorScalarWhereInput | BlockchainAnchorScalarWhereInput[]
+    anchor_id?: StringFilter<"BlockchainAnchor"> | string
+    device_id?: StringFilter<"BlockchainAnchor"> | string
+    proof_id?: StringFilter<"BlockchainAnchor"> | string
+    proof_hash?: StringFilter<"BlockchainAnchor"> | string
+    arweave_tx_id?: StringNullableFilter<"BlockchainAnchor"> | string | null
+    arweave_status?: StringNullableFilter<"BlockchainAnchor"> | string | null
+    solana_tx_sig?: StringNullableFilter<"BlockchainAnchor"> | string | null
+    solana_status?: StringNullableFilter<"BlockchainAnchor"> | string | null
+    anchored_at?: DateTimeFilter<"BlockchainAnchor"> | Date | string
+    updated_at?: DateTimeFilter<"BlockchainAnchor"> | Date | string
+  }
+
+  export type DeviceMediaUpsertWithWhereUniqueWithoutDeviceInput = {
+    where: DeviceMediaWhereUniqueInput
+    update: XOR<DeviceMediaUpdateWithoutDeviceInput, DeviceMediaUncheckedUpdateWithoutDeviceInput>
+    create: XOR<DeviceMediaCreateWithoutDeviceInput, DeviceMediaUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type DeviceMediaUpdateWithWhereUniqueWithoutDeviceInput = {
+    where: DeviceMediaWhereUniqueInput
+    data: XOR<DeviceMediaUpdateWithoutDeviceInput, DeviceMediaUncheckedUpdateWithoutDeviceInput>
+  }
+
+  export type DeviceMediaUpdateManyWithWhereWithoutDeviceInput = {
+    where: DeviceMediaScalarWhereInput
+    data: XOR<DeviceMediaUpdateManyMutationInput, DeviceMediaUncheckedUpdateManyWithoutDeviceInput>
+  }
+
+  export type DeviceMediaScalarWhereInput = {
+    AND?: DeviceMediaScalarWhereInput | DeviceMediaScalarWhereInput[]
+    OR?: DeviceMediaScalarWhereInput[]
+    NOT?: DeviceMediaScalarWhereInput | DeviceMediaScalarWhereInput[]
+    id?: StringFilter<"DeviceMedia"> | string
+    device_id?: StringFilter<"DeviceMedia"> | string
+    file_path?: StringFilter<"DeviceMedia"> | string
+    hash?: StringFilter<"DeviceMedia"> | string
+    size?: BigIntFilter<"DeviceMedia"> | bigint | number
+    mime_type?: StringFilter<"DeviceMedia"> | string
+    uploaded_at?: DateTimeFilter<"DeviceMedia"> | Date | string
+  }
+
+  export type MediaVerificationUpsertWithWhereUniqueWithoutDeviceInput = {
+    where: MediaVerificationWhereUniqueInput
+    update: XOR<MediaVerificationUpdateWithoutDeviceInput, MediaVerificationUncheckedUpdateWithoutDeviceInput>
+    create: XOR<MediaVerificationCreateWithoutDeviceInput, MediaVerificationUncheckedCreateWithoutDeviceInput>
+  }
+
+  export type MediaVerificationUpdateWithWhereUniqueWithoutDeviceInput = {
+    where: MediaVerificationWhereUniqueInput
+    data: XOR<MediaVerificationUpdateWithoutDeviceInput, MediaVerificationUncheckedUpdateWithoutDeviceInput>
+  }
+
+  export type MediaVerificationUpdateManyWithWhereWithoutDeviceInput = {
+    where: MediaVerificationScalarWhereInput
+    data: XOR<MediaVerificationUpdateManyMutationInput, MediaVerificationUncheckedUpdateManyWithoutDeviceInput>
+  }
+
+  export type MediaVerificationScalarWhereInput = {
+    AND?: MediaVerificationScalarWhereInput | MediaVerificationScalarWhereInput[]
+    OR?: MediaVerificationScalarWhereInput[]
+    NOT?: MediaVerificationScalarWhereInput | MediaVerificationScalarWhereInput[]
+    id?: StringFilter<"MediaVerification"> | string
+    device_id?: StringFilter<"MediaVerification"> | string
+    media_hash?: StringFilter<"MediaVerification"> | string
+    signature?: StringFilter<"MediaVerification"> | string
+    verified_at?: DateTimeFilter<"MediaVerification"> | Date | string
+    metadata?: JsonNullableFilter<"MediaVerification">
+  }
+
+  export type DeviceCreateWithoutMedia_filesInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceUncheckedCreateWithoutMedia_filesInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceCreateOrConnectWithoutMedia_filesInput = {
+    where: DeviceWhereUniqueInput
+    create: XOR<DeviceCreateWithoutMedia_filesInput, DeviceUncheckedCreateWithoutMedia_filesInput>
+  }
+
+  export type DeviceUpsertWithoutMedia_filesInput = {
+    update: XOR<DeviceUpdateWithoutMedia_filesInput, DeviceUncheckedUpdateWithoutMedia_filesInput>
+    create: XOR<DeviceCreateWithoutMedia_filesInput, DeviceUncheckedCreateWithoutMedia_filesInput>
+    where?: DeviceWhereInput
+  }
+
+  export type DeviceUpdateToOneWithWhereWithoutMedia_filesInput = {
+    where?: DeviceWhereInput
+    data: XOR<DeviceUpdateWithoutMedia_filesInput, DeviceUncheckedUpdateWithoutMedia_filesInput>
+  }
+
+  export type DeviceUpdateWithoutMedia_filesInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceUncheckedUpdateWithoutMedia_filesInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceCreateWithoutVerificationsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceUncheckedCreateWithoutVerificationsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceCreateOrConnectWithoutVerificationsInput = {
+    where: DeviceWhereUniqueInput
+    create: XOR<DeviceCreateWithoutVerificationsInput, DeviceUncheckedCreateWithoutVerificationsInput>
+  }
+
+  export type DeviceUpsertWithoutVerificationsInput = {
+    update: XOR<DeviceUpdateWithoutVerificationsInput, DeviceUncheckedUpdateWithoutVerificationsInput>
+    create: XOR<DeviceCreateWithoutVerificationsInput, DeviceUncheckedCreateWithoutVerificationsInput>
+    where?: DeviceWhereInput
+  }
+
+  export type DeviceUpdateToOneWithWhereWithoutVerificationsInput = {
+    where?: DeviceWhereInput
+    data: XOR<DeviceUpdateWithoutVerificationsInput, DeviceUncheckedUpdateWithoutVerificationsInput>
+  }
+
+  export type DeviceUpdateWithoutVerificationsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceUncheckedUpdateWithoutVerificationsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceCreateWithoutZk_proof_jobsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceUncheckedCreateWithoutZk_proof_jobsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceCreateOrConnectWithoutZk_proof_jobsInput = {
+    where: DeviceWhereUniqueInput
+    create: XOR<DeviceCreateWithoutZk_proof_jobsInput, DeviceUncheckedCreateWithoutZk_proof_jobsInput>
+  }
+
+  export type DeviceUpsertWithoutZk_proof_jobsInput = {
+    update: XOR<DeviceUpdateWithoutZk_proof_jobsInput, DeviceUncheckedUpdateWithoutZk_proof_jobsInput>
+    create: XOR<DeviceCreateWithoutZk_proof_jobsInput, DeviceUncheckedCreateWithoutZk_proof_jobsInput>
+    where?: DeviceWhereInput
+  }
+
+  export type DeviceUpdateToOneWithWhereWithoutZk_proof_jobsInput = {
+    where?: DeviceWhereInput
+    data: XOR<DeviceUpdateWithoutZk_proof_jobsInput, DeviceUncheckedUpdateWithoutZk_proof_jobsInput>
+  }
+
+  export type DeviceUpdateWithoutZk_proof_jobsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceUncheckedUpdateWithoutZk_proof_jobsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
+  }
+
   export type DeviceCreateWithoutUsage_metersInput = {
     device_id: string
     tpm_serial?: string | null
@@ -11698,6 +13420,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     last_activity_at?: Date | string | null
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
   }
 
   export type DeviceUncheckedCreateWithoutUsage_metersInput = {
@@ -11719,6 +13447,12 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     last_activity_at?: Date | string | null
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
   }
 
   export type DeviceCreateOrConnectWithoutUsage_metersInput = {
@@ -11756,6 +13490,12 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
   }
 
   export type DeviceUncheckedUpdateWithoutUsage_metersInput = {
@@ -11777,6 +13517,384 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceCreateWithoutBlockchain_anchorsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceUncheckedCreateWithoutBlockchain_anchorsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceCreateOrConnectWithoutBlockchain_anchorsInput = {
+    where: DeviceWhereUniqueInput
+    create: XOR<DeviceCreateWithoutBlockchain_anchorsInput, DeviceUncheckedCreateWithoutBlockchain_anchorsInput>
+  }
+
+  export type DeviceUpsertWithoutBlockchain_anchorsInput = {
+    update: XOR<DeviceUpdateWithoutBlockchain_anchorsInput, DeviceUncheckedUpdateWithoutBlockchain_anchorsInput>
+    create: XOR<DeviceCreateWithoutBlockchain_anchorsInput, DeviceUncheckedCreateWithoutBlockchain_anchorsInput>
+    where?: DeviceWhereInput
+  }
+
+  export type DeviceUpdateToOneWithWhereWithoutBlockchain_anchorsInput = {
+    where?: DeviceWhereInput
+    data: XOR<DeviceUpdateWithoutBlockchain_anchorsInput, DeviceUncheckedUpdateWithoutBlockchain_anchorsInput>
+  }
+
+  export type DeviceUpdateWithoutBlockchain_anchorsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceUncheckedUpdateWithoutBlockchain_anchorsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceCreateWithoutDevice_mediaInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceUncheckedCreateWithoutDevice_mediaInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    media_verifications?: MediaVerificationUncheckedCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceCreateOrConnectWithoutDevice_mediaInput = {
+    where: DeviceWhereUniqueInput
+    create: XOR<DeviceCreateWithoutDevice_mediaInput, DeviceUncheckedCreateWithoutDevice_mediaInput>
+  }
+
+  export type DeviceUpsertWithoutDevice_mediaInput = {
+    update: XOR<DeviceUpdateWithoutDevice_mediaInput, DeviceUncheckedUpdateWithoutDevice_mediaInput>
+    create: XOR<DeviceCreateWithoutDevice_mediaInput, DeviceUncheckedCreateWithoutDevice_mediaInput>
+    where?: DeviceWhereInput
+  }
+
+  export type DeviceUpdateToOneWithWhereWithoutDevice_mediaInput = {
+    where?: DeviceWhereInput
+    data: XOR<DeviceUpdateWithoutDevice_mediaInput, DeviceUncheckedUpdateWithoutDevice_mediaInput>
+  }
+
+  export type DeviceUpdateWithoutDevice_mediaInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceUncheckedUpdateWithoutDevice_mediaInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    media_verifications?: MediaVerificationUncheckedUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceCreateWithoutMedia_verificationsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceUncheckedCreateWithoutMedia_verificationsInput = {
+    device_id: string
+    tpm_serial?: string | null
+    name?: string | null
+    device_name?: string | null
+    device_type?: string | null
+    os_version?: string | null
+    app_version?: string | null
+    tpm_public_key: string
+    api_key_hash?: string | null
+    registration_ip?: string | null
+    user_agent?: string | null
+    attestation_key?: string | null
+    verified_at?: Date | string | null
+    status?: string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: Date | string
+    updated_at?: Date | string
+    last_activity_at?: Date | string | null
+    usage_meters?: UsageMeterUncheckedCreateNestedManyWithoutDeviceInput
+    media_files?: MediaFileUncheckedCreateNestedManyWithoutDeviceInput
+    verifications?: VerificationUncheckedCreateNestedManyWithoutDeviceInput
+    zk_proof_jobs?: ZKProofJobUncheckedCreateNestedManyWithoutDeviceInput
+    blockchain_anchors?: BlockchainAnchorUncheckedCreateNestedManyWithoutDeviceInput
+    device_media?: DeviceMediaUncheckedCreateNestedManyWithoutDeviceInput
+  }
+
+  export type DeviceCreateOrConnectWithoutMedia_verificationsInput = {
+    where: DeviceWhereUniqueInput
+    create: XOR<DeviceCreateWithoutMedia_verificationsInput, DeviceUncheckedCreateWithoutMedia_verificationsInput>
+  }
+
+  export type DeviceUpsertWithoutMedia_verificationsInput = {
+    update: XOR<DeviceUpdateWithoutMedia_verificationsInput, DeviceUncheckedUpdateWithoutMedia_verificationsInput>
+    create: XOR<DeviceCreateWithoutMedia_verificationsInput, DeviceUncheckedCreateWithoutMedia_verificationsInput>
+    where?: DeviceWhereInput
+  }
+
+  export type DeviceUpdateToOneWithWhereWithoutMedia_verificationsInput = {
+    where?: DeviceWhereInput
+    data: XOR<DeviceUpdateWithoutMedia_verificationsInput, DeviceUncheckedUpdateWithoutMedia_verificationsInput>
+  }
+
+  export type DeviceUpdateWithoutMedia_verificationsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUpdateManyWithoutDeviceNestedInput
+  }
+
+  export type DeviceUncheckedUpdateWithoutMedia_verificationsInput = {
+    device_id?: StringFieldUpdateOperationsInput | string
+    tpm_serial?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_name?: NullableStringFieldUpdateOperationsInput | string | null
+    device_type?: NullableStringFieldUpdateOperationsInput | string | null
+    os_version?: NullableStringFieldUpdateOperationsInput | string | null
+    app_version?: NullableStringFieldUpdateOperationsInput | string | null
+    tpm_public_key?: StringFieldUpdateOperationsInput | string
+    api_key_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    registration_ip?: NullableStringFieldUpdateOperationsInput | string | null
+    user_agent?: NullableStringFieldUpdateOperationsInput | string | null
+    attestation_key?: NullableStringFieldUpdateOperationsInput | string | null
+    verified_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    last_activity_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    usage_meters?: UsageMeterUncheckedUpdateManyWithoutDeviceNestedInput
+    media_files?: MediaFileUncheckedUpdateManyWithoutDeviceNestedInput
+    verifications?: VerificationUncheckedUpdateManyWithoutDeviceNestedInput
+    zk_proof_jobs?: ZKProofJobUncheckedUpdateManyWithoutDeviceNestedInput
+    blockchain_anchors?: BlockchainAnchorUncheckedUpdateManyWithoutDeviceNestedInput
+    device_media?: DeviceMediaUncheckedUpdateManyWithoutDeviceNestedInput
   }
 
   export type UsageMeterCreateManyDeviceInput = {
@@ -11785,6 +13903,70 @@ export namespace Prisma {
     value?: bigint | number
     period_start?: Date | string
     period_end?: Date | string | null
+  }
+
+  export type MediaFileCreateManyDeviceInput = {
+    media_id: string
+    media_type: string
+    file_name: string
+    file_hash: string
+    ipfs_hash?: string | null
+    file_size: bigint | number
+    storage_path?: string | null
+    signature_verified?: boolean
+    uploaded_at?: Date | string
+  }
+
+  export type VerificationCreateManyDeviceInput = {
+    verification_id: string
+    media_id?: string | null
+    status: string
+    proof_data?: string | null
+    created_at?: Date | string
+    completed_at?: Date | string | null
+  }
+
+  export type ZKProofJobCreateManyDeviceInput = {
+    proof_id: string
+    media_hash?: string | null
+    proof_type: string
+    attestation_data?: string | null
+    status?: string
+    proof_data?: Buffer | null
+    proof_hash?: string | null
+    completed_at?: Date | string | null
+    error_message?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type BlockchainAnchorCreateManyDeviceInput = {
+    anchor_id: string
+    proof_id: string
+    proof_hash: string
+    arweave_tx_id?: string | null
+    arweave_status?: string | null
+    solana_tx_sig?: string | null
+    solana_status?: string | null
+    anchored_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type DeviceMediaCreateManyDeviceInput = {
+    id?: string
+    file_path: string
+    hash: string
+    size: bigint | number
+    mime_type: string
+    uploaded_at?: Date | string
+  }
+
+  export type MediaVerificationCreateManyDeviceInput = {
+    id?: string
+    media_hash: string
+    signature: string
+    verified_at?: Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type UsageMeterUpdateWithoutDeviceInput = {
@@ -11809,6 +13991,198 @@ export namespace Prisma {
     value?: BigIntFieldUpdateOperationsInput | bigint | number
     period_start?: DateTimeFieldUpdateOperationsInput | Date | string
     period_end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type MediaFileUpdateWithoutDeviceInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaFileUncheckedUpdateWithoutDeviceInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaFileUncheckedUpdateManyWithoutDeviceInput = {
+    media_id?: StringFieldUpdateOperationsInput | string
+    media_type?: StringFieldUpdateOperationsInput | string
+    file_name?: StringFieldUpdateOperationsInput | string
+    file_hash?: StringFieldUpdateOperationsInput | string
+    ipfs_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    file_size?: BigIntFieldUpdateOperationsInput | bigint | number
+    storage_path?: NullableStringFieldUpdateOperationsInput | string | null
+    signature_verified?: BoolFieldUpdateOperationsInput | boolean
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationUpdateWithoutDeviceInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VerificationUncheckedUpdateWithoutDeviceInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type VerificationUncheckedUpdateManyWithoutDeviceInput = {
+    verification_id?: StringFieldUpdateOperationsInput | string
+    media_id?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ZKProofJobUpdateWithoutDeviceInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZKProofJobUncheckedUpdateWithoutDeviceInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ZKProofJobUncheckedUpdateManyWithoutDeviceInput = {
+    proof_id?: StringFieldUpdateOperationsInput | string
+    media_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    proof_type?: StringFieldUpdateOperationsInput | string
+    attestation_data?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    proof_data?: NullableBytesFieldUpdateOperationsInput | Buffer | null
+    proof_hash?: NullableStringFieldUpdateOperationsInput | string | null
+    completed_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    error_message?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainAnchorUpdateWithoutDeviceInput = {
+    anchor_id?: StringFieldUpdateOperationsInput | string
+    proof_id?: StringFieldUpdateOperationsInput | string
+    proof_hash?: StringFieldUpdateOperationsInput | string
+    arweave_tx_id?: NullableStringFieldUpdateOperationsInput | string | null
+    arweave_status?: NullableStringFieldUpdateOperationsInput | string | null
+    solana_tx_sig?: NullableStringFieldUpdateOperationsInput | string | null
+    solana_status?: NullableStringFieldUpdateOperationsInput | string | null
+    anchored_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainAnchorUncheckedUpdateWithoutDeviceInput = {
+    anchor_id?: StringFieldUpdateOperationsInput | string
+    proof_id?: StringFieldUpdateOperationsInput | string
+    proof_hash?: StringFieldUpdateOperationsInput | string
+    arweave_tx_id?: NullableStringFieldUpdateOperationsInput | string | null
+    arweave_status?: NullableStringFieldUpdateOperationsInput | string | null
+    solana_tx_sig?: NullableStringFieldUpdateOperationsInput | string | null
+    solana_status?: NullableStringFieldUpdateOperationsInput | string | null
+    anchored_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainAnchorUncheckedUpdateManyWithoutDeviceInput = {
+    anchor_id?: StringFieldUpdateOperationsInput | string
+    proof_id?: StringFieldUpdateOperationsInput | string
+    proof_hash?: StringFieldUpdateOperationsInput | string
+    arweave_tx_id?: NullableStringFieldUpdateOperationsInput | string | null
+    arweave_status?: NullableStringFieldUpdateOperationsInput | string | null
+    solana_tx_sig?: NullableStringFieldUpdateOperationsInput | string | null
+    solana_status?: NullableStringFieldUpdateOperationsInput | string | null
+    anchored_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DeviceMediaUpdateWithoutDeviceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
+    hash?: StringFieldUpdateOperationsInput | string
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DeviceMediaUncheckedUpdateWithoutDeviceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
+    hash?: StringFieldUpdateOperationsInput | string
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DeviceMediaUncheckedUpdateManyWithoutDeviceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    file_path?: StringFieldUpdateOperationsInput | string
+    hash?: StringFieldUpdateOperationsInput | string
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    mime_type?: StringFieldUpdateOperationsInput | string
+    uploaded_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MediaVerificationUpdateWithoutDeviceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUncheckedUpdateWithoutDeviceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
+  }
+
+  export type MediaVerificationUncheckedUpdateManyWithoutDeviceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    media_hash?: StringFieldUpdateOperationsInput | string
+    signature?: StringFieldUpdateOperationsInput | string
+    verified_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    metadata?: NullableJsonNullValueInput | InputJsonValue
   }
 
 

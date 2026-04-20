@@ -13,25 +13,31 @@ datasource db {
 }
 
 model Device {
-  device_id        String       @id @db.VarChar(64)
-  tpm_serial       String?      @unique @db.VarChar(128)
-  name             String?      @db.VarChar(128)
-  device_name      String?      @db.VarChar(128)
-  device_type      String?      @db.VarChar(32) // ANDROID, IOS, LINUX, etc.
-  os_version       String?      @db.VarChar(32)
-  app_version      String?      @db.VarChar(32)
-  tpm_public_key   String       @db.VarChar(256)
-  api_key_hash     String?      @db.VarChar(64)
-  registration_ip  String?      @db.VarChar(45) // IPv6 support
-  user_agent       String?      @db.VarChar(512)
-  attestation_key  String?      @db.VarChar(256)
-  verified_at      DateTime?
-  status           String?      @default("ACTIVE") @db.VarChar(32)
-  metadata         Json?
-  created_at       DateTime     @default(now())
-  updated_at       DateTime     @updatedAt
-  last_activity_at DateTime?    @updatedAt
-  usage_meters     UsageMeter[]
+  device_id           String              @id @db.VarChar(64)
+  tpm_serial          String?             @unique @db.VarChar(128)
+  name                String?             @db.VarChar(128)
+  device_name         String?             @db.VarChar(128)
+  device_type         String?             @db.VarChar(32) // ANDROID, IOS, LINUX, etc.
+  os_version          String?             @db.VarChar(32)
+  app_version         String?             @db.VarChar(32)
+  tpm_public_key      String              @db.VarChar(256)
+  api_key_hash        String?             @db.VarChar(64)
+  registration_ip     String?             @db.VarChar(45) // IPv6 support
+  user_agent          String?             @db.VarChar(512)
+  attestation_key     String?             @db.VarChar(256)
+  verified_at         DateTime?
+  status              String?             @default("ACTIVE") @db.VarChar(32)
+  metadata            Json?
+  created_at          DateTime            @default(now())
+  updated_at          DateTime            @updatedAt
+  last_activity_at    DateTime?           @updatedAt
+  usage_meters        UsageMeter[]
+  media_files         MediaFile[]
+  verifications       Verification[]
+  zk_proof_jobs       ZKProofJob[]
+  blockchain_anchors  BlockchainAnchor[]
+  device_media        DeviceMedia[]
+  media_verifications MediaVerification[]
 
   @@index([device_id])
   @@index([tpm_serial])
@@ -44,6 +50,7 @@ model Device {
 model MediaFile {
   media_id           String   @id @db.VarChar(64)
   device_id          String   @db.VarChar(64)
+  device             Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
   media_type         String   @db.VarChar(64)
   file_name          String   @db.VarChar(256)
   file_hash          String   @unique @db.VarChar(128)
@@ -63,6 +70,7 @@ model MediaFile {
 model Verification {
   verification_id String    @id @db.VarChar(64)
   device_id       String    @db.VarChar(64)
+  device          Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
   media_id        String?
   status          String    @db.VarChar(32)
   proof_data      String?
@@ -78,6 +86,7 @@ model Verification {
 model ZKProofJob {
   proof_id         String    @id @db.VarChar(64)
   device_id        String    @db.VarChar(64)
+  device           Device    @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
   media_hash       String?   @db.VarChar(128)
   proof_type       String    @db.VarChar(64)
   attestation_data String?
@@ -114,6 +123,7 @@ model UsageMeter {
 model BlockchainAnchor {
   anchor_id      String   @id @db.VarChar(64)
   device_id      String   @db.VarChar(64)
+  device         Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
   proof_id       String   @db.VarChar(64)
   proof_hash     String   @db.VarChar(128)
   arweave_tx_id  String?  @db.VarChar(64)
@@ -134,6 +144,7 @@ model BlockchainAnchor {
 model DeviceMedia {
   id          String   @id @default(cuid())
   device_id   String   @db.VarChar(64)
+  device      Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
   file_path   String   @db.VarChar(512)
   hash        String   @db.VarChar(128)
   size        BigInt
@@ -148,6 +159,7 @@ model DeviceMedia {
 model MediaVerification {
   id          String   @id @default(cuid())
   device_id   String   @db.VarChar(64)
+  device      Device   @relation(fields: [device_id], references: [device_id], onDelete: Cascade)
   media_hash  String   @unique @db.VarChar(128)
   signature   String   @db.VarChar(256)
   verified_at DateTime @default(now())
@@ -157,6 +169,11 @@ model MediaVerification {
   @@index([media_hash])
   @@map("media_verifications")
 }
+
+// Scalable indexes for 10M+ records
+// All tables have proper UUID ids, indexes on FKs/statuses/timestamps
+// Cascade deletes for data hygiene
+// Json metadata for flexibility without schema changes
 
 // Scalable indexes for 10M+ records
 // All tables have proper UUID ids, indexes on FKs/statuses/timestamps

@@ -19,9 +19,11 @@ import { BullModule } from '@nestjs/bullmq';
 // Modules
 import { DatabaseModule } from './database/database.module';
 import { RedisModule } from './redis/redis.module';
+import { SharedModule } from './shared/shared.module';
 import { DeviceModule } from './features/device/device.module';
 import { MediaModule } from './features/media/media.module';
 import { VerificationModule } from './features/verification/verification.module';
+import { BlockchainModule } from './features/blockchain/blockchain.module';
 import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
 import { LoggerModule } from './common/logger/logger.module';
@@ -153,17 +155,27 @@ CORS_ORIGINS: Joi.string().default('http://localhost:3000,http://localhost:3001'
 
     // ==================== FEATURE MODULES ====================
 
+    SharedModule,
     DeviceModule,
     MediaModule,
     VerificationModule,
+    BlockchainModule,
   ],
   providers: [PrismaService],
   exports: [PrismaService],
 })
 export class AppModule {
   constructor(private configService: ConfigService) {
-    const nodeEnv = this.configService.get<string>('NODE_ENV');
-    const port = this.configService.get<number>('PORT');
+    const nodeEnv = this.configService.get<string>('NODE_ENV') ?? 'development';
+    const port = this.configService.get<number>('PORT') ?? 3000;
+    const dbUrl = this.configService.get<string>('DATABASE_URL') ?? '';
+    let dbDisplay = 'Not configured';
+    try {
+      const dbUrlObj = new URL(dbUrl);
+      dbDisplay = dbUrlObj.hostname || 'Unknown host';
+    } catch (e) {
+      // Invalid URL, don't log it
+    }
     
     console.log(`
       ╔═══════════════════════════════════════════════════════╗
@@ -171,8 +183,8 @@ export class AppModule {
       ║                                                       ║
       ║  Environment: ${nodeEnv.toUpperCase().padEnd(31)} ║
       ║  Port: ${port.toString().padEnd(48)} ║
-      ║  Database: ${this.configService.get('DATABASE_URL')?.substring(0, 35).padEnd(42)} ║
-      ║  Redis: ${this.configService.get('REDIS_URL')?.substring(0, 38).padEnd(45)} ║
+      ║  Database: ${dbDisplay.padEnd(42)} ║
+      ║  Redis: ${this.configService.get('REDIS_URL')?.substring(0, 20).padEnd(45)} ║
       ╚═══════════════════════════════════════════════════════╝
     `);
   }

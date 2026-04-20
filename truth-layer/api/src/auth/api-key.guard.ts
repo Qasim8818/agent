@@ -34,10 +34,25 @@ export class ApiKeyGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const apiKey = this.extractApiKey(request);
 
-    if (!apiKey || !this.validApiKeys.some(storedKey => crypto.timingSafeEqual(
-      Buffer.from(apiKey, 'utf8'),
-      Buffer.from(storedKey, 'utf8')
-    ))) {
+    if (!apiKey) {
+      throw new UnauthorizedException('Invalid or missing API key');
+    }
+
+    // Hash both keys to fixed length to prevent timing oracle + length mismatch crashes
+    const hashKey = (k: string) => crypto.createHash('sha256').update(k).digest();
+    const incomingKeyHash = hashKey(apiKey);
+    
+    const isValid = this.validApiKeys.some(storedKey => {
+      try {
+        const storedKeyHash = hashKey(storedKey);
+        return crypto.timingSafeEqual(incomingKeyHash, storedKeyHash);
+      } catch (e) {
+        // Gracefully handle any hashing errors (shouldn't happen)
+        return false;
+      }
+    });
+
+    if (!isValid) {
       throw new UnauthorizedException('Invalid or missing API key');
     }
 

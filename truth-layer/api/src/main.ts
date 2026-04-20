@@ -14,7 +14,6 @@ import { AppModule } from './app.module';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { setupSwagger } from './swagger.config';
-import { Logger } from 'winston';
 import { logger as winstonLogger } from './common/logger/logger.config';
 
 async function bootstrap() {
@@ -89,8 +88,8 @@ async function bootstrap() {
     }),
   );
 
-  app.useGlobalInterceptors(new LoggingInterceptor(logger));
-  app.useGlobalFilters(new GlobalExceptionFilter(logger));
+  app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalFilters(new GlobalExceptionFilter(app.get('HttpAdapterHost')));
 
   if (nodeEnv === 'development') {
     setupSwagger(app);

@@ -6,7 +6,7 @@
 
 import { Injectable, OnModuleInit, OnModuleDestroy, Logger } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { logger as winstonLogger } from '../logger/logger.config';
+import { logger as winstonLogger } from '../common/logger/logger.config';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {

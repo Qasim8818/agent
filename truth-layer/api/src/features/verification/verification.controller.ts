@@ -135,7 +135,7 @@ export class VerificationController {
       throw new BadRequestException('Maximum 10 proofs per batch request');
     }
 
-    const verifications = [];
+    const verifications: any[] = [];
     for (const proof of body.proofs) {
       try {
         const verification = await this.verificationService.generateProof({

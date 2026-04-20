@@ -53,7 +53,8 @@ export class AuthService {
    */
   validateToken(token: string): JwtPayload | null {
     try {
-      return this.jwtService.verify(token);
+      const decoded = this.jwtService.verify<JwtPayload>(token);
+      return decoded as JwtPayload;
     } catch (error) {
       return null;
     }

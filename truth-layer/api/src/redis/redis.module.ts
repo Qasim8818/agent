@@ -31,11 +31,14 @@ export class RedisService {
   }
 
   async closeConnection(): Promise<void> {
-    return new Promise((resolve) => {
-      this.client.quit(() => {
+    return new Promise<void>(async (resolve) => {
+      try {
+        await this.client.quit();
         this.logger.log('[REDIS] Disconnected');
-        resolve();
-      });
+      } catch (error) {
+        this.logger.warn('[REDIS] Error during quit:', error);
+      }
+      resolve();
     });
   }
 }
