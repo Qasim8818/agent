@@ -328,3 +328,4 @@ if __name__ == "__main__":
     sim = SensorSimulator(output_file="test_sensor_data.json")
     sim.simulate(update_interval=3, duration=30)
     logger.info("Done")
+
